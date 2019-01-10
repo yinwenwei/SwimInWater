@@ -1,9 +1,16 @@
+ <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
  <!-- 尾部 start-->
     <footer id="footer">
         <div class="why_select">
             <dl>
                 <dt class="fl">
-                    <img src="images/icon_1.jpg" alt="">
+                    <img src="${pageContext.request.contextPath }/statics/images/icon_1.jpg" alt="">
                 </dt>
                 <dd>
                     <h1>产品齐全</h1>
@@ -12,7 +19,7 @@
             </dl>
             <dl>
                 <dt class="fl">
-                    <img src="images/icon_2.jpg" alt="">
+                    <img src="${pageContext.request.contextPath }/statics/images/icon_2.jpg" alt="">
                 </dt>
                 <dd>
                     <h1>便利快捷</h1>
@@ -21,7 +28,7 @@
             </dl>
             <dl>
                 <dt class="fl">
-                    <img src="images/icon_3.jpg" alt="">
+                    <img src="${pageContext.request.contextPath }/statics/images/icon_3.jpg" alt="">
                 </dt>
                 <dd>
                     <h1>安全支付</h1>
@@ -30,7 +37,7 @@
             </dl>
             <dl>
                 <dt class="fl">
-                    <img src="images/icon_4.jpg" alt="">
+                    <img src="${pageContext.request.contextPath }/statics/images/icon_4.jpg" alt="">
                 </dt>
                 <dd style="margin-right:0px;">
                     <h1>贴心服务</h1>

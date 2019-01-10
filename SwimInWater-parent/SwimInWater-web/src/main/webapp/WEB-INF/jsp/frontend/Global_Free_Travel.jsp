@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 
 <head>
@@ -6,9 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>黑马旅游-搜索</title>
-    <link rel="stylesheet" type="text/css" href="css/common.css">
-    <link rel="stylesheet" href="css/search.css">
-    <script src="js/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/statics/css/common.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/search.css">
+    <script src="${pageContext.request.contextPath }/statics/js/jquery-3.3.1.js"></script>
 </head>
 <body>
 <!--引入头部-->
@@ -16,7 +22,7 @@
     <div class="page_one">
         <div class="contant">
             <div class="crumbs">
-                <img src="images/search.png" alt="">
+                <img src="${pageContext.request.contextPath }/statics/images/search.png" alt="">
                 <p>黑马旅行><span>搜索结果</span></p>
             </div>
             <div class="xinxi clearfix">
@@ -27,7 +33,7 @@
                     </div>
                     <ul>
                         <li>
-                            <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
+                            <div class="img"><img src="${pageContext.request.contextPath }/statics/images/04-search_03.jpg" alt=""></div>
                             <div class="text1">
                                 <p>【减100元 含除夕/春节出发】广州增城三英温泉度假酒店/自由行套票</p>
                                 <br/>
@@ -43,7 +49,7 @@
                             </div>
                         </li>
                         <li>
-                            <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
+                            <div class="img"><img src="${pageContext.request.contextPath }/statics/images/04-search_03.jpg" alt=""></div>
                             <div class="text1">
                                 <p>浪花朵朵旅行普吉岛丛林飞跃空中飞人探险游中文服务泰国旅游</p>
                                 <br/>
@@ -59,7 +65,7 @@
                             </div>
                         </li>
                         <li>
-                            <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
+                            <div class="img"><img src="${pageContext.request.contextPath }/statics/images/04-search_03.jpg" alt=""></div>
                             <div class="text1">
                                 <p>黑妞皇家旅行普吉岛攀牙湾大船星光之旅皮划艇日落休闲特色体验</p>
                                 <br/>
@@ -75,7 +81,7 @@
                             </div>
                         </li>
                         <li>
-                            <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
+                            <div class="img"><img src="${pageContext.request.contextPath }/statics/images/04-search_03.jpg" alt=""></div>
                             <div class="text1">
                                 <p>浪花朵朵旅行普吉岛皇帝岛珊瑚岛香蕉船拖拽伞水上项目</p>
                                 <br/>
@@ -91,7 +97,7 @@
                             </div>
                         </li>
                         <li>
-                            <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
+                            <div class="img"><img src="${pageContext.request.contextPath }/statics/images/04-search_03.jpg" alt=""></div>
                             <div class="text1">
                                 <p>环游记 泰国清迈Lila massage女子监狱spa 丽菈泰式按摩马杀鸡</p>
                                 <br/>
@@ -107,7 +113,7 @@
                             </div>
                         </li>
                         <li>
-                            <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
+                            <div class="img"><img src="${pageContext.request.contextPath }/statics/images/04-search_03.jpg" alt=""></div>
                             <div class="text1">
                                 <p>【减100元 含除夕/春节出发】广州增城三英温泉度假酒店/自由行套票</p>
                                 <br/>
@@ -123,7 +129,7 @@
                             </div>
                         </li>
                         <li>
-                            <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
+                            <div class="img"><img src="${pageContext.request.contextPath }/statics/images/04-search_03.jpg" alt=""></div>
                             <div class="text1">
                                 <p>【减100元 含除夕/春节出发】广州增城三英温泉度假酒店/自由行套票</p>
                                 <br/>
@@ -139,7 +145,7 @@
                             </div>
                         </li>
                         <li>
-                            <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
+                            <div class="img"><img src="${pageContext.request.contextPath }/statics/images/04-search_03.jpg" alt=""></div>
                             <div class="text1">
                                 <p>泰国芭提雅三合一日游芭提雅蒂芬妮人妖秀成人门票bigeye含接送</p>
                                 <br/>
@@ -185,7 +191,7 @@
                     </div>
                     <ul>
                         <li>
-                            <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
+                            <div class="left"><img src="${pageContext.request.contextPath }/statics/images/04-search_09.jpg" alt=""></div>
                             <div class="right">
                                 <p>清远新银盏温泉度假村酒店/自由行套...</p>
                                 <p>网付价<span>&yen;<span>899</span>起</span>
@@ -193,7 +199,7 @@
                             </div>
                         </li>
                         <li>
-                            <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
+                            <div class="left"><img src="${pageContext.request.contextPath }/statics/images/04-search_09.jpg" alt=""></div>
                             <div class="right">
                                 <p>清远新银盏温泉度假村酒店/自由行套...</p>
                                 <p>网付价<span>&yen;<span>899</span>起</span>
@@ -201,7 +207,7 @@
                             </div>
                         </li>
                         <li>
-                            <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
+                            <div class="left"><img src="${pageContext.request.contextPath }/statics/images/04-search_09.jpg" alt=""></div>
                             <div class="right">
                                 <p>清远新银盏温泉度假村酒店/自由行套...</p>
                                 <p>网付价<span>&yen;<span>899</span>起</span>
@@ -209,7 +215,7 @@
                             </div>
                         </li>
                         <li>
-                            <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
+                            <div class="left"><img src="${pageContext.request.contextPath }/statics/images/04-search_09.jpg" alt=""></div>
                             <div class="right">
                                 <p>清远新银盏温泉度假村酒店/自由行套...</p>
                                 <p>网付价<span>&yen;<span>899</span>起</span>
@@ -217,7 +223,7 @@
                             </div>
                         </li>
                         <li>
-                            <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
+                            <div class="left"><img src="${pageContext.request.contextPath }/statics/images/04-search_09.jpg" alt=""></div>
                             <div class="right">
                                 <p>清远新银盏温泉度假村酒店/自由行套...</p>
                                 <p>网付价<span>&yen;<span>899</span>起</span>
@@ -233,7 +239,7 @@
     <!--引入头部-->
     <div id="footer"></div>
     <!--导入布局js，共享header和footer-->
-    <script type="text/javascript" src="js/include.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/include.js"></script>
 </body>
 
 </html>
