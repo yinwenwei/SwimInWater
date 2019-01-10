@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>黑马旅游网</title>
     <!-- Bootstrap -->
-    <link href="${pageContext.request.contextPath}/statics/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/statics/css/bootstrap.min.css" rel="stylesheet" >
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/common.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/index.css">
 	
