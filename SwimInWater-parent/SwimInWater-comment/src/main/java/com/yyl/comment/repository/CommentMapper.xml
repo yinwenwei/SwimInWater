@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yyl.comment.repository.CommentMapper">
+
+    <select id="getCommentById" resultType="com.yyl.entity.Comment" >
+        select
+                id as id,
+                sId as sId,
+                uId as uId,
+                uName as uName,
+                cContent as cContent,
+                cName as cName,
+                cTime as cTime
+        from comment
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getCommentListByMap" resultType="com.yyl.entity.Comment" parameterType="java.util.Map">
+        select
+                id as id,
+                sId as sId,
+                uId as uId,
+                uName as uName,
+                cContent as cContent,
+                cName as cName,
+                cTime as cTime
+        from comment
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="id != null and id!=''">
+                        and id=#{id}
+                    </if>
+                    <if test="sId != null and sId!=''">
+                        and sId=#{sId}
+                    </if>
+                    <if test="uId != null and uId!=''">
+                        and uId=#{uId}
+                    </if>
+                    <if test="uName != null and uName!=''">
+                        and uName=#{uName}
+                    </if>
+                    <if test="cContent != null and cContent!=''">
+                        and cContent=#{cContent}
+                    </if>
+                    <if test="cName != null and cName!=''">
+                        and cName=#{cName}
+                    </if>
+                    <if test="cTime != null and cTime!=''">
+                        and cTime=#{cTime}
+                    </if>
+        </trim>
+         order by createDate desc
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+
+    <select id="getCommentCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from comment
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="sId != null and sId!=''">
+                    and sId=#{sId}
+                </if>
+                <if test="uId != null and uId!=''">
+                    and uId=#{uId}
+                </if>
+                <if test="uName != null and uName!=''">
+                    and uName=#{uName}
+                </if>
+                <if test="cContent != null and cContent!=''">
+                    and cContent=#{cContent}
+                </if>
+                <if test="cName != null and cName!=''">
+                    and cName=#{cName}
+                </if>
+                <if test="cTime != null and cTime!=''">
+                    and cTime=#{cTime}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertComment" parameterType="com.yyl.entity.Comment">
+        insert into comment(
+                        sId,
+                        uId,
+                        uName,
+                        cContent,
+                        cName,
+                        cTime)
+        values(
+                     #{sId},
+                     #{uId},
+                     #{uName},
+                     #{cContent},
+                     #{cName},
+                    #{cTime})
+    </insert>
+
+    <update id="updateComment" parameterType="com.yyl.entity.Comment">
+        update comment
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="id != null and id!=''">
+                        id=#{id},
+                    </if>
+                    <if test="sId != null and sId!=''">
+                        sId=#{sId},
+                    </if>
+                    <if test="uId != null and uId!=''">
+                        uId=#{uId},
+                    </if>
+                    <if test="uName != null and uName!=''">
+                        uName=#{uName},
+                    </if>
+                    <if test="cContent != null and cContent!=''">
+                        cContent=#{cContent},
+                    </if>
+                    <if test="cName != null and cName!=''">
+                        cName=#{cName},
+                    </if>
+                    <if test="cTime != null and cTime!=''">
+                        cTime=#{cTime}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteCommentById" parameterType="Integer">
+        delete from comment where id = #{id}
+    </delete>
+</mapper>
