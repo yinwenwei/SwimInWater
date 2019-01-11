@@ -1,6 +1,8 @@
 package com.yyl.web;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
@@ -24,6 +26,12 @@ public class IndexController {
 	private Logger logger = LoggerFactory.getLogger(IndexController.class);
 	
 	@ApiOperation(value="请求首页", notes="根据业务获取数据")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name="param1",value="参数1",required=true, dataType="Integer", paramType="query"),
+		@ApiImplicitParam(name="param2",value="参数2",required=true, dataType="Integer", paramType="query"),
+		@ApiImplicitParam(name="param3",value="参数3",required=true, dataType="Integer", paramType="query"),
+		@ApiImplicitParam(name="param4",value="参数4",required=true, dataType="Integer", paramType="query")
+	})
 	@RequestMapping(value = "/index", method=RequestMethod.GET)
 	public String index(Integer param1,Integer param2,
 						Integer param3,Integer param4){
