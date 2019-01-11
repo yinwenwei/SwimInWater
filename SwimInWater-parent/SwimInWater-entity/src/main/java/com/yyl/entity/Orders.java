@@ -1,18 +1,12 @@
 package com.yyl.entity;
 import java.io.Serializable;
-import java.sql.Timestamp;
-/**
- * 
-* @ClassName: Orders
-* @Description: 订单相关数据模型
-* @author lkw
-* @date 2019年1月10日 上午8:50:30
-*
- */
+import java.util.*;
+import java.sql.*;
+/***
+*   
+*/
 public class Orders implements Serializable {
-        /** @Fields serialVersionUID */
-	private static final long serialVersionUID = 2547578930128223767L;
-		/** 订单id */
+        /** 订单id */
         private Integer id;
         /** 景点id */
         private Integer sId;
@@ -34,60 +28,7 @@ public class Orders implements Serializable {
         private Timestamp oCreateTime;
         /** 订单状态 (1,已付款 2,未付款) */
         private Integer oStatus;
-        
-        public Orders() {
-			super();
-		}
-        
-
-		public Orders(Integer sId, Integer lId, Integer hId) {
-			super();
-			this.sId = sId;
-			this.lId = lId;
-			this.hId = hId;
-		}
-
-
-		public Orders(Integer id, Double sPrice, Double lPrice, Double hPrice,
-				Double oTotalPirce) {
-			super();
-			this.id = id;
-			this.sPrice = sPrice;
-			this.lPrice = lPrice;
-			this.hPrice = hPrice;
-			this.oTotalPirce = oTotalPirce;
-		}
-
-
-		public Orders(Integer id, Integer sId, Double sPrice, Integer lId,
-				Double lPrice, Integer hId, Double hPrice, Double oTotalPirce,
-				Integer oNumber, Timestamp oCreateTime, Integer oStatus) {
-			super();
-			this.id = id;
-			this.sId = sId;
-			this.sPrice = sPrice;
-			this.lId = lId;
-			this.lPrice = lPrice;
-			this.hId = hId;
-			this.hPrice = hPrice;
-			this.oTotalPirce = oTotalPirce;
-			this.oNumber = oNumber;
-			this.oCreateTime = oCreateTime;
-			this.oStatus = oStatus;
-		}
-
-
-		@Override
-		public String toString() {
-			return "Orders [id=" + id + ", sId=" + sId + ", sPrice=" + sPrice
-					+ ", lId=" + lId + ", lPrice=" + lPrice + ", hId=" + hId
-					+ ", hPrice=" + hPrice + ", oTotalPirce=" + oTotalPirce
-					+ ", oNumber=" + oNumber + ", oCreateTime=" + oCreateTime
-					+ ", oStatus=" + oStatus + "]";
-		}
-
-
-		//get set 方法
+        //get set 方法
         public void setId (Integer  id){
             this.id=id;
         }

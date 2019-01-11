@@ -1,6 +1,5 @@
 package com.yyl.api.scenicarea;
 
-import io.swagger.annotations.Api;
 
 /**
  * 
@@ -10,7 +9,6 @@ import io.swagger.annotations.Api;
 * @date 2019年1月9日 下午12:16:42
 *
  */
-@Api(value="Scenicarea")
 public interface ScenicareaApi {
 
 }

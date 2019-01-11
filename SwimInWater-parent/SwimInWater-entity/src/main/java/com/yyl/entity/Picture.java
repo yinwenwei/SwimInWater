@@ -1,17 +1,12 @@
 package com.yyl.entity;
 import java.io.Serializable;
-/**
- * 
-* @ClassName: Picture
-* @Description: 图片相关数据模型
-* @author lkw
-* @date 2019年1月10日 上午8:50:42
-*
- */
+import java.util.*;
+import java.sql.*;
+/***
+*   
+*/
 public class Picture implements Serializable {
-        /** @Fields serialVersionUID */
-	private static final long serialVersionUID = -3816609038446744932L;
-		/** 图片id */
+        /** 图片id */
         private Integer id;
         /** 类型 (1,用户头像 2,景点图片 3,酒店图片) */
         private String pType;
@@ -21,36 +16,7 @@ public class Picture implements Serializable {
         private String pRelativePath;
         /** 绝对路径 */
         private String pAbsolutePath;
-        
-        
-        public Picture() {
-			super();
-		}
-        
-		public Picture(Integer id, String pType, Integer pTypeId) {
-			super();
-			this.id = id;
-			this.pType = pType;
-			this.pTypeId = pTypeId;
-		}
-
-		public Picture(String pType, Integer pTypeId, String pRelativePath,
-				String pAbsolutePath) {
-			super();
-			this.pType = pType;
-			this.pTypeId = pTypeId;
-			this.pRelativePath = pRelativePath;
-			this.pAbsolutePath = pAbsolutePath;
-		}
-
-		@Override
-		public String toString() {
-			return "Picture [id=" + id + ", pType=" + pType + ", pTypeId="
-					+ pTypeId + ", pRelativePath=" + pRelativePath
-					+ ", pAbsolutePath=" + pAbsolutePath + "]";
-		}
-
-		//get set 方法
+        //get set 方法
         public void setId (Integer  id){
             this.id=id;
         }

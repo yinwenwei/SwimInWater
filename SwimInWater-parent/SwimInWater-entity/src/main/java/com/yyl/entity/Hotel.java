@@ -1,17 +1,12 @@
 package com.yyl.entity;
 import java.io.Serializable;
-/**
- * 
-* @ClassName: Hotel
-* @Description: 酒店相关数据模型
-* @author lkw
-* @date 2019年1月10日 上午8:50:04
-*
- */
+import java.util.*;
+import java.sql.*;
+/***
+*   
+*/
 public class Hotel implements Serializable {
-        /** @Fields serialVersionUID */
-	private static final long serialVersionUID = -4838686086699039097L;
-		/** 酒店id */
+        /** 酒店id */
         private Integer id;
         /** 酒店名称 */
         private String hName;
@@ -21,36 +16,7 @@ public class Hotel implements Serializable {
         private Integer hGrage;
         /** 酒店详情 */
         private String hContent;
-        
-        public Hotel() {
-			super();
-		}
-        
-		public Hotel(Integer id) {
-			super();
-			this.id = id;
-		}
-		
-
-		public Hotel(String hName, Integer hGrage) {
-			super();
-			this.hName = hName;
-			this.hGrage = hGrage;
-		}
-
-		public Hotel(Integer id, Integer sId) {
-			super();
-			this.id = id;
-			this.sId = sId;
-		}
-
-		@Override
-		public String toString() {
-			return "Hotel [id=" + id + ", hName=" + hName + ", sId=" + sId
-					+ ", hGrage=" + hGrage + ", hContent=" + hContent + "]";
-		}
-
-		//get set 方法
+        //get set 方法
         public void setId (Integer  id){
             this.id=id;
         }

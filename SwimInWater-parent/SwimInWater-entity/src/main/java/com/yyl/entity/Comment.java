@@ -1,41 +1,69 @@
 package com.yyl.entity;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.sql.*;
 /**
  * 
 * @ClassName: Comment
 * @Description: 评论相关数据模型
 * @author lkw
-* @date 2019年1月10日 上午8:51:44
+* @date 2019年1月11日 下午2:50:13
 *
  */
+@ApiModel(value = "Comment", description = "评论数据模型")
 public class Comment implements Serializable {
-        /** @Fields serialVersionUID */
+        /** @Fields serialVersionUID*/
 	private static final long serialVersionUID = 6369177164080329236L;
 		/** 评论id */
+		@ApiModelProperty(value = "评论编号")
         private Integer id;
         /** 景点id */
+		@ApiModelProperty(value = "景点编号")
         private Integer sId;
         /** 用户id */
+		@ApiModelProperty(value = "用户编号")
         private Integer uId;
         /** 用户名称 */
+		@ApiModelProperty(value = "用户名称")
         private String uName;
         /** 评论内容 */
+		@ApiModelProperty(value = "评论内容")
         private String cContent;
         /** 评论人 */
+		@ApiModelProperty(value = "评论人")
         private String cName;
         /** 评论时间 */
+		@ApiModelProperty(value = "评论时间")
         private Timestamp cTime;
-        
+		
         public Comment() {
 			super();
 		}
         
+		public Comment(Integer id) {
+			super();
+			this.id = id;
+		}
+		
 		public Comment(Integer id, Integer sId, Integer uId) {
 			super();
 			this.id = id;
 			this.sId = sId;
 			this.uId = uId;
+		}
+		
+		public Comment(Integer id, Integer sId, Integer uId, String uName,
+				String cContent, String cName, Timestamp cTime) {
+			super();
+			this.id = id;
+			this.sId = sId;
+			this.uId = uId;
+			this.uName = uName;
+			this.cContent = cContent;
+			this.cName = cName;
+			this.cTime = cTime;
 		}
 
 		@Override

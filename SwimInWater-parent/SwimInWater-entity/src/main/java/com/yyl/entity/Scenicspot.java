@@ -1,18 +1,12 @@
 package com.yyl.entity;
 import java.io.Serializable;
-import java.sql.Timestamp;
-/**
- * 
-* @ClassName: Scenicspot
-* @Description: 景点相关数据模型
-* @author lkw
-* @date 2019年1月10日 上午8:50:53
-*
- */
+import java.util.*;
+import java.sql.*;
+/***
+*   
+*/
 public class Scenicspot implements Serializable {
-        /** @Fields serialVersionUID */
-	private static final long serialVersionUID = 4605889147324258728L;
-		/** 景点id */
+        /** 景点id */
         private Integer id;
         /** 景点名称 */
         private String sName;
@@ -28,39 +22,7 @@ public class Scenicspot implements Serializable {
         private Timestamp sPubTime;
         /** 发布状态 (1,发布 2,未发布 3,热门) */
         private Integer sStatus;
-        
-        
-        public Scenicspot() {}
-        
-        
-		public Scenicspot(Integer id, Integer sStatus) {
-			super();
-			this.id = id;
-			this.sStatus = sStatus;
-		}
-
-
-		public Scenicspot(String sName, String sCity, String sRegion,
-				Double sPrice, Timestamp sPubTime) {
-			super();
-			this.sName = sName;
-			this.sCity = sCity;
-			this.sRegion = sRegion;
-			this.sPrice = sPrice;
-			this.sPubTime = sPubTime;
-		}
-
-
-		@Override
-		public String toString() {
-			return "Scenicspot [id=" + id + ", sName=" + sName + ", sCity="
-					+ sCity + ", sRegion=" + sRegion + ", sContent=" + sContent
-					+ ", sPrice=" + sPrice + ", sPubTime=" + sPubTime
-					+ ", sStatus=" + sStatus + "]";
-		}
-
-
-		//get set 方法
+        //get set 方法
         public void setId (Integer  id){
             this.id=id;
         }
