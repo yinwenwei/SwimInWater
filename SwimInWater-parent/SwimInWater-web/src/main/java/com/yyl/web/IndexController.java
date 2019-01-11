@@ -2,6 +2,7 @@ package com.yyl.web;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +25,10 @@ public class IndexController {
 	
 	@ApiOperation(value="请求首页", notes="根据业务获取数据")
 	@RequestMapping(value = "/index", method=RequestMethod.GET)
-	public String index(Integer param){
-		logger.info("接收到请求,参数:{}", param);
-		Integer result = param * 2 / 3 + 7;
+	public String index(Integer param1,Integer param2,
+						Integer param3,Integer param4){
+		logger.info("接收到请求,参数param1:{},param2:{},param3:{},param4:{}", param1,param2,param3,param4);
+		Integer result = param1 * param2 / param3 + param4;
 		logger.info("处理请求,结果:{}", result);
 		return "frontend/index";	
 	}
