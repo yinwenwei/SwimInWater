@@ -16,14 +16,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="shortcut">
             <!-- 未登录状态  -->
             <div class="login_out">
-                <a href="login.jsp">登录</a>
-                <a href="register.jsp">注册</a>
+
+                <a href="${pageContext.request.contextPath }/login.action">登录</a>
+                <a href="${pageContext.request.contextPath }/register_ok.action">注册</a>
             </div>
             <!-- 登录状态  -->
             <div class="login">
             	
                 <span>欢迎回来，admin</span>
-                <a href="myfavorite.jsp" class="collection">我的收藏</a>
+                <a href="${pageContext.request.contextPath }/myfavorite.action" class="collection">我的收藏</a>
                 <a href="javascript:;">退出</a>
             </div>
         </div>
@@ -50,10 +51,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </header>
     <!-- 头部 end -->
      <!-- 首页导航 -->
-    <div class="navitem">
+    <div class="navitem"> 
         <ul class="nav">
             <li class="nav-active"><a href="${pageContext.request.contextPath }/index.action">首页</a></li>
-            <li><a href="${pageContext.request.contextPath }/hotel.action">门票</a></li>
+            <li><a href="${pageContext.request.contextPath }/route_list.action">门票</a></li>
             <li><a href="${pageContext.request.contextPath }/Hotel.action">酒店</a></li>
             <li><a href="${pageContext.request.contextPath }/Hongkong_ticket.action">香港车票</a></li>
             <li><a href="${pageContext.request.contextPath }/Outbound_travel.action">出境游</a></li>

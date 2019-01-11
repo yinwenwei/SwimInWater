@@ -23,6 +23,46 @@ public class JspController {
 	
 	private Logger logger = LoggerFactory.getLogger(JspController.class);
 	
+	
+	
+	
+	@ApiOperation(value="请求登录页面",notes="用户登录")
+	@RequestMapping(value="/login",method=RequestMethod.GET)
+	public String login(){
+		logger.info("接收到请求");
+		// TODO domesticTourism():获取需要数据,返回相应页面
+		logger.info("处理请求");
+		return "/frontend/login";
+	}
+	@ApiOperation(value="请求注册页面",notes="用户注册")
+	@RequestMapping(value="/register_ok",method=RequestMethod.GET)
+	public String registerOk(){
+		logger.info("接收到请求");
+		// TODO domesticTourism():获取需要数据,返回相应页面
+		logger.info("处理请求");
+		return "/frontend/register_ok";
+	}
+	@ApiOperation(value="请求我的收藏页面",notes="用户收藏")
+	@RequestMapping(value="/myfavorite",method=RequestMethod.GET)
+	public String myfavorite(){
+		logger.info("接收到请求");
+		// TODO domesticTourism():获取需要数据,返回相应页面
+		logger.info("处理请求");
+		return "/frontend/myfavorite";
+	}
+	
+	
+	//------------------------------------------------------------------------------
+	
+	@ApiOperation(value="请求门票页面",notes="查询所有门票信息,分页显示")
+	@RequestMapping(value = "/route_list", method=RequestMethod.GET)
+	public String routeList(){
+		logger.info("接收到请求,参数:{}", "");
+		// TODO domesticTourism():获取需要数据,返回相应页面
+		logger.info("处理请求,结果:{}", "hehe");
+		return "frontend/route_list";	
+	}
+	
 	@ApiOperation(value="请求国内游页面",notes="查询所有国内游的景点,分页显示")
 	@RequestMapping(value = "/Domestic_tourism", method=RequestMethod.GET)
 	public String domesticTourism(){
