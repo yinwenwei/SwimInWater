@@ -1,8 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
@@ -17,11 +13,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/index.css">
 	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="static/js/jquery-3.3.1.js"></script>
+    <script src="${pageContext.request.contextPath}/statics/js/jquery-3.3.1.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="static/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/statics/js/bootstrap.min.js"></script>
     <!--导入布局js，共享header和footer-->
-    <script type="text/javascript" src="static/js/include.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/statics/js/include.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -31,7 +27,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 	<!--引入头部-->
-    <div id="header"></div>
+	<%@ include file="header.jsp" %>
+    <div id="header">
+    
+    </div>
     <!-- banner start-->
     <section id="banner">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="2000">
@@ -44,13 +43,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <img src="static/images/banner_1.jpg" alt="">
+                    <img src="${pageContext.request.contextPath}/statics/images/banner_1.jpg" alt="">
                 </div>
                 <div class="item">
-                    <img src="static/images/banner_2.jpg" alt="">
+                    <img src="${pageContext.request.contextPath}/statics/images/banner_2.jpg" alt="">
                 </div>
                 <div class="item">
-                    <img src="static/images/banner_3.jpg" alt="">
+                    <img src="${pageContext.request.contextPath}/statics/images/banner_3.jpg" alt="">
                 </div>
             </div>
             <!-- Controls -->
@@ -71,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <section class="hemai_jx">
             <div class="jx_top">
                 <div class="jx_tit">
-                    <img src="static/images/icon_5.jpg" alt="">
+                    <img src="${pageContext.request.contextPath}/statics/images/icon_5.jpg" alt="">
                     <span>黑马精选</span>
                 </div>
                 <!-- Nav tabs -->
@@ -97,7 +96,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="row">
                             <div class="col-md-3">
                                 <a href="javascript:;">
-                                    <img src="static/images/jiangxuan_4.jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
                                     <div class="has_border">
                                         <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
                                         <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
@@ -106,7 +105,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                             <div class="col-md-3">
                                 <a href="javascript:;">
-                                    <img src="static/images/jiangxuan_4.jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
                                     <div class="has_border">
                                         <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
                                         <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
@@ -115,7 +114,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                             <div class="col-md-3">
                                 <a href="javascript:;">
-                                    <img src="static/images/jiangxuan_4.jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
                                     <div class="has_border">
                                         <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
                                         <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
@@ -124,7 +123,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                             <div class="col-md-3">
                                 <a href="javascript:;">
-                                    <img src="static/images/jiangxuan_4.jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
                                     <div class="has_border">
                                         <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
                                         <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
@@ -137,7 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="row">
                             <div class="col-md-3">
                                 <a href="javascript:;">
-                                    <img src="static/images/jiangxuan_1.jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_1.jpg" alt="">
                                     <div class="has_border">
                                         <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
                                         <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
@@ -146,7 +145,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                             <div class="col-md-3">
                                 <a href="javascript:;">
-                                    <img src="static/images/jiangxuan_1.jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_1.jpg" alt="">
                                     <div class="has_border">
                                         <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
                                         <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
@@ -155,7 +154,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                             <div class="col-md-3">
                                 <a href="javascript:;">
-                                    <img src="static/images/jiangxuan_1.jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_1.jpg" alt="">
                                     <div class="has_border">
                                         <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
                                         <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
@@ -164,7 +163,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                             <div class="col-md-3">
                                 <a href="javascript:;">
-                                    <img src="static/images/jiangxuan_1.jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_1.jpg" alt="">
                                     <div class="has_border">
                                         <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
                                         <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
@@ -177,7 +176,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="row">
                             <div class="col-md-3">
                                 <a href="javascript:;">
-                                    <img src="static/images/jiangxuan_2.jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_2.jpg" alt="">
                                     <div class="has_border">
                                         <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
                                         <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
@@ -186,7 +185,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                             <div class="col-md-3">
                                 <a href="javascript:;">
-                                    <img src="static/images/jiangxuan_2.jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_2.jpg" alt="">
                                     <div class="has_border">
                                         <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
                                         <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
@@ -195,7 +194,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                             <div class="col-md-3">
                                 <a href="javascript:;">
-                                    <img src="static/images/jiangxuan_2.jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_2.jpg" alt="">
                                     <div class="has_border">
                                         <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
                                         <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
@@ -204,7 +203,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                             <div class="col-md-3">
                                 <a href="javascript:;">
-                                    <img src="static/images/jiangxuan_2.jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_2.jpg" alt="">
                                     <div class="has_border">
                                         <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
                                         <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
@@ -221,19 +220,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <section class="hemai_jx">
             <div class="jx_top">
                 <div class="jx_tit">
-                    <img src="static/images/icon_6.jpg" alt="">
+                    <img src="${pageContext.request.contextPath}/statics/images/icon_6.jpg" alt="">
                     <span>国内游</span>
                 </div>
             </div>
             <div class="heima_gn">
                 <div class="guonei_l">
-                    <img src="static/images/guonei_1.jpg" alt="">
+                    <img src="${pageContext.request.contextPath}/statics/images/guonei_1.jpg" alt="">
                 </div>
                 <div class="guone_r">
                     <div class="row">
                         <div class="col-md-4">
                             <a href="route_detail.html">
-								<img src="static/images/jiangxuan_4.jpg" alt="">
+								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
 								<div class="has_border">
 									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
 									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
@@ -242,7 +241,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                         <div class="col-md-4">
                             <a href="route_detail.html">
-								<img src="static/images/jiangxuan_4.jpg" alt="">
+								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
 								<div class="has_border">
 									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
 									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
@@ -251,7 +250,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                         <div class="col-md-4">
                             <a href="route_detail.html">
-								<img src="static/images/jiangxuan_4.jpg" alt="">
+								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
 								<div class="has_border">
 									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
 									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
@@ -260,7 +259,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                         <div class="col-md-4">
                             <a href="route_detail.html">
-								<img src="static/images/jiangxuan_4.jpg" alt="">
+								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
 								<div class="has_border">
 									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
 									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
@@ -269,7 +268,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                         <div class="col-md-4">
                             <a href="route_detail.html">
-									<img src="static/images/jiangxuan_4.jpg" alt="">
+									<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
 								<div class="has_border">
 									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
 									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
@@ -278,7 +277,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                         <div class="col-md-4">
                             <a href="route_detail.html">
-								<img src="static/images/jiangxuan_4.jpg" alt="">
+								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
 								<div class="has_border">
 									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
 									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
@@ -294,19 +293,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <section class="hemai_jx">
             <div class="jx_top">
                 <div class="jx_tit">
-                    <img src="static/images/icon_7.jpg" alt="">
+                    <img src="${pageContext.request.contextPath}/statics/images/icon_7.jpg" alt="">
                     <span>境外游</span>
                 </div>
             </div>
             <div class="heima_gn">
                 <div class="guonei_l">
-                    <img src="static/images/jiangwai_1.jpg" alt="">
+                    <img src="${pageContext.request.contextPath}/statics/images/jiangwai_1.jpg" alt="">
                 </div>
                 <div class="guone_r">
                     <div class="row">
                         <div class="col-md-4">
                             <a href="route_detail.html">
-								<img src="static/images/jiangxuan_4.jpg" alt="">
+								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
 								<div class="has_border">
 									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
 									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
@@ -315,7 +314,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                         <div class="col-md-4">
                             <a href="route_detail.html">
-								<img src="static/images/jiangxuan_4.jpg" alt="">
+								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
 								<div class="has_border">
 									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
 									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
@@ -324,7 +323,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                         <div class="col-md-4">
                             <a href="route_detail.html">
-								<img src="static/images/jiangxuan_4.jpg" alt="">
+								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
 								<div class="has_border">
 									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
 									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
@@ -333,7 +332,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                         <div class="col-md-4">
                             <a href="route_detail.html">
-								<img src="static/images/jiangxuan_4.jpg" alt="">
+								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
 								<div class="has_border">
 									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
 									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
@@ -342,7 +341,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                         <div class="col-md-4">
                             <a href="route_detail.html">
-									<img src="static/images/jiangxuan_4.jpg" alt="">
+									<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
 								<div class="has_border">
 									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
 									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
@@ -351,7 +350,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                         <div class="col-md-4">
                             <a href="route_detail.html">
-								<img src="static/images/jiangxuan_4.jpg" alt="">
+								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
 								<div class="has_border">
 									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
 									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
@@ -367,6 +366,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- 旅游 end-->
    <!--导入底部-->
     <div id="footer"></div>
-
+<%@ include file="footer.jsp" %>
 </body>
 </html>

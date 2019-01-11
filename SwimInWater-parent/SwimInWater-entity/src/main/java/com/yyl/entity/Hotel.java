@@ -24,7 +24,6 @@ public class Hotel implements Serializable {
         
         public Hotel() {
 			super();
-			// TODO Auto-generated constructor stub
 		}
         
 		public Hotel(Integer id) {

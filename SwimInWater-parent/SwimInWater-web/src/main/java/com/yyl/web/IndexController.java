@@ -2,8 +2,9 @@ package com.yyl.web;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,13 +20,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Api(value="显示控制器", tags={"首页相关"})
 @Controller
 public class IndexController {
+	private Logger logger = LoggerFactory.getLogger(IndexController.class);
 	
 	@ApiOperation(value="请求首页", notes="根据业务获取数据")
 	@RequestMapping(value = "/index", method=RequestMethod.GET)
-	public String index(@ApiParam(value="用户编号", required=false) String id){
-		/*Comment commentById = commentApi.getCommentById(1);
-		System.out.println(commentById.toString());*/
+	public String index(Integer param){
+		logger.info("接收到请求,参数:{}", param);
+		Integer result = param * 2 / 3 + 7;
+		logger.info("处理请求,结果:{}", result);
 		return "frontend/index";	
 	}
-	
 }

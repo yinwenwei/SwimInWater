@@ -1,9 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 
@@ -18,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <!--引入头部-->
-<div id="header"></div>
+<div id="header"><%@ include file="header.jsp" %></div>
     <div class="page_one">
         <div class="contant">
             <div class="crumbs">
@@ -237,7 +232,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
 
     <!--引入头部-->
-    <div id="footer"></div>
+    <div id="footer"><%@ include file="footer.jsp" %></div>
     <!--导入布局js，共享header和footer-->
     <script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/include.js"></script>
 </body>
