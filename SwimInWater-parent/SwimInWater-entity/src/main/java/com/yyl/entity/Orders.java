@@ -1,34 +1,96 @@
 package com.yyl.entity;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
-import java.util.*;
 import java.sql.*;
-/***
-*   
-*/
+/**
+* 
+* @ClassName: Dictionary
+* @Description: 订单相关
+* @author Auto-generated
+* @date 2019年1月11日 下午 4:40:50
+*
+ */
+@ApiModel(value = "Orders", description = "订单相关")
 public class Orders implements Serializable {
-        /** 订单id */
+        /** @Fields serialVersionUID */
+	private static final long serialVersionUID = -3811879360691995831L;
+		/** 订单id */
+        @ApiModelProperty(value = "订单id")
         private Integer id;
         /** 景点id */
+        @ApiModelProperty(value = "景点id")
         private Integer sId;
         /** 景点价格 */
+        @ApiModelProperty(value = "景点价格")
         private Double sPrice;
         /** 线路id */
+        @ApiModelProperty(value = "线路id")
         private Integer lId;
         /** 线路价格 */
+        @ApiModelProperty(value = "线路价格")
         private Double lPrice;
         /** 酒店id */
+        @ApiModelProperty(value = "酒店id")
         private Integer hId;
         /** 酒店价格 */
+        @ApiModelProperty(value = "酒店价格")
         private Double hPrice;
         /** 订单总价格 */
+        @ApiModelProperty(value = "订单总价格")
         private Double oTotalPirce;
         /** 订单数量 */
+        @ApiModelProperty(value = "订单数量")
         private Integer oNumber;
         /** 创建时间 */
+        @ApiModelProperty(value = "创建时间")
         private Timestamp oCreateTime;
         /** 订单状态 (1,已付款 2,未付款) */
+        @ApiModelProperty(value = "订单状态 (1,已付款 2,未付款)")
         private Integer oStatus;
-        //get set 方法
+        
+        public Orders() {
+			super();
+		}
+        
+		public Orders(Integer id, Integer sId, Integer lId, Integer hId,
+				Integer oStatus) {
+			super();
+			this.id = id;
+			this.sId = sId;
+			this.lId = lId;
+			this.hId = hId;
+			this.oStatus = oStatus;
+		}
+
+		public Orders(Integer id, Integer sId, Double sPrice, Integer lId,
+				Double lPrice, Integer hId, Double hPrice, Double oTotalPirce,
+				Integer oNumber, Timestamp oCreateTime, Integer oStatus) {
+			super();
+			this.id = id;
+			this.sId = sId;
+			this.sPrice = sPrice;
+			this.lId = lId;
+			this.lPrice = lPrice;
+			this.hId = hId;
+			this.hPrice = hPrice;
+			this.oTotalPirce = oTotalPirce;
+			this.oNumber = oNumber;
+			this.oCreateTime = oCreateTime;
+			this.oStatus = oStatus;
+		}
+
+		@Override
+		public String toString() {
+			return "Orders [id=" + id + ", sId=" + sId + ", sPrice=" + sPrice
+					+ ", lId=" + lId + ", lPrice=" + lPrice + ", hId=" + hId
+					+ ", hPrice=" + hPrice + ", oTotalPirce=" + oTotalPirce
+					+ ", oNumber=" + oNumber + ", oCreateTime=" + oCreateTime
+					+ ", oStatus=" + oStatus + "]";
+		}
+
+		//get set 方法
         public void setId (Integer  id){
             this.id=id;
         }

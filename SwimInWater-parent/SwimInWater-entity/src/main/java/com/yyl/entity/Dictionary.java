@@ -5,40 +5,39 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.sql.*;
 /**
- * 
+* 
 * @ClassName: Dictionary
-* @Description: 数据字典数据模型
-* @author lkw
-* @date 2019年1月11日 下午2:53:55
+* @Description: 数据字典相关
+* @author Auto-generated
+* @date 2019年1月11日 下午 4:40:50
 *
  */
-@ApiModel(value = "Dictionary", description = "数据字典数据模型")
+@ApiModel(value = "Dictionary", description = "数据字典相关")
 public class Dictionary implements Serializable {
         /** @Fields serialVersionUID */
 	private static final long serialVersionUID = -2727932447525162791L;
 		/** 数据字典id */
-		@ApiModelProperty(value = "数据字典id")
+        @ApiModelProperty(value = "数据字典id")
         private Integer id;
         /** 类型分类 */
-		@ApiModelProperty(value = "类型分类")
+        @ApiModelProperty(value = "类型分类")
         private String dTypeClassification;
         /** 类型名称 */
-		@ApiModelProperty(value = "类型名称")
+        @ApiModelProperty(value = "类型名称")
         private String dTypeName;
         /** 内容Id */
-		@ApiModelProperty(value = "内容Id")
+        @ApiModelProperty(value = "内容Id")
         private Integer dContentId;
         /** 内容名称 */
-		@ApiModelProperty(value = "内容名称")
+        @ApiModelProperty(value = "内容名称")
         private String dContentName;
         /** 创建人 */
-		@ApiModelProperty(value = "创建人")
+        @ApiModelProperty(value = "创建人")
         private Integer dCreateById;
         /** 创建日期 */
-		@ApiModelProperty(value = "创建日期")
+        @ApiModelProperty(value = "创建日期")
         private Timestamp dCreateTime;
-		
-		
+        
         public Dictionary() {
 			super();
 		}

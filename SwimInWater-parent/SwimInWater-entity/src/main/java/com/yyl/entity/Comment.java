@@ -5,55 +5,51 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.sql.*;
 /**
- * 
-* @ClassName: Comment
-* @Description: 评论相关数据模型
-* @author lkw
-* @date 2019年1月11日 下午2:50:13
+* 
+* @ClassName: Dictionary
+* @Description: 评论相关模型
+* @author Auto-generated
+* @date 2019年1月11日 下午 4:40:50
 *
  */
-@ApiModel(value = "Comment", description = "评论数据模型")
+@ApiModel(value = "Comment", description = "评论相关模型")
 public class Comment implements Serializable {
-        /** @Fields serialVersionUID*/
-	private static final long serialVersionUID = 6369177164080329236L;
+        /** @Fields serialVersionUID */
+	private static final long serialVersionUID = -1183962606508746726L;
 		/** 评论id */
-		@ApiModelProperty(value = "评论编号")
+        @ApiModelProperty(value = "评论id")
         private Integer id;
         /** 景点id */
-		@ApiModelProperty(value = "景点编号")
+        @ApiModelProperty(value = "景点id")
         private Integer sId;
         /** 用户id */
-		@ApiModelProperty(value = "用户编号")
+        @ApiModelProperty(value = "用户id")
         private Integer uId;
         /** 用户名称 */
-		@ApiModelProperty(value = "用户名称")
+        @ApiModelProperty(value = "用户名称")
         private String uName;
         /** 评论内容 */
-		@ApiModelProperty(value = "评论内容")
+        @ApiModelProperty(value = "评论内容")
         private String cContent;
         /** 评论人 */
-		@ApiModelProperty(value = "评论人")
+        @ApiModelProperty(value = "评论人")
         private String cName;
         /** 评论时间 */
-		@ApiModelProperty(value = "评论时间")
+        @ApiModelProperty(value = "评论时间")
         private Timestamp cTime;
-		
+        
+        
         public Comment() {
 			super();
 		}
         
-		public Comment(Integer id) {
-			super();
-			this.id = id;
-		}
-		
 		public Comment(Integer id, Integer sId, Integer uId) {
 			super();
 			this.id = id;
 			this.sId = sId;
 			this.uId = uId;
 		}
-		
+
 		public Comment(Integer id, Integer sId, Integer uId, String uName,
 				String cContent, String cName, Timestamp cTime) {
 			super();

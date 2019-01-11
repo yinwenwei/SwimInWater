@@ -1,32 +1,40 @@
 package com.yyl.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 /**
- * 
-* @ClassName: PageBean
-* @Description: 分页相关数据模型
-* @author lkw
-* @date 2019年1月10日 上午9:00:46
-*
-* @param <T>
+ * 分页类
+ *
+ * @author
+ *
  */
+@ApiModel(value = "PageBean", description = "分页")
 public class PageBean<T> implements Serializable {
 	/** 总记录数 */
+	@ApiModelProperty(value = "总记录数")
 	private Integer totalCount;
 	/** 每页大小 */
+	@ApiModelProperty(value = "每页大小")
 	private Integer pageSize;
 	/** 总页数 */
+	@ApiModelProperty(value = "总页数 ")
 	private Integer pageCount;
 	/** 当前页 */
+	@ApiModelProperty(value = "当前页")
 	private Integer currentPage;
 	/** 上一页 */
+	@ApiModelProperty(value = "上一页")
 	private Integer prev;
 	/** 下一页 */
+	@ApiModelProperty(value = "图片id")
 	private Integer next;
 	/** 一页数据 */
+	@ApiModelProperty(value = "图片id")
 	private List<T> list;
 
 	/** 查询条件【页面回显】 */

@@ -1,26 +1,80 @@
 package com.yyl.entity;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
-import java.util.*;
-import java.sql.*;
-/***
-*   
+/**
+* 
+* @ClassName: Dictionary
+* @Description: 用户相关
+* @author Auto-generated
+* @date 2019年1月11日 下午 4:40:50
+*
+ */
+/**
+* @ClassName: User
+* @Description: TODO(这里用一句话描述这个类的作用)
+* @author lkw
+* @date 2019年1月11日 下午5:05:05
+*
 */
+@ApiModel(value = "User", description = "用户相关")
 public class User implements Serializable {
-        /** 用户id */
+        /** @Fields serialVersionUID */
+	private static final long serialVersionUID = -6826880110430599220L;
+		/** 用户id */
+        @ApiModelProperty(value = "用户id")
         private Integer id;
         /** 用户名 */
+        @ApiModelProperty(value = "用户名")
         private String uName;
         /** 用户密码 */
+        @ApiModelProperty(value = "用户密码")
         private String uPwd;
         /** 手机号码 */
+        @ApiModelProperty(value = "手机号码")
         private Integer uPhone;
         /** 性别 (1,男 2,女) */
+        @ApiModelProperty(value = "性别 (1,男 2,女)")
         private String uSex;
         /** 身份证 */
+        @ApiModelProperty(value = "身份证")
         private String uIdentity;
         /** 用户角色(1,管理员 2,普通用户) */
+        @ApiModelProperty(value = "用户角色(1,管理员 2,普通用户)")
         private Integer uRole;
-        //get set 方法
+        
+        public User() {
+			super();
+		}
+        
+		public User(String uName, String uPwd, Integer uRole) {
+			super();
+			this.uName = uName;
+			this.uPwd = uPwd;
+			this.uRole = uRole;
+		}
+
+		public User(Integer id, String uName, String uPwd, Integer uPhone,
+				String uSex, String uIdentity, Integer uRole) {
+			super();
+			this.id = id;
+			this.uName = uName;
+			this.uPwd = uPwd;
+			this.uPhone = uPhone;
+			this.uSex = uSex;
+			this.uIdentity = uIdentity;
+			this.uRole = uRole;
+		}
+
+		@Override
+		public String toString() {
+			return "User [id=" + id + ", uName=" + uName + ", uPwd=" + uPwd
+					+ ", uPhone=" + uPhone + ", uSex=" + uSex + ", uIdentity="
+					+ uIdentity + ", uRole=" + uRole + "]";
+		}
+
+		//get set 方法
         public void setId (Integer  id){
             this.id=id;
         }
