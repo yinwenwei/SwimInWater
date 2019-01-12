@@ -85,11 +85,32 @@ public interface ManagerApi {
 	 * @throws
 	 */
 	List<Line> selLineList();
-	//添加线路信息
+	/**
+	 * 
+	 * @Title: addLine
+	 * @Description: 添加线路信息
+	 * @param @param line
+	 * @return Integer    返回类型
+	 * @throws
+	 */
 	Integer addLine(Line line);
-	//修改路线信息
+	/**
+	 * 
+	 * @Title: uplLine
+	 * @Description: 修改路线信息
+	 * @param @param line
+	 * @return Integer    返回类型
+	 * @throws
+	 */
 	Integer uplLine(Line line);
-	//删除路线信息
+	/**
+	 * 
+	 * @Title: delLine
+	 * @Description: 删除路线信息
+	 * @param @param id
+	 * @return Integer    返回类型
+	 * @throws
+	 */
 	Integer delLine(Integer id);
 	
 	//-----------------------------酒店------------------------------------------------------
