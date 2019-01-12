@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yyl.repository.hotel.HotelQueryMapper">
+
+    <select id="getHotelById" resultType="com.yyl.entity.Hotel" >
+        select
+                id as id,
+                hName as hName,
+                sId as sId,
+                hGrage as hGrage,
+                hContent as hContent
+        from hotel
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getHotelListByMap" resultType="com.yyl.entity.Hotel" parameterType="java.util.Map">
+        select
+                id as id,
+                hName as hName,
+                sId as sId,
+                hGrage as hGrage,
+                hContent as hContent
+        from hotel
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="id != null and id!=''">
+                        and id=#{id}
+                    </if>
+                    <if test="hName != null and hName!=''">
+                        and hName=#{hName}
+                    </if>
+                    <if test="sId != null and sId!=''">
+                        and sId=#{sId}
+                    </if>
+                    <if test="hGrage != null and hGrage!=''">
+                        and hGrage=#{hGrage}
+                    </if>
+                    <if test="hContent != null and hContent!=''">
+                        and hContent=#{hContent}
+                    </if>
+        </trim>
+         order by createDate desc
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+
+    <select id="getHotelCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from hotel
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="hName != null and hName!=''">
+                    and hName=#{hName}
+                </if>
+                <if test="sId != null and sId!=''">
+                    and sId=#{sId}
+                </if>
+                <if test="hGrage != null and hGrage!=''">
+                    and hGrage=#{hGrage}
+                </if>
+                <if test="hContent != null and hContent!=''">
+                    and hContent=#{hContent}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertHotel" parameterType="com.yyl.entity.Hotel">
+        insert into hotel(
+                        hName,
+                        sId,
+                        hGrage,
+                        hContent)
+        values(
+                     #{hName},
+                     #{sId},
+                     #{hGrage},
+                    #{hContent})
+    </insert>
+
+    <update id="updateHotel" parameterType="com.yyl.entity.Hotel">
+        update hotel
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="id != null and id!=''">
+                        id=#{id},
+                    </if>
+                    <if test="hName != null and hName!=''">
+                        hName=#{hName},
+                    </if>
+                    <if test="sId != null and sId!=''">
+                        sId=#{sId},
+                    </if>
+                    <if test="hGrage != null and hGrage!=''">
+                        hGrage=#{hGrage},
+                    </if>
+                    <if test="hContent != null and hContent!=''">
+                        hContent=#{hContent}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteHotelById" parameterType="Integer">
+        delete from hotel where id = #{id}
+    </delete>
+</mapper>
