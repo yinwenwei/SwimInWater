@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yyl.repository.orders.OrdersCudMapper">
+
+    <insert id="insertOrders" parameterType="com.yyl.entity.Orders">
+        insert into orders(
+                        sId,
+                        sPrice,
+                        lId,
+                        lPrice,
+                        hId,
+                        hPrice,
+                        oTotalPirce,
+                        oNumber,
+                        oCreateTime,
+                        oStatus)
+        values(
+                     #{sId},
+                     #{sPrice},
+                     #{lId},
+                     #{lPrice},
+                     #{hId},
+                     #{hPrice},
+                     #{oTotalPirce},
+                     #{oNumber},
+                     #{oCreateTime},
+                    #{oStatus})
+    </insert>
+
+    <update id="updateOrders" parameterType="com.yyl.entity.Orders">
+        update orders
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="id != null and id!=''">
+                        id=#{id},
+                    </if>
+                    <if test="sId != null and sId!=''">
+                        sId=#{sId},
+                    </if>
+                    <if test="sPrice != null and sPrice!=''">
+                        sPrice=#{sPrice},
+                    </if>
+                    <if test="lId != null and lId!=''">
+                        lId=#{lId},
+                    </if>
+                    <if test="lPrice != null and lPrice!=''">
+                        lPrice=#{lPrice},
+                    </if>
+                    <if test="hId != null and hId!=''">
+                        hId=#{hId},
+                    </if>
+                    <if test="hPrice != null and hPrice!=''">
+                        hPrice=#{hPrice},
+                    </if>
+                    <if test="oTotalPirce != null and oTotalPirce!=''">
+                        oTotalPirce=#{oTotalPirce},
+                    </if>
+                    <if test="oNumber != null and oNumber!=''">
+                        oNumber=#{oNumber},
+                    </if>
+                    <if test="oCreateTime != null and oCreateTime!=''">
+                        oCreateTime=#{oCreateTime},
+                    </if>
+                    <if test="oStatus != null and oStatus!=''">
+                        oStatus=#{oStatus}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteOrdersById" parameterType="Integer">
+        delete from orders where id = #{id}
+    </delete>
+</mapper>

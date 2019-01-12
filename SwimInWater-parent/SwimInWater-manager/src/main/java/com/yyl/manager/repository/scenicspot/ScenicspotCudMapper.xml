@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yyl.manager.repository.scenicspot.ScenicspotCudMapper">
+
+    <insert id="insertScenicspot" parameterType="com.yyl.entity.Scenicspot">
+        insert into scenicspot(
+                        sName,
+                        sCity,
+                        sRegion,
+                        sContent,
+                        sPrice,
+                        sPubTime,
+                        sCollectionNum,
+                        sStatus)
+        values(
+                     #{sName},
+                     #{sCity},
+                     #{sRegion},
+                     #{sContent},
+                     #{sPrice},
+                     #{sPubTime},
+                     #{sCollectionNum},
+                    #{sStatus})
+    </insert>
+
+    <update id="updateScenicspot" parameterType="com.yyl.entity.Scenicspot">
+        update scenicspot
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="id != null and id!=''">
+                        id=#{id},
+                    </if>
+                    <if test="sName != null and sName!=''">
+                        sName=#{sName},
+                    </if>
+                    <if test="sCity != null and sCity!=''">
+                        sCity=#{sCity},
+                    </if>
+                    <if test="sRegion != null and sRegion!=''">
+                        sRegion=#{sRegion},
+                    </if>
+                    <if test="sContent != null and sContent!=''">
+                        sContent=#{sContent},
+                    </if>
+                    <if test="sPrice != null and sPrice!=''">
+                        sPrice=#{sPrice},
+                    </if>
+                    <if test="sPubTime != null and sPubTime!=''">
+                        sPubTime=#{sPubTime},
+                    </if>
+                    <if test="sCollectionNum != null and sCollectionNum!=''">
+                        sCollectionNum=#{sCollectionNum},
+                    </if>
+                    <if test="sStatus != null and sStatus!=''">
+                        sStatus=#{sStatus}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteScenicspotById" parameterType="Integer">
+        delete from scenicspot where id = #{id}
+    </delete>
+</mapper>

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yyl.repository.line.LineQueryMapper">
+<mapper namespace="com.yyl.scenicarea.repository.line.LineQueryMapper">
 
     <select id="getLineById" resultType="com.yyl.entity.Line" >
         select

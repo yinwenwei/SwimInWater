@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yyl.repository.orders.OrdersQueryMapper">
+<mapper namespace="com.yyl.scenicarea.repository.orders.OrdersQueryMapper">
 
     <select id="getOrdersById" resultType="com.yyl.entity.Orders" >
         select

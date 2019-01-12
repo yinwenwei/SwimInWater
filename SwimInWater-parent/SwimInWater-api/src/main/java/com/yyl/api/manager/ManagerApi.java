@@ -11,4 +11,5 @@ package com.yyl.api.manager;
  */
 public interface ManagerApi {
 
+	
 }
