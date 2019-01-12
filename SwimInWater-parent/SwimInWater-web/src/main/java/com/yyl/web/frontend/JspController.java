@@ -1,4 +1,4 @@
-package com.yyl.web;
+package com.yyl.web.frontend;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
