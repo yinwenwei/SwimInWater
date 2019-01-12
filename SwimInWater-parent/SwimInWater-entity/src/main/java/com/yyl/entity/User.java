@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 /**
 * @ClassName: User
-* @Description: TODO(这里用一句话描述这个类的作用)
+* @Description: 用户相关数据模型
 * @author lkw
 * @date 2019年1月11日 下午5:05:05
 *

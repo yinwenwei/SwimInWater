@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yyl.manager.repository.picture.PictureCudMapper">
+
+
+    <insert id="insertPicture" parameterType="com.yyl.entity.Picture">
+        insert into picture(
+                        pType,
+                        pTypeId,
+                        pRelativePath,
+                        pAbsolutePath)
+        values(
+                     #{pType},
+                     #{pTypeId},
+                     #{pRelativePath},
+                    #{pAbsolutePath})
+    </insert>
+
+    <update id="updatePicture" parameterType="com.yyl.entity.Picture">
+        update picture
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="id != null and id!=''">
+                        id=#{id},
+                    </if>
+                    <if test="pType != null and pType!=''">
+                        pType=#{pType},
+                    </if>
+                    <if test="pTypeId != null and pTypeId!=''">
+                        pTypeId=#{pTypeId},
+                    </if>
+                    <if test="pRelativePath != null and pRelativePath!=''">
+                        pRelativePath=#{pRelativePath},
+                    </if>
+                    <if test="pAbsolutePath != null and pAbsolutePath!=''">
+                        pAbsolutePath=#{pAbsolutePath}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deletePictureById" parameterType="Integer">
+        delete from picture where id = #{id}
+    </delete>
+</mapper>

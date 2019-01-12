@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yyl.manager.repository.line.LineCudMapper">
+
+    <insert id="insertLine" parameterType="com.yyl.entity.Line">
+        insert into line(
+                        sId,
+                        lName,
+                        lContent)
+        values(
+                     #{sId},
+                     #{lName},
+                    #{lContent})
+    </insert>
+
+    <update id="updateLine" parameterType="com.yyl.entity.Line">
+        update line
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="id != null and id!=''">
+                        id=#{id},
+                    </if>
+                    <if test="sId != null and sId!=''">
+                        sId=#{sId},
+                    </if>
+                    <if test="lName != null and lName!=''">
+                        lName=#{lName},
+                    </if>
+                    <if test="lContent != null and lContent!=''">
+                        lContent=#{lContent}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteLineById" parameterType="Integer">
+        delete from line where id = #{id}
+    </delete>
+</mapper>
