@@ -37,7 +37,7 @@ public class IndexController {
 	public String index(Integer param1,Integer param2,
 						Integer param3,Integer param4){
 		logger.info("接收到请求,参数param1:{},param2:{},param3:{},param4:{}", param1,param2,param3,param4);
-		
+		System.out.println("yez");
 		return "frontend/index";	
 	}
 	
