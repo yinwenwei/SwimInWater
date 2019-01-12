@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yyl.repository.dictionary.DictionaryQueryMapper">
+
+    <select id="getDictionaryById" resultType="com.yyl.entity.Dictionary" >
+        select
+                id as id,
+                dTypeClassification as dTypeClassification,
+                dTypeName as dTypeName,
+                dContentId as dContentId,
+                dContentName as dContentName,
+                dCreateById as dCreateById,
+                dCreateTime as dCreateTime
+        from dictionary
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getDictionaryListByMap" resultType="com.yyl.entity.Dictionary" parameterType="java.util.Map">
+        select
+                id as id,
+                dTypeClassification as dTypeClassification,
+                dTypeName as dTypeName,
+                dContentId as dContentId,
+                dContentName as dContentName,
+                dCreateById as dCreateById,
+                dCreateTime as dCreateTime
+        from dictionary
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="id != null and id!=''">
+                        and id=#{id}
+                    </if>
+                    <if test="dTypeClassification != null and dTypeClassification!=''">
+                        and dTypeClassification=#{dTypeClassification}
+                    </if>
+                    <if test="dTypeName != null and dTypeName!=''">
+                        and dTypeName=#{dTypeName}
+                    </if>
+                    <if test="dContentId != null and dContentId!=''">
+                        and dContentId=#{dContentId}
+                    </if>
+                    <if test="dContentName != null and dContentName!=''">
+                        and dContentName=#{dContentName}
+                    </if>
+                    <if test="dCreateById != null and dCreateById!=''">
+                        and dCreateById=#{dCreateById}
+                    </if>
+                    <if test="dCreateTime != null and dCreateTime!=''">
+                        and dCreateTime=#{dCreateTime}
+                    </if>
+        </trim>
+         order by createDate desc
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+
+    <select id="getDictionaryCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from dictionary
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="dTypeClassification != null and dTypeClassification!=''">
+                    and dTypeClassification=#{dTypeClassification}
+                </if>
+                <if test="dTypeName != null and dTypeName!=''">
+                    and dTypeName=#{dTypeName}
+                </if>
+                <if test="dContentId != null and dContentId!=''">
+                    and dContentId=#{dContentId}
+                </if>
+                <if test="dContentName != null and dContentName!=''">
+                    and dContentName=#{dContentName}
+                </if>
+                <if test="dCreateById != null and dCreateById!=''">
+                    and dCreateById=#{dCreateById}
+                </if>
+                <if test="dCreateTime != null and dCreateTime!=''">
+                    and dCreateTime=#{dCreateTime}
+                </if>
+        </trim>
+    </select>
+</mapper>
