@@ -25,7 +25,6 @@ public class JspController {
 	
 	
 	
-	
 	@ApiOperation(value="请求登录页面",notes="用户登录")
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String login(){

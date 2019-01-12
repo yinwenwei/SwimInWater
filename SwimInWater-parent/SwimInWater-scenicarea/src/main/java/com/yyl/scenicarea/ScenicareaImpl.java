@@ -6,6 +6,7 @@ import com.yyl.api.scenicarea.ScenicareaApi;
 import com.yyl.entity.Dictionary;
 import com.yyl.entity.Hotel;
 import com.yyl.entity.Line;
+import com.yyl.entity.Picture;
 import com.yyl.entity.Scenicspot;
 
 public class ScenicareaImpl implements ScenicareaApi {
@@ -43,6 +44,18 @@ public class ScenicareaImpl implements ScenicareaApi {
 
 	@Override
 	public List<Line> findLineLikeLNameOrSPrice(String lName, Integer sPrice) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Picture> findHotelPictureByPTypeId(Integer pTypeId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Picture> findScenicspotPictureByPTypeId(Integer pTypeId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
