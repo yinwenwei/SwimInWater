@@ -12,7 +12,7 @@ import com.yyl.entity.Scenicspot;
  * 
 * @ClassName: Scenicarea
 * @Description: TODO 景点模块相关
-* @author lkw
+* @author yww
 * @date 2019年1月9日 下午12:16:42
 *
  */

@@ -13,7 +13,7 @@ import com.yyl.entity.User;
  * 
 * @ClassName: Manager
 * @Description: TODO 管理模块相关
-* @author lkw
+* @author ydb
 * @date 2019年1月9日 下午12:16:07
 *
  */
