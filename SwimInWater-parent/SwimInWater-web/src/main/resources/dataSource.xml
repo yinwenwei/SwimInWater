@@ -25,6 +25,8 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<!-- 扫包给pojo起别名 -->
+		<property name="typeAliasesPackage" value="com.yyl.entity"/>
 		<property name="mapperLocations">
 			<list>
 				<!-- 表示在com/ryan/mapper包或以下所有目录中，以-Mapper.xml结尾所有文件 -->
@@ -36,7 +38,7 @@
 		<!-- <property name="typeAliasesPackage" value="com.yyl" /> -->
 	</bean>
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.yyl" />
+		<property name="basePackage" value="com.yyl.comment.repository,com.yyl.manager.repository,com.yyl.scenicarea.repository" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 	<!-- 自动扫描mapping文件 end -->

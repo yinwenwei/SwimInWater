@@ -59,4 +59,16 @@ public class PictureQueryServiceImpl implements PictureQueryService {
 			return null;
 		}
     }
+
+	@Override
+	public Picture findUserPicByPTypeId(Integer pTypeId) {
+		// TODO Auto-generated method stub
+		try {
+			return pictureQueryMapper.findUserPicByPTypeId(pTypeId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

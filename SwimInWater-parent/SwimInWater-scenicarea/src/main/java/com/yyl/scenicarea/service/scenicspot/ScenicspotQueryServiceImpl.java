@@ -1,4 +1,5 @@
 package com.yyl.scenicarea.service.scenicspot;
+import com.yyl.entity.Picture;
 import com.yyl.entity.Scenicspot;
 import com.yyl.entity.PageBean;
 import com.yyl.scenicarea.repository.scenicspot.ScenicspotQueryMapper;
@@ -59,4 +60,19 @@ public class ScenicspotQueryServiceImpl implements ScenicspotQueryService {
 			return null;
 		}
     }
+    
+    /**
+     * 根据景点id查询景点图片
+     */
+	@Override
+	public List<Picture> findScenicspotPictureByPTypeId(Integer pTypeId) {
+		// TODO Auto-generated method stub
+		try {
+			return scenicspotQueryMapper.findScenicspotPictureByPTypeId(pTypeId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

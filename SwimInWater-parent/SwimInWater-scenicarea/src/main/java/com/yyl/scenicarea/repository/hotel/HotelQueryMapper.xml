@@ -44,7 +44,6 @@
                         and hContent=#{hContent}
                     </if>
         </trim>
-         order by createDate desc
         <if test="start!=null and size!=null">
             limit #{start},#{size}
         </if>
@@ -70,42 +69,14 @@
                 </if>
         </trim>
     </select>
-
-    <insert id="insertHotel" parameterType="com.yyl.entity.Hotel">
-        insert into hotel(
-                        hName,
-                        sId,
-                        hGrage,
-                        hContent)
-        values(
-                     #{hName},
-                     #{sId},
-                     #{hGrage},
-                    #{hContent})
-    </insert>
-
-    <update id="updateHotel" parameterType="com.yyl.entity.Hotel">
-        update hotel
-        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
-                    <if test="id != null and id!=''">
-                        id=#{id},
-                    </if>
-                    <if test="hName != null and hName!=''">
-                        hName=#{hName},
-                    </if>
-                    <if test="sId != null and sId!=''">
-                        sId=#{sId},
-                    </if>
-                    <if test="hGrage != null and hGrage!=''">
-                        hGrage=#{hGrage},
-                    </if>
-                    <if test="hContent != null and hContent!=''">
-                        hContent=#{hContent}
-                    </if>
-        </trim>
-    </update>
-
-    <delete id="deleteHotelById" parameterType="Integer">
-        delete from hotel where id = #{id}
-    </delete>
+    
+    <!-- 根据酒店id查询酒店图片 -->
+    <select id="findHotelPictureByPTypeId" parameterType="Integer" resultType="Picture">
+    	SELECT p.id,p.pRelativePath FROM picture p,hotel h WHERE p.pTypeId=h.id AND p.pType=3 AND 
+    		p.pTypeId in 
+    		<foreach collection="list" item="pTypeId" index="index" open="(" separator="," close=")">
+    			#{pTypeId}
+    		</foreach>
+    	
+    </select>
 </mapper>

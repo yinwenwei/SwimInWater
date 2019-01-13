@@ -1,6 +1,7 @@
 package com.yyl.api.scenicarea;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yyl.entity.Dictionary;
 import com.yyl.entity.Hotel;
@@ -13,7 +14,7 @@ import com.yyl.entity.Scenicspot;
  * 
 * @ClassName: Scenicarea
 * @Description: TODO 景点模块相关
-* @author lkw
+* @author yww
 * @date 2019年1月9日 下午12:16:42
 *
  */
@@ -71,26 +72,29 @@ public interface ScenicareaApi {
 	 * @throws
 	 */
 	List<Line> findLineLikeLNameOrSPrice(String lName,Integer sPrice);
-	/**
-	 * 
-	 * @Title: findHotelPictureByPTypeId
-	 * @Description: 查询酒店图片(SELECT p.id FROM picture p,hotel h WHERE p.pTypeId=h.id AND p.pType=3 AND p.pTypeId=1)
-	 * @param @param pTypeId
-	 * @return List<Picture>    返回类型
-	 * @throws
-	 */
-	List<Picture> findHotelPictureByPTypeId(Integer pTypeId);
-	/**
-	 * 
-	 * @Title: findScenicspotPictureByPTypeId
-	 * @Description: 查询景点图片(SELECT p.id FROM picture p,scenicspot s WHERE p.pTypeId=s.id AND p.pType=2 AND p.pTypeId=? )
-	 * @param @param pTypeId
-	 * @return List<Picture>    返回类型
-	 * @throws
-	 */
-	List<Picture> findScenicspotPictureByPTypeId(Integer pTypeId);
+
 	
+	/**
+	 * 
+	 * @Title: getScenicspotById
+	 * @Description: 根据景点id查询景点详细信息
+	 * @param @param id
+	 * @return Map<String,Object>    返回类型
+	 * @throws
+	 */
+	Map<String, Object> getScenicspotById(Integer id);
+	
+	/**
+	 * 
+	 * @Title: findUserPicByPTypeId
+	 * @Description: 根据用户id查询用户头像(SELECT p.id,u.uName FROM picture p,`user` u WHERE p.pTypeId=u.id AND p.pType=1 AND p.pTypeId=2)
+	 * @param @return    设定文件
+	 * @return Picture    返回类型
+	 * @throws
+	 */
+	Picture findUserPicByPTypeId(Integer pTypeId);
 	
 	//TODO分页
 	
+
 }

@@ -44,7 +44,6 @@
                         and pAbsolutePath=#{pAbsolutePath}
                     </if>
         </trim>
-         order by createDate desc
         <if test="start!=null and size!=null">
             limit #{start},#{size}
         </if>
@@ -69,5 +68,9 @@
                     and pAbsolutePath=#{pAbsolutePath}
                 </if>
         </trim>
+    </select>
+    
+    <select id="findUserPicByPTypeId" parameterType="Integer" resultType="Picture">
+    	SELECT p.pRelativePath FROM picture p,`user` u WHERE p.pTypeId=u.id AND p.pType=1 AND p.pTypeId=#{pTypeId}
     </select>
 </mapper>

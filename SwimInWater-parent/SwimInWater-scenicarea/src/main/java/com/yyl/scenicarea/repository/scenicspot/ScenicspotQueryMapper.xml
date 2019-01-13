@@ -64,7 +64,6 @@
                         and sStatus=#{sStatus}
                     </if>
         </trim>
-         order by createDate desc
         <if test="start!=null and size!=null">
             limit #{start},#{size}
         </if>
@@ -101,5 +100,10 @@
                     and sStatus=#{sStatus}
                 </if>
         </trim>
+    </select>
+    
+    <!-- 查询景点图片 -->
+    <select id="findScenicspotPictureByPTypeId" parameterType="Integer" resultType="Picture">
+    	SELECT p.id,p.pRelativePath FROM picture p,scenicspot s WHERE p.pTypeId=s.id AND p.pType=2 AND p.pTypeId=#{pTypeId}
     </select>
 </mapper>

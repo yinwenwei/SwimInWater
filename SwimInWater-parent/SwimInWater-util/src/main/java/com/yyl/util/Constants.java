@@ -12,5 +12,11 @@ public class Constants {
 	public final static String FILEUPLOAD_ERROR_2 = " * 上传失败！";
 	public final static String FILEUPLOAD_ERROR_3 = " * 上传文件格式不正确！";
 	public final static String FILEUPLOAD_ERROR_4 = " * 上传文件过大！";
+	public final static String MAP_SCEN = "map_scen";
+	public final static String MAP_HOTEL = "map_hotel";
+	public final static String MAP_LINE = "map_line";
+	
+	public final static String PIC_SCEN = "pic_scen";
+	public final static String PIC_HOTEL = "pic_hotel";
 
 }

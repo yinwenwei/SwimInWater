@@ -2,8 +2,12 @@ package com.yyl.scenicarea.service.hotel;
 import com.yyl.scenicarea.repository.hotel.HotelQueryMapper;
 import com.yyl.entity.Hotel;
 import com.yyl.entity.PageBean;
+import com.yyl.entity.Picture;
+
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
+
 import java.util.List;
 import java.util.Map;
 /**
@@ -57,4 +61,19 @@ public class HotelQueryServiceImpl implements HotelQueryService {
 			return null;
 		}
     }
+    
+    /**
+     * 根据酒店id查询酒店图片
+     */
+	@Override
+	public List<Picture> findHotelPictureByPTypeId(List<Integer> pTypeId) {
+		// TODO Auto-generated method stub
+		try {
+			return hotelQueryMapper.findHotelPictureByPTypeId(pTypeId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
