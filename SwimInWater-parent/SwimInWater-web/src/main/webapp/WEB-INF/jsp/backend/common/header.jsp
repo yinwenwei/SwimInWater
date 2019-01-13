@@ -59,25 +59,51 @@
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <h3>${userSession.userName }</h3>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> APP管理 <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav side-menu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                
+                <li><a><i class="fa fa-edit"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="${pageContext.request.contextPath }/manager/backend/app/list">APP审核</a></li>
-                      <li><a href="javascript:;">广告推广</a></li>
+                      <li><a href="${pageContext.request.contextPath }/applist">用户信息管理</a></li>
+                      <li><a href="${pageContext.request.contextPath }/appcheck">添加用户</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-edit"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-home"></i>酒店管理 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="javascript:;">后台用户管理</a></li>
-                      <li><a href="javascript:;">开发者资质审核</a></li>
+                      <li><a href="${pageContext.request.contextPath }/manager/backend/app/list">酒店信息管理</a></li>
+                      <li><a href="javascript:;">酒店升级</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-bug"></i> 基础数据维护 <span class="fa fa-chevron-down"></span></a>
+                  
+                  <li><a><i class="fa fa-bug"></i>路线管理<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="javascript:;">数据字典</a></li>
-                      <li><a href="javascript:;">APP分类管理</a></li>
+                      <li><a href="javascript:;">路线信息管理</a></li>
                     </ul>
                   </li>
+                  
+                   <li><a><i class="fa fa-bug"></i>景点管理<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="javascript:;">景点信息管理</a></li>
+                    </ul>
+                  </li>
+                  
+                   <li><a><i class="fa fa-bug"></i>订单管理<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="javascript:;">订单信息管理</a></li>
+                    </ul>
+                  </li>
+                  
+                  <li><a><i class="fa fa-bug"></i>博客管理<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="javascript:;">博客信息管理</a></li>
+                    </ul>
+                  </li>
+                  
+                  <li><a><i class="fa fa-bug"></i>字典管理<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="javascript:;">数字字典信息管理</a></li>
+                    </ul>
+                  </li>
+                  
                 </ul>
               </div>
 

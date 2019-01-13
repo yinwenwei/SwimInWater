@@ -11,7 +11,11 @@
 	   http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
 	<!-- 组件扫描 -->
-	<!-- <context:component-scan base-package="com.yyl"/> -->
+	<!-- <context:component-scan base-package="com.yyl.api"/>
+	<context:component-scan base-package="com.yyl.comment"/>
+	<context:component-scan base-package="com.yyl.scenicarea"/>
+	<context:component-scan base-package="com.yyl.manager"/> -->
+	<context:component-scan base-package="com.yyl.web"/>
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	        <property name="prefix" value="/WEB-INF/jsp/"/>
 	        <property name="suffix" value=".jsp"/>
