@@ -27,7 +27,7 @@ public interface ManagerApi {
 	 * @return User    返回类型
 	 * @throws
 	 */
-	User selLogin(String uName);
+	User selLogin(String uName, String password, Integer uRole);
 	/**
 	 * 注册用户
 	 * @Title: addRegister
@@ -46,13 +46,6 @@ public interface ManagerApi {
 	
 	//-----------------------------景点------------------------------------------------------
 	/**
-	 * 查询景点信息
-	 * @Title: selScenicspotList
-	 * @return List<Scenicspot>    返回类型
-	 * @throws
-	 */
-	List<Scenicspot> selScenicspotList();
-	/**
 	 * 添加景点信息
 	 * @Title: addScenicspot
 	 * @param @param scenicspot
@@ -70,13 +63,6 @@ public interface ManagerApi {
 	Integer uplScenicspot(Scenicspot scenicspot);
 	 
 	//-----------------------------路线------------------------------------------------------
-	/**
-	 * 查询线路信息
-	 * @Title: selLineList
-	 * @return List<Line>    返回类型
-	 * @throws
-	 */
-	List<Line> selLineList();
 	/**
 	 * 添加线路信息
 	 * @Title: addLine
@@ -104,13 +90,6 @@ public interface ManagerApi {
 	
 	//-----------------------------酒店------------------------------------------------------
 	/**
-	 * 查询酒店信息
-	 * @Title: selHotelList
-	 * @return List<Hotel>    返回类型
-	 * @throws
-	 */
-	List<Hotel> selHotelList();
-	/**
 	 * 添加酒店信息
 	 * @Title: addHotel
 	 * @param @param hotel
@@ -136,13 +115,6 @@ public interface ManagerApi {
 	Integer delHotel(Integer id);
 	
 	//-----------------------------订单------------------------------------------------------
-	/**
-	 * 查询订单信息
-	 * @Title: selOrdersList
-	 * @return List<Orders>    返回类型
-	 * @throws
-	 */
-	List<Orders> selOrdersList();
 	/**
 	 *  添加订单信息
 	 * @Title: addOrders

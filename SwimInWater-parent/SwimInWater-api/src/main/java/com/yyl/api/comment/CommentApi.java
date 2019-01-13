@@ -27,15 +27,15 @@ public interface CommentApi {
 	* @return List<Comment>    返回类型
 	* @throws
 	 */
-	List<Comment> queryComment(String sId);
+	List<Comment> queryCommentBySId(String sId);
 	/**
-	 * 根据评论id删除评论
+	 * 根据评论id,用户id删除评论
 	* @Title: deleteComment
 	* @param @param id
 	* @return Integer    返回类型
 	* @throws
 	 */
-	Integer deleteComment(String id);
+	Integer deleteComment(String id, String uId);
 	
 	
 }

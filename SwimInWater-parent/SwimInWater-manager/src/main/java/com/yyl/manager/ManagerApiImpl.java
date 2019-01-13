@@ -1,6 +1,10 @@
 package com.yyl.manager;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
@@ -10,13 +14,12 @@ import com.yyl.entity.Line;
 import com.yyl.entity.Orders;
 import com.yyl.entity.Scenicspot;
 import com.yyl.entity.User;
+import com.yyl.manager.service.user.UserCrudService;
 @Component("managerApi")
 public class ManagerApiImpl implements ManagerApi {
-
-	@Override
-	public User selLogin(String uName) {
-		return null;
-	}
+	@Resource
+	private UserCrudService UserCrudService;
+	
 
 	@Override
 	public Integer addRegister(User user) {
@@ -28,10 +31,6 @@ public class ManagerApiImpl implements ManagerApi {
 		return null;
 	}
 
-	@Override
-	public List<Scenicspot> selScenicspotList() {
-		return null;
-	}
 
 	@Override
 	public Integer addScenicspot(Scenicspot scenicspot) {
@@ -40,11 +39,6 @@ public class ManagerApiImpl implements ManagerApi {
 
 	@Override
 	public Integer uplScenicspot(Scenicspot scenicspot) {
-		return null;
-	}
-
-	@Override
-	public List<Line> selLineList() {
 		return null;
 	}
 
@@ -64,11 +58,6 @@ public class ManagerApiImpl implements ManagerApi {
 	}
 
 	@Override
-	public List<Hotel> selHotelList() {
-		return null;
-	}
-
-	@Override
 	public Integer addHotel(Hotel hotel) {
 		return null;
 	}
@@ -84,11 +73,6 @@ public class ManagerApiImpl implements ManagerApi {
 	}
 
 	@Override
-	public List<Orders> selOrdersList() {
-		return null;
-	}
-
-	@Override
 	public Integer addOrders(Orders orders) {
 		return null;
 	}
@@ -100,6 +84,19 @@ public class ManagerApiImpl implements ManagerApi {
 
 	@Override
 	public Integer delOrders(Integer id) {
+		return null;
+	}
+
+	@Override
+	public User selLogin(String uName, String password, Integer uRole) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("uName", uName);
+		param.put("uPwd", password);
+		param.put("uRole", uRole);
+		List<User> list = UserCrudService.getUserListByMap(param);
+		if(list.size() > 0){
+			return list.get(0);
+		}
 		return null;
 	}
 
