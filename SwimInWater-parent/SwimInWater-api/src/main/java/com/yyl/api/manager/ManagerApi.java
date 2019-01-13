@@ -29,7 +29,7 @@ public interface ManagerApi {
 	 * @return User    返回类型
 	 * @throws
 	 */
-	User selLogin(String uName);
+	User selLogin(String uName,String uPwd);
 	/**
 	 * 
 	 * @Title: addRegister
@@ -50,17 +50,8 @@ public interface ManagerApi {
 	
 	//-----------------------------景点------------------------------------------------------
 	/**
-	 * 
-	 * @Title: selScenicspotList
-	 * @Description: 查询景点信息
-	 * @return List<Scenicspot>    返回类型
-	 * @throws
-	 */
-	List<Scenicspot> selScenicspotList();
-	/**
-	 * 
+	 * 添加景点信息
 	 * @Title: addScenicspot
-	 * @Description: 添加景点信息
 	 * @param @param scenicspot
 	 * @return Integer    返回类型
 	 * @throws
@@ -77,18 +68,10 @@ public interface ManagerApi {
 	Integer uplScenicspot(Scenicspot scenicspot);
 	 
 	//-----------------------------路线------------------------------------------------------
+	
 	/**
-	 * 
-	 * @Title: selLineList
-	 * @Description: 查询线路信息
-	 * @return List<Line>    返回类型
-	 * @throws
-	 */
-	List<Line> selLineList();
-	/**
-	 * 
+	 * 添加线路信息
 	 * @Title: addLine
-	 * @Description: 添加线路信息
 	 * @param @param line
 	 * @return Integer    返回类型
 	 * @throws
@@ -114,18 +97,10 @@ public interface ManagerApi {
 	Integer delLine(Integer id);
 	
 	//-----------------------------酒店------------------------------------------------------
+	
 	/**
-	 * 
-	 * @Title: selHotelList
-	 * @Description: 查询酒店信息
-	 * @return List<Hotel>    返回类型
-	 * @throws
-	 */
-	List<Hotel> selHotelList();
-	/**
-	 * 
+	 * 添加酒店信息
 	 * @Title: addHotel
-	 * @Description: 添加酒店信息
 	 * @param @param hotel
 	 * @return Integer    返回类型
 	 * @throws
@@ -151,18 +126,10 @@ public interface ManagerApi {
 	Integer delHotel(Integer id);
 	
 	//-----------------------------订单------------------------------------------------------
+	
 	/**
-	 * 
-	 * @Title: selOrdersList
-	 * @Description: 查询订单信息
-	 * @return List<Orders>    返回类型
-	 * @throws
-	 */
-	List<Orders> selOrdersList();
-	/**
-	 * 
+	 *  添加订单信息
 	 * @Title: addOrders
-	 * @Description: 添加订单信息
 	 * @param @param orders
 	 * @return Integer    返回类型
 	 * @throws
