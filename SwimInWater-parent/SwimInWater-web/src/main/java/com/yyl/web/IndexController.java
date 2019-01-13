@@ -1,15 +1,27 @@
 package com.yyl.web;
 
+import javax.annotation.Resource;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+
+
 
 /**
  * 
@@ -25,7 +37,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class IndexController {
 	private Logger logger = LoggerFactory.getLogger(IndexController.class);
-	
+	//获取redis实例
+	ApplicationContext ctx=new ClassPathXmlApplicationContext("applicationContext-redis.xml");
 	@ApiOperation(value="请求首页", notes="根据业务获取数据")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name="param1",value="参数1",required=false, paramType="query"),
@@ -39,9 +52,14 @@ public class IndexController {
 		logger.info("接收到请求,参数param1:{},param2:{},param3:{},param4:{}", param1,param2,param3,param4);
 		System.out.println("yhh懵逼");
 		System.out.println("yez");
+		
+		//获取redis连接池
+		JedisPool jedispool = (JedisPool) ctx.getBean("jedisPool");
+		Jedis jedis=jedispool.getResource();
+		System.out.println(jedis.keys("*"));
 		return "frontend/index";	
 	}
-	
+
 	
 	
 }

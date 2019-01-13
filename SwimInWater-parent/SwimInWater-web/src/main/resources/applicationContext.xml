@@ -8,6 +8,7 @@
     <bean id="propertyConfigure"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations" value="classpath:applicationContext.properties"/>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
     </bean>
 	<!-- 将 springSwaggerConfig加载到spring容器 -->
 	<!-- <bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" /> -->
@@ -30,4 +31,7 @@
 
     <!-- 引入系统线程池 -->
     <import resource="classpath:/applicationContext-thread.xml"/>
+    
+    <!-- 引入redis数据源 -->
+    <import resource="classpath:/applicationContext-redis.xml"/>
 </beans>
