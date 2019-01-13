@@ -12,12 +12,11 @@ import java.io.Serializable;
 *
  */
 /**
-* @ClassName: User
-* @Description: 用户相关数据模型
-* @author lkw
-* @date 2019年1月11日 下午5:05:05
-*
-*/
+ * 用户相关数据模型
+ * @ClassName: User
+ * @author lkw
+ * @date 2019年1月11日 下午5:05:05
+ */
 @ApiModel(value = "User", description = "用户相关")
 public class User implements Serializable {
         /** @Fields serialVersionUID */

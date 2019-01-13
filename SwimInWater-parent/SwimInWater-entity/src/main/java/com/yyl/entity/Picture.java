@@ -4,9 +4,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 /**
-* 
+* 图片相关
 * @ClassName: Dictionary
-* @Description: 图片相关
 * @author Auto-generated
 * @date 2019年1月11日 下午 4:40:50
 *

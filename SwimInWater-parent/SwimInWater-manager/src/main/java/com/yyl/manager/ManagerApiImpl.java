@@ -18,11 +18,11 @@ import com.yyl.manager.service.hotel.HotelCudService;
 import com.yyl.manager.service.line.LineCudService;
 import com.yyl.manager.service.orders.OrdersCudService;
 import com.yyl.manager.service.scenicspot.ScenicspotCudService;
-import com.yyl.manager.service.user.UserCudService;
+import com.yyl.manager.service.user.UserCrudService;
 @Component("managerApi")
 public class ManagerApiImpl implements ManagerApi {
 	@Resource
-	private UserCudService userCudService;
+	private UserCrudService userCudService;
 	@Resource
 	private ScenicspotCudService scenicspotCudService;
 	@Resource
@@ -49,7 +49,6 @@ public class ManagerApiImpl implements ManagerApi {
 		}
 		return null;
 	}
- 
 	@Override
 	public Integer addRegister(User user) {
 		Integer addUser = userCudService.addUser(user);
@@ -62,7 +61,6 @@ public class ManagerApiImpl implements ManagerApi {
 		return userListByMap;
 	}
 
-	//-----------------------------景点------------------------------------------------------
 
 	@Override
 	public Integer addScenicspot(Scenicspot scenicspot) {
@@ -75,7 +73,6 @@ public class ManagerApiImpl implements ManagerApi {
 		Integer modifyScenicspot = scenicspotCudService.modifyScenicspot(scenicspot);
 		return modifyScenicspot;
 	}
-	//-----------------------------路线------------------------------------------------------
 	@Override
 	public Integer addLine(Line line) {
 		Integer addLine = lineCudService.addLine(line);
@@ -95,7 +92,6 @@ public class ManagerApiImpl implements ManagerApi {
 	}
 
 	//-----------------------------酒店------------------------------------------------------
-
 	@Override
 	public Integer addHotel(Hotel hotel) {
 		Integer addHotel = hotelCudService.addHotel(hotel);

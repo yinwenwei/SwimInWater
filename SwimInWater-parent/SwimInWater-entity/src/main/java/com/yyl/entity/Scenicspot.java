@@ -5,9 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.sql.*;
 /**
-* 
+* 景点相关
 * @ClassName: Dictionary
-* @Description: 景点相关
 * @author Auto-generated
 * @date 2019年1月11日 下午 4:40:50
 *

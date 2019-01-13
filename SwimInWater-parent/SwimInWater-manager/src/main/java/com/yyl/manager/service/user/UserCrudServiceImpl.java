@@ -13,7 +13,7 @@ import java.util.Map;
 业务接口实现
 */
 @Service
-public class UserCudServiceImpl implements UserCudService {
+public class UserCrudServiceImpl implements UserCrudService {
 
     @Resource
     private UserMapper userMapper;

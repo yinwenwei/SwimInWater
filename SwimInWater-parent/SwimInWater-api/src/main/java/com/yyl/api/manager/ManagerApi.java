@@ -10,9 +10,8 @@ import com.yyl.entity.User;
 
 
 /**
- * 
+ * 管理模块相关
 * @ClassName: Manager
-* @Description: TODO 管理模块相关
 * @author ydb
 * @date 2019年1月9日 下午12:16:07
 *
@@ -22,27 +21,24 @@ public interface ManagerApi {
 	//-----------------------------用户------------------------------------------------------
 	
 	/**
-	 * 
+	 * 登录
 	 * @Title: selLogin
-	 * @Description: 登录
 	 * @param @param uName
 	 * @return User    返回类型
 	 * @throws
 	 */
 	User selLogin(String uName,String uPwd);
 	/**
-	 * 
+	 * 注册用户
 	 * @Title: addRegister
-	 * @Description: 注册用户
 	 * @param @param user
 	 * @return Integer    返回类型
 	 * @throws
 	 */
 	Integer addRegister(User user);
 	/**
-	 * 
+	 * 查询所有用户
 	 * @Title: setUserList
-	 * @Description: 查询所有用户
 	 * @return List<User>    返回类型
 	 * @throws
 	 */
@@ -58,9 +54,8 @@ public interface ManagerApi {
 	 */
 	Integer addScenicspot(Scenicspot scenicspot);
 	/**
-	 * 
+	 * 修改景点信息
 	 * @Title: uplScenicspot
-	 * @Description: 修改景点信息
 	 * @param @param scenicspot
 	 * @return Integer    返回类型
 	 * @throws
@@ -78,18 +73,16 @@ public interface ManagerApi {
 	 */
 	Integer addLine(Line line);
 	/**
-	 * 
+	 * 修改路线信息
 	 * @Title: uplLine
-	 * @Description: 修改路线信息
 	 * @param @param line
 	 * @return Integer    返回类型
 	 * @throws
 	 */
 	Integer uplLine(Line line);
 	/**
-	 * 
+	 * 删除路线信息
 	 * @Title: delLine
-	 * @Description: 删除路线信息
 	 * @param @param id
 	 * @return Integer    返回类型
 	 * @throws
@@ -107,18 +100,16 @@ public interface ManagerApi {
 	 */
 	Integer addHotel(Hotel hotel);
 	/**
-	 * 
+	 * 修改酒店信息
 	 * @Title: uplHotel
-	 * @Description: 修改酒店信息
 	 * @param @param hotel
 	 * @return Integer    返回类型
 	 * @throws
 	 */
 	Integer uplHotel(Hotel hotel);
 	/**
-	 * 
+	 * 删除信息
 	 * @Title: delHotel
-	 * @Description: 删除信息
 	 * @param @param id
 	 * @return Integer    返回类型
 	 * @throws
@@ -136,18 +127,16 @@ public interface ManagerApi {
 	 */
 	Integer addOrders(Orders orders);
 	/**
-	 * 
+	 *  修改订单信息
 	 * @Title: uplOrders
-	 * @Description: 修改订单信息
 	 * @param @param orders
 	 * @return Integer    返回类型
 	 * @throws
 	 */
 	Integer uplOrders(Orders orders);
 	/**
-	 * 
+	 * 删除订单信息(只能删除未付款的)
 	 * @Title: delOrders
-	 * @Description: 删除订单信息(只能删除未付款的)
 	 * @param @param id
 	 * @return Integer    返回类型
 	 * @throws
