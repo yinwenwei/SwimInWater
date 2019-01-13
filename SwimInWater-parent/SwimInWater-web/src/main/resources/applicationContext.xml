@@ -8,6 +8,7 @@
     <bean id="propertyConfigure"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations" value="classpath:applicationContext.properties"/>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
     </bean>
 	<!-- 将 springSwaggerConfig加载到spring容器 -->
 	<!-- <bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" /> -->
@@ -18,10 +19,11 @@
     <import resource="classpath:/dataSource.xml"/>
 
     <!--引入业务集成域:待引入 -->
+    <import resource="classpath:/applicationContext-api.xml"/>
     <import resource="classpath:/applicationContext-comment.xml"/>
     <import resource="classpath:/applicationContext-scenicarea.xml"/>
     <import resource="classpath:/applicationContext-manager.xml"/>
-
+ 
     <!-- 引入spring动作跳转 -->
     <import resource="classpath:/applicationContext-web.xml"/>
 

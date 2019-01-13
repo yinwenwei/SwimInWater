@@ -2,13 +2,15 @@ package com.yyl.scenicarea;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.yyl.api.scenicarea.ScenicareaApi;
 import com.yyl.entity.Dictionary;
 import com.yyl.entity.Hotel;
 import com.yyl.entity.Line;
 import com.yyl.entity.Picture;
 import com.yyl.entity.Scenicspot;
-
+@Component("scenicareaApi")
 public class ScenicareaImpl implements ScenicareaApi {
 
 	@Override

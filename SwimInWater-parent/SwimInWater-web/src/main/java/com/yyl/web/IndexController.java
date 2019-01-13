@@ -1,5 +1,9 @@
 package com.yyl.web;
 
+import java.util.List;
+
+import javax.annotation.Resource;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -10,6 +14,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.yyl.api.ModelApiImpl;
+import com.yyl.api.comment.CommentApi;
+import com.yyl.entity.Comment;
 
 /**
  * 
@@ -25,6 +33,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class IndexController {
 	private Logger logger = LoggerFactory.getLogger(IndexController.class);
+	@Resource
+	private ModelApiImpl modelApi;
 	
 	@ApiOperation(value="请求首页", notes="根据业务获取数据")
 	@ApiImplicitParams({
@@ -39,6 +49,8 @@ public class IndexController {
 		logger.info("接收到请求,参数param1:{},param2:{},param3:{},param4:{}", param1,param2,param3,param4);
 		System.out.println("yhh懵逼");
 		System.out.println("yez");
+		List<Comment> queryComment = modelApi.getCommentApi().queryComment("");
+		logger.info("处理请求,结果:{}",queryComment.toString());
 		return "frontend/index";	
 	}
 	

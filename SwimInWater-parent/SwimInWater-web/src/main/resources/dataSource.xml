@@ -36,7 +36,7 @@
 		<!-- <property name="typeAliasesPackage" value="com.yyl" /> -->
 	</bean>
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.yyl" />
+		<property name="basePackage" value="com.yyl.comment.repository,com.yyl.manager.repository,com.yyl.scenicarea.repository" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 	<!-- 自动扫描mapping文件 end -->
