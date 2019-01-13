@@ -1,14 +1,16 @@
 package com.yyl.web;
 
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -33,7 +35,6 @@ import com.yyl.entity.Line;
 import com.yyl.entity.Picture;
 import com.yyl.entity.Scenicspot;
 import com.yyl.util.Constants;
-
 /**
  * 
 * @ClassName: IndexController
@@ -51,16 +52,20 @@ public class IndexController {
 	//获取redis实例
 	@Resource
 	private JedisPool jedisPool;
+	/** 热门游 */
+	private static final String HOT_SCENICAREA = "hotScenicarea";
+	/** 最新游 */
+	private static final String NEW_SCENICAREA = "newScenicarea";
+	/** 主题游 */
+	private static final String THEME_SCENICAREA = "themeScenicarea";
+	/** 国内游 */
+	private static final String DOMESTIC_SCENICAREA = "domesticScenicarea";
+	/** 境外游 */
+	private static final String FOREIGN_SCENICAREA = "foreignScenicarea";
 	@Resource
 	private ModelApiImpl modelApi;
 	
 	@ApiOperation(value="请求首页", notes="根据业务获取数据")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name="param1",value="参数1",required=false, paramType="query"),
-		@ApiImplicitParam(name="param2",value="参数2",required=false, paramType="query"),
-		@ApiImplicitParam(name="param3",value="参数3",required=false, paramType="query"),
-		@ApiImplicitParam(name="param4",value="参数4",required=false, paramType="query")
-	})
 	@RequestMapping(value = "/index", method=RequestMethod.GET)
 	public String index(Model model){
 		logger.info("接收到请求,参数param1:{},param2:{},param3:{},param4:{}");
@@ -87,9 +92,22 @@ public class IndexController {
 			System.out.println("酒店图片:"+picture.getId());
 		}
 		
+		// 查询所以景点:人气游就是热门, 最新游按时间排序,主题游%$^#@^%
 		
-		List<Comment> queryComment = modelApi.getCommentApi().queryComment("");
-		logger.info("处理请求,结果:{}",queryComment.toString());
+		// 国内游:sRegion:1,2
+		// 境外游:sRegion:3	
+		List<Scenicspot> hotScenicarea = null;
+		List<Scenicspot> newScenicarea = null;
+		List<Scenicspot> themeScenicarea = null;
+		List<Scenicspot> domesticScenicarea = null;
+		List<Scenicspot> foreignScenicarea = null;
+		
+		model.addAttribute(HOT_SCENICAREA, hotScenicarea);
+		model.addAttribute(NEW_SCENICAREA, newScenicarea);
+		model.addAttribute(THEME_SCENICAREA, themeScenicarea);
+		model.addAttribute(DOMESTIC_SCENICAREA, domesticScenicarea);
+		model.addAttribute(FOREIGN_SCENICAREA, foreignScenicarea);
+		logger.info("处理请求,结果:{}", "");
 		return "frontend/index";	
 	}
 

@@ -62,4 +62,12 @@
 		<!-- 内存中的最大值 -->
 		<property name="maxInMemorySize" value="40960" />
 	</bean>
+	<!-- 配置interceptors -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/manager/backend/**"/>
+			<mvc:mapping path="/dev/flatform/**"/>
+			<bean class="com.yyl.interceptor.SysInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

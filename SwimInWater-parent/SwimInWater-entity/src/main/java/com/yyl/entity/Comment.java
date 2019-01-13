@@ -5,9 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.sql.*;
 /**
-* 
+* 评论相关模型
 * @ClassName: Dictionary
-* @Description: 评论相关模型
 * @author Auto-generated
 * @date 2019年1月11日 下午 4:40:50
 *

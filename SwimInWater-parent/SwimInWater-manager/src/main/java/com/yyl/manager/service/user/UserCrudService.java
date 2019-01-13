@@ -6,7 +6,7 @@ import com.yyl.entity.PageBean;
 /**
 * 业务接口
 */
-public interface UserCudService {
+public interface UserCrudService {
 
     public User getUserById(Integer id);
 
