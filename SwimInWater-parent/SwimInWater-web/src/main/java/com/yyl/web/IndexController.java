@@ -47,10 +47,7 @@ public class IndexController {
 	public String index(Integer param1,Integer param2,
 						Integer param3,Integer param4){
 		logger.info("接收到请求,参数param1:{},param2:{},param3:{},param4:{}", param1,param2,param3,param4);
-		System.out.println("yhh懵逼");
-		System.out.println("yez");
-		List<Comment> queryComment = modelApi.getCommentApi().queryComment("");
-		logger.info("处理请求,结果:{}",queryComment.toString());
+
 		return "frontend/index";	
 	}
 	
