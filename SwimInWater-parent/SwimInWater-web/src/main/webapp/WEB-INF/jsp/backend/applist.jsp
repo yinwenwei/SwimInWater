@@ -8,8 +8,8 @@
 		<div class="x_panel">
 			<div class="x_title">
 				<h2>
-					APP 审核列表 <i class="fa fa-user"></i><small>${userSession.userName}
-						- 您可以通过搜索或者其他的筛选项对APP的信息进行审核操作。^_^</small>
+					用户信息管理列表 <i class="fa fa-user"></i><small>${userSession.userName}
+						- 您可以通过搜索或者其他的筛选项对用户信息进行审核操作。^_^</small>
 				</h2>
 				<div class="clearfix"></div>
 			</div>
@@ -19,78 +19,29 @@
 			    <ul>
 					<li>
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">软件名称</label>
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">用户名称</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">手机号</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">身份证</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
 							</div>
 						</div>
 					</li>
 					
-					<li>
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">所属平台</label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-								<select name="queryFlatformId" class="form-control">
-									<c:if test="${flatFormList != null }">
-									   <option value="">--请选择--</option>
-									   <c:forEach var="dataDictionary" items="${flatFormList}">
-									   		<option <c:if test="${dataDictionary.valueId == queryFlatformId }">selected="selected"</c:if>
-									   		value="${dataDictionary.valueId}">${dataDictionary.valueName}</option>
-									   </c:forEach>
-									</c:if>
-        						</select>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">一级分类</label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-								<select id="queryCategoryLevel1" name="queryCategoryLevel1" class="form-control">
-									<c:if test="${categoryLevel1List != null }">
-									   <option value="">--请选择--</option>
-									   <c:forEach var="appCategory" items="${categoryLevel1List}">
-									   		<option <c:if test="${appCategory.id == queryCategoryLevel1 }">selected="selected"</c:if>
-									   		value="${appCategory.id}">${appCategory.categoryName}</option>
-									   </c:forEach>
-									</c:if>
-        						</select>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">二级分类</label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="hidden" name="categorylevel2list" id="categorylevel2list"/>
-        						<select name="queryCategoryLevel2" id="queryCategoryLevel2" class="form-control">
-        							<c:if test="${categoryLevel2List != null }">
-									   <option value="">--请选择--</option>
-									   <c:forEach var="appCategory" items="${categoryLevel2List}">
-									   		<option <c:if test="${appCategory.id == queryCategoryLevel2 }">selected="selected"</c:if>
-									   		value="${appCategory.id}">${appCategory.categoryName}</option>
-									   </c:forEach>
-									</c:if>
-        						</select>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">三级分类</label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-        						<select name="queryCategoryLevel3" id="queryCategoryLevel3" class="form-control">
-        							<c:if test="${categoryLevel3List != null }">
-									   <option value="">--请选择--</option>
-									   <c:forEach var="appCategory" items="${categoryLevel3List}">
-									   		<option <c:if test="${appCategory.id == queryCategoryLevel3 }">selected="selected"</c:if>
-									   		value="${appCategory.id}">${appCategory.categoryName}</option>
-									   </c:forEach>
-									</c:if>
-        						</select>
-							</div>
-						</div>
-					</li>
 					<li><button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询 </button></li>
 				</ul>
 			</form>
@@ -111,46 +62,36 @@
 								<tr role="row">
 									<th class="sorting_asc" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
-										style="width: 70px;" aria-label="First name: activate to sort column descending"
-										aria-sort="ascending">软件名称</th>
-									<th class="sorting" tabindex="0"
-										aria-controls="datatable-responsive" rowspan="1" colspan="1"
-										style="width: 10px;"
-										aria-label="Last name: activate to sort column ascending">
-										APK名称</th>
-									<th class="sorting" tabindex="0"
-										aria-controls="datatable-responsive" rowspan="1" colspan="1"
-										style="width: 90px;"
-										aria-label="Last name: activate to sort column ascending">
-										软件大小(单位:M)</th>
+										style="width: 50px;" aria-label="First name: activate to sort column descending"
+										aria-sort="ascending">用户ID</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										style="width: 50px;"
 										aria-label="Last name: activate to sort column ascending">
-										所属平台</th>
+										用户名称</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
-										style="width: 170px;"
+										style="width: 50px;"
 										aria-label="Last name: activate to sort column ascending">
-										所属分类(一级分类、二级分类、三级分类)</th>
+										手机号</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
-										style="width: 30px;"
+										style="width: 50px;"
 										aria-label="Last name: activate to sort column ascending">
-										状态</th>
+										性别</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
-										style="width: 30px;"
+										style="width: 50px;"
 										aria-label="Last name: activate to sort column ascending">
-										下载次数</th>
+										身份证</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
-										style="width: 64px;"
+										style="width: 50px;"
 										aria-label="Last name: activate to sort column ascending">
-										最新版本号</th>
+										用户角色</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
-										style="width: 30px;"
+										style="width: 50px;"
 										aria-label="Last name: activate to sort column ascending">
 										操作</th>
 								</tr>
