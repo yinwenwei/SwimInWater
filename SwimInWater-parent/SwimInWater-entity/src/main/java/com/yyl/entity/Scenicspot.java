@@ -73,7 +73,7 @@ public class Scenicspot implements Serializable {
 
 		@Override
 		public String toString() {
-			return "Scenicspot [id=" + id + ", sName=" + sName + ", sCity="
+			return "\nScenicspot [id=" + id + ", sName=" + sName + ", sCity="
 					+ sCity + ", sRegion=" + sRegion + ", sContent=" + sContent
 					+ ", sPrice=" + sPrice + ", sPubTime=" + sPubTime
 					+ ", sCollectionNum=" + sCollectionNum + ", sStatus="

@@ -118,4 +118,12 @@ public interface ScenicareaApi {
 	 * @throws
 	 */
 	PageBean<Scenicspot> queryScenicspotPageByMap(String sName,String sCity,Integer size,Integer cur);
+	
+	/**
+	 * 查询所有城市
+	 * @Title: findAllCity
+	 * @return List<String>    返回类型
+	 * @throws
+	 */
+	List<String> findAllCity();
 }

@@ -1,11 +1,10 @@
 package com.yyl.web;
 
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -14,14 +13,11 @@ import io.swagger.annotations.ApiImplicitParams;
 
 
 
+
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,15 +29,13 @@ import redis.clients.jedis.JedisPool;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.yyl.api.ModelApiImpl;
-import com.yyl.api.comment.CommentApi;
-import com.yyl.entity.Comment;
 import com.yyl.entity.Hotel;
 import com.yyl.entity.Line;
-import com.yyl.entity.Picture;
 import com.yyl.entity.Scenicspot;
 import com.yyl.util.Constants;
+import com.yyl.web.quartz.GetThemCity;
 /**
- * 
+ *
 * @ClassName: IndexController
 * @Description: 首页相关
 * @author lkw
@@ -49,6 +43,7 @@ import com.yyl.util.Constants;
 * org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:run
 * 注解
 * https://blog.csdn.net/java_yes/article/details/79183804
+* http://localhost:8080/SwimInWater-web/swagger-ui.html
  */
 import com.yyl.util.JedisClientSingle;
 @Api(value="显示控制器", tags={"首页相关"})
@@ -59,13 +54,15 @@ public class IndexController {
 	private JedisClientSingle jedisClientSingle;//注入jedis工具类
 	
 	/** 热门游 */
-	private static final String HOT_SCENICAREA = "hotScenicarea";
+	private final String HOT_SCENICAREA = "hotScenicarea";
 	/** 最新游 */
-	private static final String NEW_SCENICAREA = "newScenicarea";
+	private final String NEW_SCENICAREA = "newScenicarea";
 	/** 主题游 */
-	private static final String THEME_SCENICAREA = "themeScenicarea";
+	private final String THEME_SCENICAREA = "themeScenicarea";
 	/** 国内游 */
-	private static final String DOMESTIC_SCENICAREA = "domesticScenicarea";
+	private final String DOMESTIC_SCENICAREA = "domesticScenicarea";
+	/** 港澳 */
+	private final String HKANDMACAO_SCENICAREA = "hkAndMacaoScenicarea";
 	/** 境外游 */
 	private static final String FOREIGN_SCENICAREA = "foreignScenicarea";
 	/** 显示个数4个*/
@@ -79,37 +76,25 @@ public class IndexController {
 	@ApiOperation(value="请求首页", notes="根据业务获取数据")
 	@RequestMapping(value = "/index", method=RequestMethod.GET)
 	public String index(Model model){
-		logger.info("接收到请求,参数param1:{},param2:{},param3:{},param4:{}");
-		
-		//根据景点id查询景点详情
-		Map<String, Object> scenMap = modelApi.getScenicareaApi().getScenicspotById(1);
-		//景点信息
-		Scenicspot scenicspot1 = (Scenicspot) scenMap.get(Constants.MAP_SCEN);
-		//酒店信息
-		List<Hotel> hotelList = (List<Hotel>)scenMap.get(Constants.MAP_HOTEL);
-		//路线信息
-		List<Line> lineList = (List<Line>) scenMap.get(Constants.MAP_LINE);
-		//景点图片
-		List<Picture> ScenPicList = (List<Picture>) scenMap.get(Constants.PIC_SCEN);
-		//酒店图片
-		List<Picture> HotelPicList = (List<Picture>) scenMap.get(Constants.PIC_HOTEL);
+		logger.info("接收到请求,主题城市:{}", GetThemCity.themeCity);
+		//----------------------------LKW------------------------------------------
 	
+		List<Scenicspot> hotScenicarea = new ArrayList<>();
+		List<Scenicspot> newScenicarea = new ArrayList<>();
+		List<Scenicspot> themeScenicarea = new ArrayList<>();
+		List<Scenicspot> domesticScenicarea = new ArrayList<>();
+		List<Scenicspot> hkAndMacaoScenicarea = new ArrayList<>();
+		List<Scenicspot> foreignScenicarea = new ArrayList<>();
+		
+		
+		
+		
 		
 		//查询所有酒店信息
 		List<Hotel> findHotelAll = modelApi.getScenicareaApi().findHotelAll();
 		for (Hotel hotel : findHotelAll) {
 			System.out.println("酒店名称:"+hotel.gethName());
 		}
-		
-		
-//		Jedis jedis = jedisPool.getResource();
-//		
-//		String json=JSONObject.toJSONString(findHotelAll);
-//		System.out.println("json格式:/n"+json);
-//		jedis.rpush("findHotelAll", json.toString());
-//		System.out.println("取出jedis所有数据:"+jedis.keys("*"));
-//		
-//		List<String> str = jedis.lrange("findHotelAll", 0, -1);
 		
 		//将酒店集合存入hash
 		jedisClientSingle.hset("HotelList", "findHotelAll", JSON.toJSON(findHotelAll).toString());
@@ -122,19 +107,46 @@ public class IndexController {
 				System.out.println("redis取出的数据:"+hotel.gethName());
 			}
 		}
-		
 		System.out.println(jedisClientSingle.keys("*"));
 		
-		System.out.println("景点名称:"+scenicspot1.getSName());
-		List<Line> findLine = modelApi.getScenicareaApi().findLine("昆明->大理->玉龙雪山");
-		for (Line line : findLine) {
-			System.out.println("路线名称:"+line.getLName());
-		}
-		for (Picture picture : HotelPicList) {
-			System.out.println("酒店图片:"+picture.getId());
-		}
 		
 		
+		
+		
+		List<Scenicspot> findScenicspotAll = modelApi.getScenicareaApi().findScenicspotAll();
+		// TODO 读取城市状态和景点区域
+		int i = 0;
+		for (Scenicspot scenicspot : findScenicspotAll) {
+			// 热门游/最新游/主题游 各4个
+			if(scenicspot.getSStatus() == Constants.SCENICAREA_STATU_HOT && hotScenicarea.size() < SHOW_COUNT_FOUR){
+				hotScenicarea.add(scenicspot);
+			}
+			if(newScenicarea.size() < SHOW_COUNT_FOUR){
+				newScenicarea.add(scenicspot);
+			}
+			// 主题游 获取相应城市
+			if(scenicspot.getSCity().equals(GetThemCity.themeCity) && themeScenicarea.size() < SHOW_COUNT_FOUR){
+				themeScenicarea.add(scenicspot);
+			}
+			// 国内游/港澳游/境外游 各6个
+			if(scenicspot.getSRegion().equals(Constants.SCENICAREA_REGOIN_DOMESTIC) && domesticScenicarea.size() < SHOW_COUNT_SIX){
+				domesticScenicarea.add(scenicspot);
+			}
+			if(scenicspot.getSRegion().equals(Constants.SCENICAREA_REGOIN_HKANDMACAO) && hkAndMacaoScenicarea.size() < SHOW_COUNT_SIX){
+				hkAndMacaoScenicarea.add(scenicspot);
+			}
+			if(scenicspot.getSRegion().equals(Constants.SCENICAREA_REGOIN_FOREIGN) && foreignScenicarea.size() < SHOW_COUNT_SIX){
+				foreignScenicarea.add(scenicspot);
+			}
+			if(hotScenicarea.size() == SHOW_COUNT_FOUR && newScenicarea.size() == SHOW_COUNT_FOUR && 
+				themeScenicarea.size() == SHOW_COUNT_FOUR && domesticScenicarea.size() == SHOW_COUNT_SIX && 
+				hkAndMacaoScenicarea.size() == SHOW_COUNT_SIX && foreignScenicarea.size() == SHOW_COUNT_SIX){
+				break;
+			}
+			i = i + 1;
+			logger.info("循环次数:{},热门游:{},最新游:{},主题游:{},国内游:{},港澳游:{},境外游:{}", i,hotScenicarea.size(),
+					newScenicarea.size(),themeScenicarea.size(),domesticScenicarea.size(),hkAndMacaoScenicarea.size(),foreignScenicarea.size());
+		}	
 		// 查询所以景点:人气游就是热门, 最新游按时间排序,主题游%$^#@^%
 		
 		model.addAttribute(HOT_SCENICAREA, hotScenicarea);
@@ -146,7 +158,29 @@ public class IndexController {
 		logger.info("处理请求,结果:{}", findScenicspotAll);
 		return "frontend/index";	
 	}
-
-	
-	
+	//----------------------------LKW结束------------------------------------------
 }
+
+
+/*//根据景点id查询景点详情
+Map<String, Object> scenMap = modelApi.getScenicareaApi().getScenicspotById(1);
+//景点信息
+Scenicspot scenicspot = (Scenicspot) scenMap.get(Constants.MAP_SCEN);
+//酒店信息
+List<Hotel> hotelList = (List<Hotel>)scenMap.get(Constants.MAP_HOTEL);
+//路线信息
+List<Line> lineList = (List<Line>) scenMap.get(Constants.MAP_LINE);
+//景点图片
+List<Picture> ScenPicList = (List<Picture>) scenMap.get(Constants.PIC_SCEN);
+//酒店图片
+List<Picture> HotelPicList = (List<Picture>) scenMap.get(Constants.PIC_HOTEL);
+
+System.out.println("景点名称:"+scenicspot.getSName());
+List<Line> findLine = modelApi.getScenicareaApi().findLine("昆明->大理->玉龙雪山");
+for (Line line : findLine) {
+	System.out.println("路线名称:"+line.getLName());
+}
+for (Picture picture : HotelPicList) {
+	System.out.println("酒店图片:"+picture.getId());
+}*/
+

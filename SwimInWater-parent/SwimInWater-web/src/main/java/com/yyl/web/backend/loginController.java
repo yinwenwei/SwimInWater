@@ -10,9 +10,11 @@ import io.swagger.annotations.ApiOperation;
 
 
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,16 +39,23 @@ public class loginController {
 	
 	
 	@RequestMapping(value="/doLogin",method=RequestMethod.POST)
-	public String doLogin(@RequestParam String userCode,
-						@RequestParam String userPassword,
+	public String doLogin(String userCode,
+						String userPassword,
 						HttpServletRequest request,
-						HttpSession session){
+						HttpSession session,
+						Model model){
 		logger.info("接收到请求,userCode:{},userPassword:{}",userCode,userPassword);
 		User selLogin = modelApi.getManagerApi().selLogin(userCode, userPassword);
 		if(selLogin != null){
-			session.setAttribute(Constants.DEV_USER_SESSION, selLogin);
-			logger.info("处理请求,结果:{}",selLogin);
-			return "redirect:/dev/flatform/main.html";
+			if(selLogin.getURole() == Constants.USER_ROLE_MANAGER){
+				session.setAttribute(Constants.DEV_USER_SESSION, selLogin);
+				logger.info("处理请求,结果:{}",selLogin);
+				return "redirect:/dev/flatform/main.html";
+			}else{
+				request.setAttribute("error", "您没有权限进入！"); 
+				logger.info("处理请求");
+				return "/backend/backendlogin";
+			}
 		}else{
 			request.setAttribute("error", "用户名或密码不正确！"); 
 			logger.info("处理请求");
