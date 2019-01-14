@@ -32,7 +32,7 @@ public class ManagerApiImpl implements ManagerApi {
 	@Resource
 	private OrdersCudService ordersCudService;
 	
-	public final static Integer  USER_ROLE_MANAGER=1;
+	
 
 	//-----------------------------用户------------------------------------------------------
 	
@@ -42,12 +42,7 @@ public class ManagerApiImpl implements ManagerApi {
 		map.put("uName", uName);
 		map.put("uPwd", uPwd);
 		List<User> userList = userCudService.getUserListByMap(map);
-		if(userList.size() >0){
-			if(userList.get(0).getURole() == USER_ROLE_MANAGER){
-				return userList.get(0);
-			}
-		}
-		return null;
+		return userList.size() >0 ? userList.get(0):null;
 	}
 	@Override
 	public Integer addRegister(User user) {
@@ -78,7 +73,7 @@ public class ManagerApiImpl implements ManagerApi {
 		Integer addLine = lineCudService.addLine(line);
 		return addLine;
 	}
-
+  
 	@Override
 	public Integer uplLine(Line line) {
 		Integer modifyLine = lineCudService.modifyLine(line);
