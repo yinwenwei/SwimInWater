@@ -26,6 +26,9 @@
                     <if test="hName != null and hName!=''">
                         hName=#{hName},
                     </if>
+                    <if test="hPirce != null and hPirce!=''">
+                    	hPirce=#{hPirce}
+                	</if>
                     <if test="sId != null and sId!=''">
                         sId=#{sId},
                     </if>
