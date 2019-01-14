@@ -75,4 +75,9 @@ public class ScenicspotQueryServiceImpl implements ScenicspotQueryService {
 		}
 		return null;
 	}
+
+	@Override
+	public List<String> findAllCity() {
+		return scenicspotQueryMapper.findAllCity();
+	}
 }

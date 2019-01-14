@@ -86,7 +86,11 @@ public interface ScenicareaApi {
 	 */
 	Picture findUserPicByPTypeId(Integer pTypeId);
 	
-	//TODO分页
-	
-
+	/**
+	 * 查询所有城市
+	 * @Title: findAllCity
+	 * @return List<String>    返回类型
+	 * @throws
+	 */
+	List<String> findAllCity();
 }
