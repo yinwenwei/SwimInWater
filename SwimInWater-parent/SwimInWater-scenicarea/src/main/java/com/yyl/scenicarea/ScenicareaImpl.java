@@ -37,6 +37,7 @@ public class ScenicareaImpl implements ScenicareaApi {
 	//图片业务接口
 	@Resource
 	private PictureQueryService pictureQueryService;
+	
 	/**
 	 * 查询所用景点信息
 	 */

@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.yyl.entity.User;
+import com.yyl.util.Constants;
 
 
 
@@ -17,16 +18,8 @@ public class SysInterceptor extends HandlerInterceptorAdapter {
 	
 	public boolean preHandle(HttpServletRequest request,HttpServletResponse response,Object handler) throws Exception{
 		HttpSession session = request.getSession();
-		
-		System.out.println("---------------------------------");
-		User user=(User) session.getAttribute(com.yyl.util.Constants.DEV_USER_SESSION);
-		//DevUser devUser = (DevUser)session.getAttribute(Constants.DEV_USER_SESSION);
-		
-		logger.debug("=======================++"+user);
-		//BackendUser backendUser = (BackendUser)session.getAttribute(Constants.USER_SESSION);
-		
-		
-		if(null != user){ //dev SUCCESS
+		User user=(User) session.getAttribute(Constants.DEV_USER_SESSION);
+		if(null != user){
 			return true;
 		}else{
 			response.sendRedirect(request.getContextPath()+"/403.jsp");
