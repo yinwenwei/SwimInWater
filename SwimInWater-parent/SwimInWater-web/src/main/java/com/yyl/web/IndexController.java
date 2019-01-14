@@ -12,6 +12,9 @@ import javax.annotation.Resource;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 
+
+
+import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +30,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.yyl.api.ModelApiImpl;
 import com.yyl.api.comment.CommentApi;
 import com.yyl.entity.Comment;
@@ -45,13 +50,14 @@ import com.yyl.util.Constants;
 * 注解
 * https://blog.csdn.net/java_yes/article/details/79183804
  */
+import com.yyl.util.JedisClientSingle;
 @Api(value="显示控制器", tags={"首页相关"})
 @Controller
 public class IndexController {
 	private Logger logger = LoggerFactory.getLogger(IndexController.class);
-	//获取redis实例
 	@Resource
-	private JedisPool jedisPool;
+	private JedisClientSingle jedisClientSingle;//注入jedis工具类
+	
 	/** 热门游 */
 	private static final String HOT_SCENICAREA = "hotScenicarea";
 	/** 最新游 */
@@ -62,6 +68,11 @@ public class IndexController {
 	private static final String DOMESTIC_SCENICAREA = "domesticScenicarea";
 	/** 境外游 */
 	private static final String FOREIGN_SCENICAREA = "foreignScenicarea";
+	/** 显示个数4个*/
+	private final Integer SHOW_COUNT_FOUR = 4;
+	/** 显示个数6个*/
+	private final Integer SHOW_COUNT_SIX = 6;
+	
 	@Resource
 	private ModelApiImpl modelApi;
 	
@@ -73,7 +84,7 @@ public class IndexController {
 		//根据景点id查询景点详情
 		Map<String, Object> scenMap = modelApi.getScenicareaApi().getScenicspotById(1);
 		//景点信息
-		Scenicspot scenicspot = (Scenicspot) scenMap.get(Constants.MAP_SCEN);
+		Scenicspot scenicspot1 = (Scenicspot) scenMap.get(Constants.MAP_SCEN);
 		//酒店信息
 		List<Hotel> hotelList = (List<Hotel>)scenMap.get(Constants.MAP_HOTEL);
 		//路线信息
@@ -82,8 +93,39 @@ public class IndexController {
 		List<Picture> ScenPicList = (List<Picture>) scenMap.get(Constants.PIC_SCEN);
 		//酒店图片
 		List<Picture> HotelPicList = (List<Picture>) scenMap.get(Constants.PIC_HOTEL);
+	
 		
-		System.out.println("景点名称:"+scenicspot.getSName());
+		//查询所有酒店信息
+		List<Hotel> findHotelAll = modelApi.getScenicareaApi().findHotelAll();
+		for (Hotel hotel : findHotelAll) {
+			System.out.println("酒店名称:"+hotel.gethName());
+		}
+		
+		
+//		Jedis jedis = jedisPool.getResource();
+//		
+//		String json=JSONObject.toJSONString(findHotelAll);
+//		System.out.println("json格式:/n"+json);
+//		jedis.rpush("findHotelAll", json.toString());
+//		System.out.println("取出jedis所有数据:"+jedis.keys("*"));
+//		
+//		List<String> str = jedis.lrange("findHotelAll", 0, -1);
+		
+		//将酒店集合存入hash
+		jedisClientSingle.hset("HotelList", "findHotelAll", JSON.toJSON(findHotelAll).toString());
+		
+		String str= jedisClientSingle.hget("HotelList", "findHotelAll");
+		//!判断取出来的数据是否为0或为null
+		if(!StringUtils.isBlank(str)){
+			List<Hotel> redis_HotelList = JSON.parseArray(str, Hotel.class);
+			for (Hotel hotel : redis_HotelList) {
+				System.out.println("redis取出的数据:"+hotel.gethName());
+			}
+		}
+		
+		System.out.println(jedisClientSingle.keys("*"));
+		
+		System.out.println("景点名称:"+scenicspot1.getSName());
 		List<Line> findLine = modelApi.getScenicareaApi().findLine("昆明->大理->玉龙雪山");
 		for (Line line : findLine) {
 			System.out.println("路线名称:"+line.getLName());
@@ -92,22 +134,16 @@ public class IndexController {
 			System.out.println("酒店图片:"+picture.getId());
 		}
 		
-		// 查询所以景点:人气游就是热门, 最新游按时间排序,主题游%$^#@^%
 		
-		// 国内游:sRegion:1,2
-		// 境外游:sRegion:3	
-		List<Scenicspot> hotScenicarea = null;
-		List<Scenicspot> newScenicarea = null;
-		List<Scenicspot> themeScenicarea = null;
-		List<Scenicspot> domesticScenicarea = null;
-		List<Scenicspot> foreignScenicarea = null;
+		// 查询所以景点:人气游就是热门, 最新游按时间排序,主题游%$^#@^%
 		
 		model.addAttribute(HOT_SCENICAREA, hotScenicarea);
 		model.addAttribute(NEW_SCENICAREA, newScenicarea);
 		model.addAttribute(THEME_SCENICAREA, themeScenicarea);
 		model.addAttribute(DOMESTIC_SCENICAREA, domesticScenicarea);
+		model.addAttribute(HKANDMACAO_SCENICAREA, hkAndMacaoScenicarea);
 		model.addAttribute(FOREIGN_SCENICAREA, foreignScenicarea);
-		logger.info("处理请求,结果:{}", "");
+		logger.info("处理请求,结果:{}", findScenicspotAll);
 		return "frontend/index";	
 	}
 

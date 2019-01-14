@@ -8,6 +8,7 @@
         select
                 id as id,
                 hName as hName,
+                hPrice as hPrice,
                 sId as sId,
                 hGrage as hGrage,
                 hContent as hContent
@@ -23,6 +24,7 @@
         select
                 id as id,
                 hName as hName,
+                hPrice as hPrice,
                 sId as sId,
                 hGrage as hGrage,
                 hContent as hContent
@@ -34,8 +36,8 @@
                     <if test="hName != null and hName!=''">
                         and hName=#{hName}
                     </if>
-                    <if test="hPirce != null and hPirce!=''">
-                        and hPirce=#{hPirce}
+                    <if test="hPrice != null and hPrice!=''">
+                        and hPrice=#{hPrice}
                     </if>
                     <if test="sId != null and sId!=''">
                         and sId=#{sId}
