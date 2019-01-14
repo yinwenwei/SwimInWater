@@ -20,15 +20,9 @@ public class Hotel implements Serializable {
         /** 酒店名称 */
         @ApiModelProperty(value = "酒店名称")
         private String hName;
-        public Double getsPrice() {
-			return sPrice;
-		}
-		public void setsPrice(Double sPrice) {
-			this.sPrice = sPrice;
-		}
 		/** 酒店价格 */
         @ApiModelProperty(value = "酒店价格")
-        private Double sPrice;
+        private Double hPrice;
         /** 景点id */
         @ApiModelProperty(value = "景点id")
         private Integer sId;
@@ -38,20 +32,29 @@ public class Hotel implements Serializable {
         /** 酒店详情 */
         @ApiModelProperty(value = "酒店详情")
         private String hContent;
-		public Hotel(Integer id, String hName, Double sPrice, Integer sId,
+        
+		public Hotel() {
+			super();
+		}
+		
+		public Hotel(Integer id, String hName, Double hPrice, Integer sId,
 				Integer hGrage, String hContent) {
 			super();
 			this.id = id;
 			this.hName = hName;
-			this.sPrice = sPrice;
+			this.hPrice = hPrice;
 			this.sId = sId;
 			this.hGrage = hGrage;
 			this.hContent = hContent;
 		}
-		public Hotel() {
-			super();
-			// TODO Auto-generated constructor stub
+
+		@Override
+		public String toString() {
+			return "Hotel [id=" + id + ", hName=" + hName + ", hPrice="
+					+ hPrice + ", sId=" + sId + ", hGrage=" + hGrage
+					+ ", hContent=" + hContent + "]";
 		}
+
 		public Integer getId() {
 			return id;
 		}
@@ -64,7 +67,12 @@ public class Hotel implements Serializable {
 		public void sethName(String hName) {
 			this.hName = hName;
 		}
-		
+		public Double gethPrice() {
+			return hPrice;
+		}
+		public void sethPrice(Double hPrice) {
+			this.hPrice = hPrice;
+		}
 		public Integer getsId() {
 			return sId;
 		}
@@ -85,12 +93,6 @@ public class Hotel implements Serializable {
 		}
 		public static long getSerialversionuid() {
 			return serialVersionUID;
-		}
-		@Override
-		public String toString() {
-			return "Hotel [id=" + id + ", hName=" + hName + ", hPirce="
-					+ sPrice + ", sId=" + sId + ", hGrage=" + hGrage
-					+ ", hContent=" + hContent + "]";
 		}
 		
         

@@ -28,4 +28,6 @@ public interface ScenicspotQueryService {
 	 * @throws
 	 */
 	List<Picture> findScenicspotPictureByPTypeId(Integer pTypeId);
+
+	public List<String> findAllCity();
 }

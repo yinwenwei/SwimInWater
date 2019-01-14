@@ -134,7 +134,6 @@ public class ScenicareaImpl implements ScenicareaApi {
 		scenmap.put(Constants.MAP_LINE, line);//路线详情
 		scenmap.put(Constants.PIC_SCEN, scenicPictrue);//景点图片
 		scenmap.put(Constants.PIC_HOTEL, hotelPictrue);//酒店图片
-		// TODO Auto-generated method stub
 		return scenmap;
 	}
 	
@@ -142,8 +141,12 @@ public class ScenicareaImpl implements ScenicareaApi {
 	 * 根据用户id查询用户头像
 	 */
 	public Picture findUserPicByPTypeId(Integer pTypeId) {
-		// TODO Auto-generated method stub
 		return pictureQueryService.findUserPicByPTypeId(pTypeId);
+	}
+
+	@Override
+	public List<String> findAllCity() {
+		return scenicspotQueryService.findAllCity();
 	}
 	
 	/**

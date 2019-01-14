@@ -22,5 +22,15 @@ public class Constants {
 	
 	public final static String PIC_SCEN = "pic_scen";
 	public final static String PIC_HOTEL = "pic_hotel";
-
+	
+	// 景点状态   		@see com.yyl.entity.Scenicspot: sStatus
+	public final static Integer SCENICAREA_STATU_PUBLISH = 1;
+	public final static Integer SCENICAREA_STATU_HOT = 2;
+	public final static Integer SCENICAREA_STATU_UNPUBLISH = 3;
+	
+	// 景点所属地区	@see com.yyl.entity.Scenicspot: sRegion
+	public final static String SCENICAREA_REGOIN_DOMESTIC = "1";
+	public final static String SCENICAREA_REGOIN_HKANDMACAO = "2";
+	public final static String SCENICAREA_REGOIN_FOREIGN = "3";
+	
 }

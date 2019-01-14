@@ -1,5 +1,6 @@
 package com.yyl.scenicarea.repository.scenicspot;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import com.yyl.entity.Picture;
 import com.yyl.entity.Scenicspot;
@@ -25,5 +26,13 @@ public interface ScenicspotQueryMapper {
 	 * @throws
 	 */
 	List<Picture> findScenicspotPictureByPTypeId(Integer pTypeId) throws Exception;
+	/**
+	 * 查询所有城市
+	 * @Title: findAllCity
+	 * @return List<String>    返回类型
+	 * @throws
+	 */
+	@Select("SELECT sCity FROM scenicspot GROUP BY sCity")
+	public List<String> findAllCity();
 	
 }
