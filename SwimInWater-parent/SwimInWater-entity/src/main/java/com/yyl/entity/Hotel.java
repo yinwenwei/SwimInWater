@@ -20,6 +20,9 @@ public class Hotel implements Serializable {
         /** 酒店名称 */
         @ApiModelProperty(value = "酒店名称")
         private String hName;
+        /** 酒店价格 */
+        @ApiModelProperty(value = "酒店价格")
+        private Double hPirce;
         /** 景点id */
         @ApiModelProperty(value = "景点id")
         private Integer sId;
@@ -29,62 +32,66 @@ public class Hotel implements Serializable {
         /** 酒店详情 */
         @ApiModelProperty(value = "酒店详情")
         private String hContent;
-        
-        public Hotel() {
-			super();
-		}
-        
-		public Hotel(Integer id, Integer sId) {
-			super();
-			this.id = id;
-			this.sId = sId;
-		}
-
-		public Hotel(Integer id, String hName, Integer sId, Integer hGrage,
-				String hContent) {
+		public Hotel(Integer id, String hName, Double hPirce, Integer sId,
+				Integer hGrage, String hContent) {
 			super();
 			this.id = id;
 			this.hName = hName;
+			this.hPirce = hPirce;
 			this.sId = sId;
 			this.hGrage = hGrage;
 			this.hContent = hContent;
 		}
-
+		public Hotel() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
+		public Integer getId() {
+			return id;
+		}
+		public void setId(Integer id) {
+			this.id = id;
+		}
+		public String gethName() {
+			return hName;
+		}
+		public void sethName(String hName) {
+			this.hName = hName;
+		}
+		public Double gethPirce() {
+			return hPirce;
+		}
+		public void sethPirce(Double hPirce) {
+			this.hPirce = hPirce;
+		}
+		public Integer getsId() {
+			return sId;
+		}
+		public void setsId(Integer sId) {
+			this.sId = sId;
+		}
+		public Integer gethGrage() {
+			return hGrage;
+		}
+		public void sethGrage(Integer hGrage) {
+			this.hGrage = hGrage;
+		}
+		public String gethContent() {
+			return hContent;
+		}
+		public void sethContent(String hContent) {
+			this.hContent = hContent;
+		}
+		public static long getSerialversionuid() {
+			return serialVersionUID;
+		}
 		@Override
 		public String toString() {
-			return "Hotel [id=" + id + ", hName=" + hName + ", sId=" + sId
-					+ ", hGrage=" + hGrage + ", hContent=" + hContent + "]";
+			return "Hotel [id=" + id + ", hName=" + hName + ", hPirce="
+					+ hPirce + ", sId=" + sId + ", hGrage=" + hGrage
+					+ ", hContent=" + hContent + "]";
 		}
-
-		//get set 方法
-        public void setId (Integer  id){
-            this.id=id;
-        }
-        public  Integer getId(){
-            return this.id;
-        }
-        public void setHName (String  hName){
-            this.hName=hName;
-        }
-        public  String getHName(){
-            return this.hName;
-        }
-        public void setSId (Integer  sId){
-            this.sId=sId;
-        }
-        public  Integer getSId(){
-            return this.sId;
-        }
-        public void setHGrage (Integer  hGrage){
-            this.hGrage=hGrage;
-        }
-        public  Integer getHGrage(){
-            return this.hGrage;
-        }
-        public void setHContent (String  hContent){
-            this.hContent=hContent;
-        }
-        public  String getHContent(){
-            return this.hContent;
-        }
+		
+        
+        
 }

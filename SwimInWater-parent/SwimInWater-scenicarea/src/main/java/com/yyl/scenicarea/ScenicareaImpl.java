@@ -12,6 +12,7 @@ import com.yyl.api.scenicarea.ScenicareaApi;
 import com.yyl.entity.Dictionary;
 import com.yyl.entity.Hotel;
 import com.yyl.entity.Line;
+import com.yyl.entity.PageBean;
 import com.yyl.entity.Picture;
 import com.yyl.entity.Scenicspot;
 import com.yyl.scenicarea.service.dictionary.DictionaryQueryService;
@@ -37,6 +38,7 @@ public class ScenicareaImpl implements ScenicareaApi {
 	//图片业务接口
 	@Resource
 	private PictureQueryService pictureQueryService;
+	
 	/**
 	 * 查询所用景点信息
 	 */
@@ -145,6 +147,46 @@ public class ScenicareaImpl implements ScenicareaApi {
 	@Override
 	public List<String> findAllCity() {
 		return scenicspotQueryService.findAllCity();
+	}
+	
+	/**
+	 * 条件查询数据字典
+	 */
+	@Override
+	public List<Dictionary> findDictionary(String dTypeClassification) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("dTypeClassification", dTypeClassification);
+		return dictionaryQueryService.getDictionaryListByMap(map);
+	}
+	
+	/**
+	 * yhh多条件景点查询
+	 */
+	@Override
+	public PageBean<Scenicspot> queryScenicspotPageByMap(String sName,
+			String sCity, Integer sStauts, Integer size, Integer cur) {
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("sName", sName);
+		map.put("sCity", sCity);
+		map.put("sStauts", sStauts);
+		// TODO Auto-generated method stub
+		PageBean<Scenicspot> queryMap = scenicspotQueryService.queryScenicspotPageByMap(map, size, cur);
+		return queryMap;
+	}
+	
+	/**
+	 * yww多条件查询景点信息
+	 */
+	@Override
+	public PageBean<Scenicspot> queryScenicspotPageByMap(String sName,
+			String sCity, Integer size, Integer cur) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("sName", sName);
+		map.put("sCity", sCity);
+		PageBean<Scenicspot> queryMap = scenicspotQueryService.queryScenicspotPageByMap(map, size, cur);
+		return queryMap;
 	}
 	
 	

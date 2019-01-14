@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -63,8 +62,8 @@
                 
                 <li><a><i class="fa fa-edit"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="${pageContext.request.contextPath }/applist">用户信息管理</a></li>
-                      <li><a href="${pageContext.request.contextPath }/appcheck">添加用户</a></li>
+                      <li><a href="${pageContext.request.contextPath }/dev/flatform/user/applist">用户信息管理</a></li>
+                      <li><a href="${pageContext.request.contextPath }/dev/flatform/user/appcheck">添加用户</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-home"></i>酒店管理 <span class="fa fa-chevron-down"></span></a>
@@ -82,7 +81,7 @@
                   
                    <li><a><i class="fa fa-bug"></i>景点管理<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="javascript:;">景点信息管理</a></li>
+                      <li><a href="${pageContext.request.contextPath }/dev/flatform/user/scenicspotlist">景点信息管理</a></li>
                     </ul>
                   </li>
                   
