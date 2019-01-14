@@ -20,9 +20,15 @@ public class Hotel implements Serializable {
         /** 酒店名称 */
         @ApiModelProperty(value = "酒店名称")
         private String hName;
-        /** 酒店价格 */
+        public Double getsPrice() {
+			return sPrice;
+		}
+		public void setsPrice(Double sPrice) {
+			this.sPrice = sPrice;
+		}
+		/** 酒店价格 */
         @ApiModelProperty(value = "酒店价格")
-        private Double hPirce;
+        private Double sPrice;
         /** 景点id */
         @ApiModelProperty(value = "景点id")
         private Integer sId;
@@ -32,12 +38,12 @@ public class Hotel implements Serializable {
         /** 酒店详情 */
         @ApiModelProperty(value = "酒店详情")
         private String hContent;
-		public Hotel(Integer id, String hName, Double hPirce, Integer sId,
+		public Hotel(Integer id, String hName, Double sPrice, Integer sId,
 				Integer hGrage, String hContent) {
 			super();
 			this.id = id;
 			this.hName = hName;
-			this.hPirce = hPirce;
+			this.sPrice = sPrice;
 			this.sId = sId;
 			this.hGrage = hGrage;
 			this.hContent = hContent;
@@ -58,12 +64,7 @@ public class Hotel implements Serializable {
 		public void sethName(String hName) {
 			this.hName = hName;
 		}
-		public Double gethPirce() {
-			return hPirce;
-		}
-		public void sethPirce(Double hPirce) {
-			this.hPirce = hPirce;
-		}
+		
 		public Integer getsId() {
 			return sId;
 		}
@@ -88,7 +89,7 @@ public class Hotel implements Serializable {
 		@Override
 		public String toString() {
 			return "Hotel [id=" + id + ", hName=" + hName + ", hPirce="
-					+ hPirce + ", sId=" + sId + ", hGrage=" + hGrage
+					+ sPrice + ", sId=" + sId + ", hGrage=" + hGrage
 					+ ", hContent=" + hContent + "]";
 		}
 		

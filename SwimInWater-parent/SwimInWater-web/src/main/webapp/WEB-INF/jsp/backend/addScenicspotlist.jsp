@@ -14,13 +14,13 @@
           <div class="clearfix"></div>
       </div>
       <div class="x_content1">
-        <form class="form-horizontal form-label-left" action="checksave" method="post">
+        <form class="form-horizontal form-label-left" action="${pageContext.request.contextPath }/dev/flatform/user/doAdd.action" method="post">
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">景点名称 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input id="softwareName" class="form-control col-md-7 col-xs-12" 
-               data-validate-length-range="20" data-validate-words="1" name="softwareName"  required="required"
+               data-validate-length-range="20" data-validate-words="1" name="sName"  required="required"
                placeholder="请输入景点名称" type="text">
             </div>
           </div>
@@ -30,19 +30,18 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input id="softwareName" class="form-control col-md-7 col-xs-12" 
-               data-validate-length-range="20" data-validate-words="1" name="softwareName"  required="required"
+               data-validate-length-range="20" data-validate-words="1" name="sCity"  required="required"
                placeholder="请输入所属城市" type="text">
             </div>
           </div>
           
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="select">所属地区 <span class="required">*</span></label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="select">所属地区<span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <select name="flatformId" id="flatformId" class="form-control"   required="required">
-              		<c:if test="${dataListF != null }">
-              			<option value="0">--请选择--</option>
-						<c:forEach var="dlf" items="${dataListF }">
-							<option value="${dlf.valueId }">${dlf.valueName}</option>
+              <select name=sRegion id="flatformId" class="form-control"   required="required">
+              		<c:if test="${findDictionary3 != null }">
+						<c:forEach var="FD3" items="${findDictionary3 }">
+							<option value="${FD3.DContentId}">${FD3.DContentName}</option>
 						</c:forEach>
 					</c:if>
               </select>
@@ -54,16 +53,16 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">景点内容<span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <textarea id="appInfo" name="appInfo"     required="required"
+              <textarea id="appInfo" name="sContent"     required="required"
               placeholder="请输入景点相关内容，本信息作为景点的详细信息进行景点的介绍。" class="form-control col-md-7 col-xs-12"></textarea>
             </div>
           </div>
           
            <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">金额$ <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">景点价格$ <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="number" id="downloads" name="downloads"   required="required"
+              <input type="number" id="downloads" name="sPrice"   required="required"
               data-validate-minmax="10,500"  placeholder="请输入金额$" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
@@ -73,11 +72,10 @@
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="select">发布状态 <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <select name="flatformId" id="flatformId" class="form-control"   required="required">
-              		<c:if test="${dataListF != null }">
-              			<option value="0">--请选择--</option>
-						<c:forEach var="dlf" items="${dataListF }">
-							<option value="${dlf.valueId }">${dlf.valueName}</option>
+              <select name="sStatus" id="flatformId" class="form-control"   required="required">
+              		<c:if test="${findDictionary != null }">
+						<c:forEach var="FD" items="${findDictionary }">
+							<option value="${FD.DContentId}">${FD.DContentName}</option>
 						</c:forEach>
 					</c:if>
               </select>
@@ -89,7 +87,7 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input id="softwareName" class="form-control col-md-7 col-xs-12" 
-               data-validate-length-range="20" data-validate-words="1" name="softwareName"  required="required"
+               data-validate-length-range="20" data-validate-words="1" name="hName"  required="required"
                placeholder="请输入酒店名称" type="text">
             </div>
           </div>
@@ -97,11 +95,10 @@
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="select">酒店等级 <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <select name="flatformId" id="flatformId" class="form-control"   required="required">
-              		<c:if test="${dataListF != null }">
-              			<option value="0">--请选择--</option>
-						<c:forEach var="dlf" items="${dataListF }">
-							<option value="${dlf.valueId }">${dlf.valueName}</option>
+              <select name="hGrage" id="flatformId" class="form-control"   required="required">
+              		<c:if test="${findDictionary2 != null }">
+						<c:forEach var="FD2" items="${findDictionary2 }">
+							<option value="${FD2.DContentId }">${FD2.DContentName}</option>
 						</c:forEach>
 					</c:if>
               </select>
@@ -109,10 +106,10 @@
           </div>
           
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">酒店金额$ <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">酒店价格$ <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="number" id="downloads" name="downloads"   required="required"
+              <input type="number" id="downloads" name="hPrice"   required="required"
               data-validate-minmax="10,500"  placeholder="请输入金额$" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
@@ -121,7 +118,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">酒店详情<span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <textarea id="appInfo" name="appInfo"     required="required"
+              <textarea id="appInfo" name="hContent"     required="required"
               placeholder="请输入酒店相关内容，本信息作为酒店的详细信息进行酒店的介绍。" class="form-control col-md-7 col-xs-12"></textarea>
             </div>
           </div>
@@ -131,7 +128,7 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input id="softwareName" class="form-control col-md-7 col-xs-12" 
-               data-validate-length-range="20" data-validate-words="1" name="softwareName"  required="required"
+               data-validate-length-range="20" data-validate-words="1" name="lName"  required="required"
                placeholder="请输入线路名称" type="text">
             </div>
           </div>
@@ -140,32 +137,13 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">线路说明<span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <textarea id="appInfo" name="appInfo"     required="required"
+              <textarea id="appInfo" name="lContent"     required="required"
               placeholder="请输入线路相关内容，本信息作为线路的详细信息进行线路的介绍。" class="form-control col-md-7 col-xs-12"></textarea>
             </div>
           </div>
-          
-           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">景点图片 <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-            <input type="file" class="form-control col-md-7 col-xs-12" name="a_logoPicPath"  required="required" id="a_logoPicPath"/>
-            	显示上传文件错误信息
-            </div>
-          </div>
-          <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">酒店图片 <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-            <input type="file" class="form-control col-md-7 col-xs-12" name="a_logoPicPath"  required="required" id="a_logoPicPath"/>
-            	显示上传文件错误信息
-            </div>
-          </div>
-         
         	<div class="form-group">
         		<div class="col-md-6 col-md-offset-3">
-        		<button id="status" type="submit" name="status" value="2" class="btn btn-success">审核通过</button>
-        		<button id="status" type="submit" name="status" value="3" class="btn btn-success">审核不通过</button>
+        		<button id="status" type="submit" name="status" value="2" class="btn btn-success">提交</button>
           		<button type="button" class="btn btn-primary" id="back">返回</button>
         		</div>
      		</div>
