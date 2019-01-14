@@ -22,7 +22,7 @@ public class Hotel implements Serializable {
         private String hName;
         /** 酒店价格 */
         @ApiModelProperty(value = "酒店价格")
-        private String hPirce;
+        private Double hPirce;
         /** 景点id */
         @ApiModelProperty(value = "景点id")
         private Integer sId;
@@ -32,7 +32,7 @@ public class Hotel implements Serializable {
         /** 酒店详情 */
         @ApiModelProperty(value = "酒店详情")
         private String hContent;
-		public Hotel(Integer id, String hName, String hPirce, Integer sId,
+		public Hotel(Integer id, String hName, Double hPirce, Integer sId,
 				Integer hGrage, String hContent) {
 			super();
 			this.id = id;
@@ -58,10 +58,10 @@ public class Hotel implements Serializable {
 		public void sethName(String hName) {
 			this.hName = hName;
 		}
-		public String gethPirce() {
+		public Double gethPirce() {
 			return hPirce;
 		}
-		public void sethPirce(String hPirce) {
+		public void sethPirce(Double hPirce) {
 			this.hPirce = hPirce;
 		}
 		public Integer getsId() {
@@ -91,6 +91,7 @@ public class Hotel implements Serializable {
 					+ hPirce + ", sId=" + sId + ", hGrage=" + hGrage
 					+ ", hContent=" + hContent + "]";
 		}
+		
         
-   
+        
 }
