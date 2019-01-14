@@ -87,7 +87,35 @@ public interface ScenicareaApi {
 	 */
 	Picture findUserPicByPTypeId(Integer pTypeId);
 	
-	//TODO分页
+	/**
+	 * 条件查询数据字典信息
+	 * @Title: findDictionary
+	 * @param @param map
+	 * @return List<Dictionary>    返回类型
+	 * @throws
+	 */
+	List<Dictionary> findDictionary(String dTypeClassification);
 	
-
+	/**
+	 * 多条件查询景点信息(yhh查询)
+	 * @Title: queryScenicspotPageByMap
+	 * @param @param sName
+	 * @param @param sCity
+	 * @param @param sStauts
+	 * @param @return    设定文件
+	 * @return PageBean<Scenicspot>    返回类型
+	 * @throws
+	 */
+	PageBean<Scenicspot> queryScenicspotPageByMap(String sName,String sCity,Integer sStauts,Integer size,Integer cur);
+	
+	/**
+	 * 多条件查询景点信息(yww查询)
+	 * @Title: queryScenicspotPageByMap
+	 * @param @param sName
+	 * @param @param sCity
+	 * @param @return    设定文件
+	 * @return PageBean<Scenicspot>    返回类型
+	 * @throws
+	 */
+	PageBean<Scenicspot> queryScenicspotPageByMap(String sName,String sCity,Integer size,Integer cur);
 }
