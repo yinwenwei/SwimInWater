@@ -5,6 +5,7 @@ import java.util.List;
 import com.yyl.entity.Hotel;
 import com.yyl.entity.Line;
 import com.yyl.entity.Orders;
+import com.yyl.entity.Picture;
 import com.yyl.entity.Scenicspot;
 import com.yyl.entity.User;
 
@@ -49,10 +50,14 @@ public interface ManagerApi {
 	 * 添加景点信息
 	 * @Title: addScenicspot
 	 * @param @param scenicspot
+	 * @param @param hotel
+	 * @param @param line
+	 * @param @param sPicList
+	 * @param @param hPicList
 	 * @return Integer    返回类型
 	 * @throws
 	 */
-	Integer addScenicspot(Scenicspot scenicspot);
+	Integer addScenicspot(Scenicspot scenicspot, Hotel hotel, Line line, List<Picture> sPicList, List<Picture> hPicList);
 	/**
 	 * 修改景点信息
 	 * @Title: uplScenicspot

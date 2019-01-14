@@ -2,35 +2,16 @@ package com.yyl.web;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.Resource;
-
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-
-
-
-
-import org.apache.commons.lang.StringUtils;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.yyl.api.ModelApiImpl;
-import com.yyl.entity.Hotel;
-import com.yyl.entity.Line;
 import com.yyl.entity.Scenicspot;
 import com.yyl.util.Constants;
 import com.yyl.web.quartz.GetThemCity;
@@ -76,21 +57,8 @@ public class IndexController {
 	@ApiOperation(value="请求首页", notes="根据业务获取数据")
 	@RequestMapping(value = "/index", method=RequestMethod.GET)
 	public String index(Model model){
-		logger.info("接收到请求,主题城市:{}", GetThemCity.themeCity);
-		//----------------------------LKW------------------------------------------
-	
-		List<Scenicspot> hotScenicarea = new ArrayList<>();
-		List<Scenicspot> newScenicarea = new ArrayList<>();
-		List<Scenicspot> themeScenicarea = new ArrayList<>();
-		List<Scenicspot> domesticScenicarea = new ArrayList<>();
-		List<Scenicspot> hkAndMacaoScenicarea = new ArrayList<>();
-		List<Scenicspot> foreignScenicarea = new ArrayList<>();
 		
-		
-		
-		
-		
-		//查询所有酒店信息
+		/*//查询所有酒店信息
 		List<Hotel> findHotelAll = modelApi.getScenicareaApi().findHotelAll();
 		for (Hotel hotel : findHotelAll) {
 			System.out.println("酒店名称:"+hotel.gethName());
@@ -107,11 +75,17 @@ public class IndexController {
 				System.out.println("redis取出的数据:"+hotel.gethName());
 			}
 		}
-		System.out.println(jedisClientSingle.keys("*"));
+		System.out.println(jedisClientSingle.keys("*"));*/
 		
-		
-		
-		
+		// TODO景点添加显示图片字段
+		logger.info("接收到请求,主题城市:{}", GetThemCity.themeCity);
+	
+		List<Scenicspot> hotScenicarea = new ArrayList<>();
+		List<Scenicspot> newScenicarea = new ArrayList<>();
+		List<Scenicspot> themeScenicarea = new ArrayList<>();
+		List<Scenicspot> domesticScenicarea = new ArrayList<>();
+		List<Scenicspot> hkAndMacaoScenicarea = new ArrayList<>();
+		List<Scenicspot> foreignScenicarea = new ArrayList<>();
 		
 		List<Scenicspot> findScenicspotAll = modelApi.getScenicareaApi().findScenicspotAll();
 		// TODO 读取城市状态和景点区域
