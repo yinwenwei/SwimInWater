@@ -92,24 +92,27 @@ public class BackendJspController {
 		String rootPath = request.getServletContext().getRealPath("/");
 		List<Picture> sPicList = new ArrayList<>();
 		List<Picture> hPicList = new ArrayList<>();
+		String relativePath = "\\statics\\uploadfiles\\";
+		 String fullPath = rootPath + relativePath;
 		if(sPics!=null&&sPics.length>0){  
             for(int i = 0;i<sPics.length;i++){  
-            	String relativePath = "\\statics\\uploadfiles\\" + sPics[i].getOriginalFilename();
-                MultipartFile file = sPics[i];  
-                String fullPath = rootPath + relativePath;
-                Picture pic = new Picture("2", relativePath, fullPath);
-                sPicList.add(pic);
-                saveFile(file, fullPath);  
+            	if(sPics[i].getOriginalFilename() != null && !sPics[i].getOriginalFilename().equals("")){
+	                MultipartFile file = sPics[i];  
+	                Picture pic = new Picture("2", relativePath, fullPath);
+	                System.out.println(fullPath);
+	                sPicList.add(pic);
+	                saveFile(file, fullPath);  
+            	}
             }  
         }
 		if(hPics!=null&&hPics.length>0){  
             for(int i = 0;i<hPics.length;i++){  
-            	String relativePath = "\\statics\\uploadfiles\\" + sPics[i].getOriginalFilename();
-                MultipartFile file = hPics[i];  
-                String fullPath = rootPath + relativePath;
-                Picture pic = new Picture("3", relativePath, fullPath);
-                hPicList.add(pic);
-                saveFile(file, fullPath);  
+            	if(hPics[i].getOriginalFilename() != null && !hPics[i].getOriginalFilename().equals("")){
+	                MultipartFile file = hPics[i];  
+	                Picture pic = new Picture("3", relativePath, fullPath);
+	                hPicList.add(pic);
+	                saveFile(file, fullPath);  
+                }
             }  
         }
 
