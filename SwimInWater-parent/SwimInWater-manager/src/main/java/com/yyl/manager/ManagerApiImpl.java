@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.yyl.api.manager.ManagerApi;
@@ -36,7 +38,7 @@ public class ManagerApiImpl implements ManagerApi {
 	@Resource
 	private PictureCudService pictureCudService;
 	
-	
+	private Logger logger = LoggerFactory.getLogger(ManagerApiImpl.class);
 
 	//-----------------------------用户------------------------------------------------------
 	
@@ -67,6 +69,7 @@ public class ManagerApiImpl implements ManagerApi {
 		Integer addScenicspotResult = scenicspotCudService.addScenicspot(scenicspot);
 		// 获取景点id
 		Integer sId = scenicspot.getId();
+		logger.debug("处理添加景点业务,参数:景点id:{}", sId);
 		// 添加景点图片
 		for (Picture picture : sPicList) {
 			picture.setPTypeId(sId);
@@ -81,7 +84,7 @@ public class ManagerApiImpl implements ManagerApi {
 			picture.setPTypeId(hId);
 			pictureCudService.addPicture(picture);
 		}
-		line.setId(sId);
+		line.setSId(sId);
 		// 添加线路
 		Integer addLineResult = lineCudService.addLine(line);
 		if(addScenicspotResult > 0 && addHotelResult > 0 && addLineResult > 0){

@@ -1,16 +1,15 @@
 package com.yyl.web.backend;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-
 import java.io.File;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.yyl.api.ModelApi;
 import com.yyl.entity.Dictionary;
 import com.yyl.entity.Hotel;
@@ -30,7 +28,7 @@ import com.yyl.entity.Scenicspot;
 import com.yyl.util.Constants;
 
 
-@Api(value="页面控制器", tags={"页面跳转请求"})
+@Api(value="后台管理控制器", tags={"后台管理相关"})
 @Controller
 @RequestMapping(value="/dev/flatform/user")
 public class BackendJspController {
@@ -68,6 +66,14 @@ public class BackendJspController {
 		logger.info("处理请求");
 		return "/backend/addScenicspotlist";
 	}
+	
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "scenicspot", value = "景点对象", paramType = "query"),
+		@ApiImplicitParam(name = "hotel", value = "酒店对象", paramType = "query"),
+		@ApiImplicitParam(name = "line", value = "线路对象", paramType = "query"),
+		@ApiImplicitParam(name = "sPics", value = "景点图片数组对象", paramType = "query"),
+		@ApiImplicitParam(name = "hPics", value = "酒店图片数组对象", paramType = "query")
+		})
 	@ApiOperation(value="请求添加成功页面",notes="添加成功信息")
 	@RequestMapping(value="/doAdd",method=RequestMethod.POST)
 	public String doAdd(Scenicspot scenicspot, Hotel hotel, Line line,
@@ -111,7 +117,7 @@ public class BackendJspController {
 		Integer result = modelApi.getManagerApi().addScenicspot(scenicspot , hotel, line, sPicList, hPicList);
 		
 		logger.info("处理请求,结果:{}",result > 0 ? "添加成功" : "添加失败");
-		return "forward:/scenicspotlist";
+		return "redirect:/dev/flatform/user/scenicspotlist.action";
 	}
 	
 	

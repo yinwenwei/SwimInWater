@@ -41,8 +41,13 @@
 
     <!-- 事物配置扫描包 -->
     <aop:config  proxy-target-class="true">
-        <aop:pointcut expression="execution(* com.yyl.*.service.*impl.*(..))" id="transcationPointcut" />
-        <aop:advisor advice-ref="transAdvice" pointcut-ref="transcationPointcut" />
+        <!-- <aop:pointcut expression="execution(* com.yyl.*.service.*impl.*(..))" id="transcationPointcut" /> -->
+        <aop:pointcut expression="execution(* com.yyl.manager.ManagerApiImpl.*(..))" id="managerPointcut" />
+        <aop:pointcut expression="execution(* com.yyl.scenicarea.ScenicareaImpl.*(..))" id="scenicareaPointcut" />
+        <aop:pointcut expression="execution(* com.yyl.comment.CommentImpl.*(..))" id="commentPointcut" />
+        <aop:advisor advice-ref="transAdvice" pointcut-ref="managerPointcut" />
+        <aop:advisor advice-ref="transAdvice" pointcut-ref="scenicareaPointcut" />
+        <aop:advisor advice-ref="transAdvice" pointcut-ref="commentPointcut" />
     </aop:config>
 
 </beans>
