@@ -14,14 +14,14 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
-				<form method="post" action="list">
+				<form name="huixie" method="post" action="${pageContext.request.contextPath }/dev/flatform/user/applist.action">
 					<input type="hidden" name="pageIndex" value="1" />
 			    <ul>
 					<li>
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">用户名称</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
+								<input name="uName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
 							</div>
 						</div>
 					</li>
@@ -29,7 +29,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">手机号</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
+								<input name="uPhone" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
 							</div>
 						</div>
 					</li>
@@ -37,7 +37,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">身份证</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
+								<input name="uIdentity" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
 							</div>
 						</div>
 					</li>
@@ -97,21 +97,40 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="appInfo" items="${appInfoList }" varStatus="status">
+								<c:forEach var="userL" items="${userList}" varStatus="status">
 									<tr role="row" class="odd">
-										<td tabindex="0" class="sorting_1">${appInfo.softwareName}</td>
-										<td>${appInfo.APKName }</td>
-										<td>${appInfo.softwareSize }</td>
-										<td>${appInfo.flatformName }</td>
-										<td>${appInfo.categoryLevel1Name } -> ${appInfo.categoryLevel2Name } -> ${appInfo.categoryLevel3Name }</td>
-										<td>${appInfo.statusName }</td>
-										<td>${appInfo.downloads }</td>
-										<td>${appInfo.versionNo }</td>
+										<td tabindex="0" class="sorting_1">${userL.id}</td>
+										<td>${userL.UName }</td>
+										<td>${userL.UPhone }</td>
+										<c:if test="${userL.USex ==1}">
+											<td>男</td>
+										</c:if>
+										<c:if test="${userL.USex ==2}">
+											<td>女</td>
+										</c:if>
+										
+										<td>${userL.UIdentity }</td>
+										<c:if test="${userL.URole ==1}">
+											<td>管理员</td>
+										</c:if>
+										<c:if test="${userL.URole ==2}">
+											<td>用户</td>
+										</c:if>
 										<td>
-										<button type="button" class="btn btn-default checkApp" 
-											appinfoid="${appInfo.id }" versionid="${appInfo.versionId }" status="${appInfo.status }" 
-											statusname="${appInfo.statusName }"											
-											data-toggle="tooltip" data-placement="top" title="" data-original-title="查看并审核APP">审核</button>
+										<div class="btn-group">
+                      							<button type="button" class="btn btn-danger">点击操作  </button>
+                      							<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        							<span class="caret"></span>
+                       								<span class="sr-only">Toggle Dropdown</span>
+                     							 </button>
+                      							<ul class="dropdown-menu" role="menu">
+                      								
+                        							<li>
+                        								<a class="uplrole1"appinfoid="${userL.id}" data-toggle="tooltip" data-placement="top" title="" data-original-title="">切换角色</a>
+                        							</li>
+                      							</ul>
+                    						</div>
+										</td>
 										</td>
 									</tr>
 								</c:forEach>
@@ -122,37 +141,37 @@
 				<div class="row">
 					<div class="col-sm-5">
 						<div class="dataTables_info" id="datatable-responsive_info"
-							role="status" aria-live="polite">共${pages.totalCount }条记录
-							${pages.currentPageNo }/${pages.totalPageCount }页</div>
+							role="status" aria-live="polite">共${totalCount}条记录
+							${currentPage }/${pageCount }页</div>
 					</div>
 					<div class="col-sm-7">
 						<div class="dataTables_paginate paging_simple_numbers"
 							id="datatable-responsive_paginate">
 							<ul class="pagination">
-								<c:if test="${pages.currentPageNo > 1}">
 									<li class="paginate_button previous"><a
 										href="javascript:page_nav(document.forms[0],1);"
 										aria-controls="datatable-responsive" data-dt-idx="0"
 										tabindex="0">首页</a>
 									</li>
+									<c:if test="${currentPage>1}">
 									<li class="paginate_button "><a
-										href="javascript:page_nav(document.forms[0],${pages.currentPageNo-1});"
+										href="javascript:page_nav(document.forms[0],${currentPage-1});"
 										aria-controls="datatable-responsive" data-dt-idx="1"
 										tabindex="0">上一页</a>
 									</li>
-								</c:if>
-								<c:if test="${pages.currentPageNo < pages.totalPageCount }">
+									</c:if>
+									<c:if test="${currentPage < pageCount}">
 									<li class="paginate_button "><a
-										href="javascript:page_nav(document.forms[0],${pages.currentPageNo+1 });"
+										href="javascript:page_nav(document.forms[0],${currentPage+1 });"
 										aria-controls="datatable-responsive" data-dt-idx="1"
 										tabindex="0">下一页</a>
 									</li>
+									</c:if>
 									<li class="paginate_button next"><a
-										href="javascript:page_nav(document.forms[0],${pages.totalPageCount });"
+										href="javascript:page_nav(document.forms[0],${pageCount});"
 										aria-controls="datatable-responsive" data-dt-idx="7"
 										tabindex="0">最后一页</a>
 									</li>
-								</c:if>
 							</ul>
 						</div>
 					</div>
@@ -166,3 +185,27 @@
 <%@include file="common/footer.jsp"%>
 <script src="${pageContext.request.contextPath }/statics/localjs/rollpage.js"></script>
 <script src="${pageContext.request.contextPath }/statics/localjs/applist.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/jquery.min.js"></script>
+<script type="text/javascript">
+	function page_nav(frm,num){
+	  		$("[name='pageIndex']").val(num);
+	 	 	$("[name='huixie']").submit();
+	}
+	$(function(){
+		$(".uplrole1").click(function(){
+			var id=$(this).attr("appinfoid");
+			var url="${pageContext.request.contextPath }/dev/flatform/user/URole.action?Rid="+id;
+				$.ajax({
+						type :"GET",
+						url :url,
+						dataType :"json",
+						success : function(data){
+							if(data==1){
+								location.reload();
+							}
+						}
+					});
+		});
+	});
+	
+</script>

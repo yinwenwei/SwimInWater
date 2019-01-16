@@ -8,7 +8,7 @@ public class Constants {
 	public final static String SYS_SCENIS_REGION= "scenic_Region";
 	public final static String SYS_MESSAGE = "message";
 	public final static Integer  USER_ROLE_MANAGER=1;
-	
+	public final static Integer  SYS_PAGESIZE=2;
 	public final static int pageSize = 5;
 	
 	

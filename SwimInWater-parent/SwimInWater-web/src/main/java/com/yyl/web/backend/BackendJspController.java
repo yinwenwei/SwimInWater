@@ -4,28 +4,39 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+
 import java.io.File;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.yyl.api.ModelApi;
 import com.yyl.entity.Dictionary;
 import com.yyl.entity.Hotel;
 import com.yyl.entity.Line;
+import com.yyl.entity.PageBean;
 import com.yyl.entity.Picture;
 import com.yyl.entity.Scenicspot;
+import com.yyl.entity.User;
 import com.yyl.util.Constants;
+import com.yyl.util.PageSupport;
 
 
 @Api(value="后台管理控制器", tags={"后台管理相关"})
@@ -36,6 +47,12 @@ public class BackendJspController {
 	private ModelApi modelApi;
 	
 	private Logger logger = LoggerFactory.getLogger(BackendJspController.class);
+	
+	
+	
+	
+	
+	
 	
 	@ApiOperation(value="请求景点管理页面",notes="景点管理信息")
 	@RequestMapping(value="/scenicspotlist",method=RequestMethod.GET)
@@ -48,6 +65,9 @@ public class BackendJspController {
 		logger.info("处理请求,结果:{}",findScenicspotAll);
 		return "/backend/scenicspotlist";
 	}
+	
+	
+	
 	
 	@ApiOperation(value="请求添加景点页面",notes="添加景点信息")
 	@RequestMapping(value="/addScenicspotlist",method=RequestMethod.GET)
@@ -93,7 +113,7 @@ public class BackendJspController {
 		List<Picture> sPicList = new ArrayList<>();
 		List<Picture> hPicList = new ArrayList<>();
 		String relativePath = "\\statics\\uploadfiles\\";
-		 String fullPath = rootPath + relativePath;
+		String fullPath = rootPath + relativePath;
 		if(sPics!=null&&sPics.length>0){  
             for(int i = 0;i<sPics.length;i++){  
             	if(sPics[i].getOriginalFilename() != null && !sPics[i].getOriginalFilename().equals("")){
@@ -168,23 +188,76 @@ public class BackendJspController {
 		
 		Assert.notNull(line.getLName(), "线路名称不能为空");
 	}
+	
+	
+	
+	
+	
+	
 
 	@ApiOperation(value="请求用户信息页面",notes="管理用户信息")
-	@RequestMapping(value="/applist",method=RequestMethod.GET)
-	public String applist(){
+	@RequestMapping(value="/applist")
+	public String applist(Model model,
+			@RequestParam(value="uName",required=false)String uName,
+			@RequestParam(value="uPhone",required=false)String uPhone,
+			@RequestParam(value="uIdentity",required=false)String uIdentity,
+			@RequestParam(value="pageIndex",required=false)String pageIndex){
 		logger.info("接收到请求");
 		// TODO domesticTourism():获取需要数据,返回相应页面
-		logger.info("处理请求");
+		//当前页
+		Integer currentPageNo=1;
+		//一页显示多少条
+		Integer pageSize =Constants.pageSize;
+		if(pageIndex != null){
+			try {
+				//String类型转换为Integer类型
+				currentPageNo=Integer.valueOf(pageIndex);
+			} catch (Exception e) {
+				return "redirect:";
+			}
+		}
+			
+		Map<String, Object> param=new HashMap<String, Object>();
+		param.put("uName", uName);
+		param.put("uPhone", uPhone);
+		param.put("uIdentity", uIdentity);
+		//总条数
+		Integer userCount = modelApi.getManagerApi().getUserCountByMap(param);
+		//分页查询
+		PageBean<User> userList = modelApi.getManagerApi().queryUserPageByMap(param,pageSize,currentPageNo);
+		List<User> list = userList.getList();
+		model.addAttribute("totalCount", userList.getTotalCount());
+		model.addAttribute("currentPage", userList.getCurrentPage());
+		model.addAttribute("pageCount", userList.getPageCount());
+		model.addAttribute("prev", userList.getPrev());
+		model.addAttribute("next", userList.getNext());
+		model.addAttribute("userList", list);
+		logger.info("处理请求,结果:{}",list);
 		return "/backend/applist";
 	}
 	
-	@ApiOperation(value="请求添加用户页面",notes="对用户进行添加")
-	@RequestMapping(value="/appcheck",method=RequestMethod.GET)
-	public String appcheck(){
+	@ApiOperation(value="无刷新",notes="换用户角色")
+	@RequestMapping(value="/URole")
+	@ResponseBody
+	public Object URoleID(Integer Rid){
 		logger.info("接收到请求");
 		// TODO domesticTourism():获取需要数据,返回相应页面
+		User userById = modelApi.getManagerApi().getUserById(Rid);
+		if(userById.getURole()==1){
+			User user=new User();
+			user.setId(Rid);
+			user.setURole(2);
+			Integer uplRole = modelApi.getManagerApi().modifyUser(user);
+			return uplRole;
+		}else if(userById.getURole()==2){
+			User user=new User();
+			user.setId(Rid);
+			user.setURole(1);
+			Integer uplRole1 = modelApi.getManagerApi().modifyUser(user);
+			return uplRole1;
+		}
 		logger.info("处理请求");
-		return "/backend/appcheck";
+		return null;
 	}
 	
 	

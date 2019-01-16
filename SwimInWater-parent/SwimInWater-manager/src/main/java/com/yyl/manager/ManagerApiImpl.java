@@ -14,6 +14,7 @@ import com.yyl.api.manager.ManagerApi;
 import com.yyl.entity.Hotel;
 import com.yyl.entity.Line;
 import com.yyl.entity.Orders;
+import com.yyl.entity.PageBean;
 import com.yyl.entity.Picture;
 import com.yyl.entity.Scenicspot;
 import com.yyl.entity.User;
@@ -41,6 +42,32 @@ public class ManagerApiImpl implements ManagerApi {
 	private Logger logger = LoggerFactory.getLogger(ManagerApiImpl.class);
 
 	//-----------------------------用户------------------------------------------------------
+	@Override
+	public Integer modifyUser(User user) {
+		// TODO Auto-generated method stub
+		Integer modifyUser = userCudService.modifyUser(user);
+		return modifyUser;
+	}
+	
+	@Override
+	public User getUserById(Integer id) {
+		// TODO Auto-generated method stub
+		User userById = userCudService.getUserById(id);
+		return userById;
+	}
+	
+	@Override
+	public Integer getUserCountByMap(Map<String, Object> param) {
+		Integer userCountByMap = userCudService.getUserCountByMap(param);
+		return userCountByMap;
+	}
+	
+	@Override
+	public PageBean<User> queryUserPageByMap(Map<String, Object> param,
+			Integer size, Integer cur) {
+		PageBean<User> queryUserPageByMap = userCudService.queryUserPageByMap(param, size, cur);
+		return queryUserPageByMap;
+	}
 	
 	@Override
 	public User selLogin(String uName,String uPwd) {
@@ -61,7 +88,7 @@ public class ManagerApiImpl implements ManagerApi {
 		List<User> userListByMap = userCudService.getUserListByMap(new HashMap<String,Object>());
 		return userListByMap;
 	}
-
+	//-----------------------------景点------------------------------------------------------
 
 	@Override
 	public Integer addScenicspot(Scenicspot scenicspot, Hotel hotel, Line line, List<Picture> sPicList, List<Picture> hPicList) {
@@ -98,6 +125,7 @@ public class ManagerApiImpl implements ManagerApi {
 		Integer modifyScenicspot = scenicspotCudService.modifyScenicspot(scenicspot);
 		return modifyScenicspot;
 	}
+	//-----------------------------线路------------------------------------------------------
 	@Override
 	public Integer addLine(Line line) {
 		Integer addLine = lineCudService.addLine(line);
@@ -154,5 +182,12 @@ public class ManagerApiImpl implements ManagerApi {
 		Integer deleteOrdersById = ordersCudService.deleteOrdersById(id);
 		return deleteOrdersById;
 	}
+
+	
+
+	
+
+	
+	
 
 }
