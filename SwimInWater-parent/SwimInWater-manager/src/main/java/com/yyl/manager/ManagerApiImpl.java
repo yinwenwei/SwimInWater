@@ -6,17 +6,22 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.yyl.api.manager.ManagerApi;
 import com.yyl.entity.Hotel;
 import com.yyl.entity.Line;
 import com.yyl.entity.Orders;
+import com.yyl.entity.PageBean;
+import com.yyl.entity.Picture;
 import com.yyl.entity.Scenicspot;
 import com.yyl.entity.User;
 import com.yyl.manager.service.hotel.HotelCudService;
 import com.yyl.manager.service.line.LineCudService;
 import com.yyl.manager.service.orders.OrdersCudService;
+import com.yyl.manager.service.picture.PictureCudService;
 import com.yyl.manager.service.scenicspot.ScenicspotCudService;
 import com.yyl.manager.service.user.UserCrudService;
 @Component("managerApi")
@@ -31,10 +36,38 @@ public class ManagerApiImpl implements ManagerApi {
 	private HotelCudService hotelCudService;
 	@Resource
 	private OrdersCudService ordersCudService;
+	@Resource
+	private PictureCudService pictureCudService;
 	
-	
+	private Logger logger = LoggerFactory.getLogger(ManagerApiImpl.class);
 
 	//-----------------------------用户------------------------------------------------------
+	@Override
+	public Integer modifyUser(User user) {
+		// TODO Auto-generated method stub
+		Integer modifyUser = userCudService.modifyUser(user);
+		return modifyUser;
+	}
+	
+	@Override
+	public User getUserById(Integer id) {
+		// TODO Auto-generated method stub
+		User userById = userCudService.getUserById(id);
+		return userById;
+	}
+	
+	@Override
+	public Integer getUserCountByMap(Map<String, Object> param) {
+		Integer userCountByMap = userCudService.getUserCountByMap(param);
+		return userCountByMap;
+	}
+	
+	@Override
+	public PageBean<User> queryUserPageByMap(Map<String, Object> param,
+			Integer size, Integer cur) {
+		PageBean<User> queryUserPageByMap = userCudService.queryUserPageByMap(param, size, cur);
+		return queryUserPageByMap;
+	}
 	
 	@Override
 	public User selLogin(String uName,String uPwd) {
@@ -55,12 +88,36 @@ public class ManagerApiImpl implements ManagerApi {
 		List<User> userListByMap = userCudService.getUserListByMap(new HashMap<String,Object>());
 		return userListByMap;
 	}
-
+	//-----------------------------景点------------------------------------------------------
 
 	@Override
-	public Integer addScenicspot(Scenicspot scenicspot) {
-		Integer addScenicspot = scenicspotCudService.addScenicspot(scenicspot);
-		return addScenicspot;
+	public Integer addScenicspot(Scenicspot scenicspot, Hotel hotel, Line line, List<Picture> sPicList, List<Picture> hPicList) {
+		// 添加景点
+		Integer addScenicspotResult = scenicspotCudService.addScenicspot(scenicspot);
+		// 获取景点id
+		Integer sId = scenicspot.getId();
+		logger.debug("处理添加景点业务,参数:景点id:{}", sId);
+		// 添加景点图片
+		for (Picture picture : sPicList) {
+			picture.setPTypeId(sId);
+			pictureCudService.addPicture(picture);
+		}
+		hotel.setsId(sId);
+		// 添加酒店
+		Integer addHotelResult = hotelCudService.addHotel(hotel);
+		Integer hId = hotel.getId();
+		// 添加酒店图片
+		for (Picture picture : hPicList) {
+			picture.setPTypeId(hId);
+			pictureCudService.addPicture(picture);
+		}
+		line.setSId(sId);
+		// 添加线路
+		Integer addLineResult = lineCudService.addLine(line);
+		if(addScenicspotResult > 0 && addHotelResult > 0 && addLineResult > 0){
+			return 1;
+		}
+		return 0;
 	} 
 
 	@Override
@@ -68,6 +125,7 @@ public class ManagerApiImpl implements ManagerApi {
 		Integer modifyScenicspot = scenicspotCudService.modifyScenicspot(scenicspot);
 		return modifyScenicspot;
 	}
+	//-----------------------------线路------------------------------------------------------
 	@Override
 	public Integer addLine(Line line) {
 		Integer addLine = lineCudService.addLine(line);
@@ -124,5 +182,12 @@ public class ManagerApiImpl implements ManagerApi {
 		Integer deleteOrdersById = ordersCudService.deleteOrdersById(id);
 		return deleteOrdersById;
 	}
+
+	
+
+	
+
+	
+	
 
 }

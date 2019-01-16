@@ -3,9 +3,12 @@ package com.yyl.util;
 public class Constants {
 	public final static String USER_SESSION = "userSession";
 	public final static String DEV_USER_SESSION = "devUserSession";
+	public final static String SYS_RELEASE_STARUS = "release_Status";
+	public final static String SYS_HOTEL_RATING = "hotel_Rating";
+	public final static String SYS_SCENIS_REGION= "scenic_Region";
 	public final static String SYS_MESSAGE = "message";
 	public final static Integer  USER_ROLE_MANAGER=1;
-	
+	public final static Integer  SYS_PAGESIZE=2;
 	public final static int pageSize = 5;
 	
 	

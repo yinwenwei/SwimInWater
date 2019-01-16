@@ -20,7 +20,7 @@ public class Hotel implements Serializable {
         /** 酒店名称 */
         @ApiModelProperty(value = "酒店名称")
         private String hName;
-        /** 酒店价格 */
+		/** 酒店价格 */
         @ApiModelProperty(value = "酒店价格")
         private Double hPrice;
         /** 景点id */
@@ -37,8 +37,8 @@ public class Hotel implements Serializable {
         private String pRelativePath;
 		public Hotel() {
 			super();
-			// TODO Auto-generated constructor stub
 		}
+		
 		public Hotel(Integer id, String hName, Double hPrice, Integer sId,
 				Integer hGrage, String hContent, String pRelativePath) {
 			super();
@@ -50,6 +50,7 @@ public class Hotel implements Serializable {
 			this.hContent = hContent;
 			this.pRelativePath = pRelativePath;
 		}
+
 		@Override
 		public String toString() {
 			return "Hotel [id=" + id + ", hName=" + hName + ", hPrice="
@@ -57,6 +58,7 @@ public class Hotel implements Serializable {
 					+ ", hContent=" + hContent + ", pRelativePath="
 					+ pRelativePath + "]";
 		}
+
 		public Integer getId() {
 			return id;
 		}

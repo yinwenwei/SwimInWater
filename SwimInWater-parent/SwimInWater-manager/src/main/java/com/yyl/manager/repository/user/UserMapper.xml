@@ -36,7 +36,7 @@
                         and id=#{id}
                     </if>
                     <if test="uName != null and uName!=''">
-                        and uName=#{uName}
+                        AND uName LIKE CONCAT('%',#{uName},'%')
                     </if>
                     <if test="uPwd != null and uPwd!=''">
                         and uPwd=#{uPwd}

@@ -43,7 +43,6 @@ public class JspController {
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String login(){
 		logger.info("接收到请求");
-		// TODO domesticTourism():获取需要数据,返回相应页面
 		logger.info("处理请求");
 		return "/frontend/login";
 	}

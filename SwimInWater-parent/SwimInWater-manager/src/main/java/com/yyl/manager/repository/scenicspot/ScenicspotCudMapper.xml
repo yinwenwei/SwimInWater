@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yyl.manager.repository.scenicspot.ScenicspotCudMapper">
 
-    <insert id="insertScenicspot" parameterType="com.yyl.entity.Scenicspot">
+    <insert id="insertScenicspot" parameterType="com.yyl.entity.Scenicspot" useGeneratedKeys="true" keyProperty="id">
         insert into scenicspot(
                         sName,
                         sCity,

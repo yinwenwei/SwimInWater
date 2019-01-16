@@ -4,17 +4,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yyl.manager.repository.hotel.HotelCudMapper">
 
-    <insert id="insertHotel" parameterType="com.yyl.entity.Hotel">
+    <insert id="insertHotel" parameterType="com.yyl.entity.Hotel" useGeneratedKeys="true" keyProperty="id">
         insert into hotel(
                         hName,
+                        hPrice,
                         sId,
                         hGrage,
-                        hContent)
+                        hContent
+                        )
         values(
                      #{hName},
+                    #{hPrice},
                      #{sId},
                      #{hGrage},
-                    #{hContent})
+                    #{hContent}
+                    )
     </insert>
 
     <update id="updateHotel" parameterType="com.yyl.entity.Hotel">
@@ -26,8 +30,8 @@
                     <if test="hName != null and hName!=''">
                         hName=#{hName},
                     </if>
-                    <if test="hPirce != null and hPirce!=''">
-                    	hPirce=#{hPirce}
+                    <if test="sPrice != null and sPrice!=''">
+                    	sPrice=#{sPrice}
                 	</if>
                     <if test="sId != null and sId!=''">
                         sId=#{sId},

@@ -2,10 +2,8 @@ package com.yyl.web;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.Resource;
 
 import io.swagger.annotations.ApiImplicitParam;
@@ -23,12 +21,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.yyl.api.ModelApiImpl;
 import com.yyl.entity.Dictionary;
 import com.yyl.entity.Hotel;
@@ -75,9 +67,9 @@ public class IndexController {
 	
 	@ApiOperation(value="请求首页", notes="根据业务获取数据")
 	@RequestMapping(value = "/index", method=RequestMethod.GET)
-	public String index(Model model){
+	public String index(Model model){		
+		// TODO景点添加显示图片字段
 		logger.info("接收到请求,主题城市:{}", GetThemCity.themeCity);
-		//----------------------------LKW------------------------------------------
 	
 		List<Scenicspot> hotScenicarea = new ArrayList<>();
 		List<Scenicspot> newScenicarea = new ArrayList<>();
@@ -128,7 +120,6 @@ public class IndexController {
 		model.addAttribute(DOMESTIC_SCENICAREA, domesticScenicarea);
 		model.addAttribute(HKANDMACAO_SCENICAREA, hkAndMacaoScenicarea);
 		model.addAttribute(FOREIGN_SCENICAREA, foreignScenicarea);
-		
 		
 		//-------------------------------------------yww-------------------------------------------------
 		List<Dictionary> dictionary_list = modelApi.getScenicareaApi().findDictionary("scenic_Region");

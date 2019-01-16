@@ -35,6 +35,14 @@ public class Picture implements Serializable {
 			super();
 		}
 		
+		public Picture(String pType, String pRelativePath,
+				String pAbsolutePath) {
+			super();
+			this.pType = pType;
+			this.pRelativePath = pRelativePath;
+			this.pAbsolutePath = pAbsolutePath;
+		}
+
 		public Picture(Integer id, String pType, Integer pTypeId,
 				String pRelativePath, String pAbsolutePath) {
 			super();

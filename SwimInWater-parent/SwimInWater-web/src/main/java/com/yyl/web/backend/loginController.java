@@ -4,12 +4,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
-
-
-
-
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,11 +13,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yyl.api.ModelApi;
 import com.yyl.entity.User;
 import com.yyl.util.Constants;
+/**
+ * 
+ * 处理后台登录请求
+ * @ClassName: loginController
+ * @author ydb
+ * @date 2019年1月15日 上午12:32:53
+ *
+ */
+@Api(value="后台登录控制器", tags={"后台登录相关"})
 @Controller
 public class loginController {
 	@Resource

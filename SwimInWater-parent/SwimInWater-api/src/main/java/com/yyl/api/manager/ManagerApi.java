@@ -1,10 +1,13 @@
 package com.yyl.api.manager;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yyl.entity.Hotel;
 import com.yyl.entity.Line;
 import com.yyl.entity.Orders;
+import com.yyl.entity.PageBean;
+import com.yyl.entity.Picture;
 import com.yyl.entity.Scenicspot;
 import com.yyl.entity.User;
 
@@ -19,6 +22,24 @@ import com.yyl.entity.User;
 public interface ManagerApi {
 	
 	//-----------------------------用户------------------------------------------------------
+	/**
+	 * 
+	 * @Title: modifyUser
+	 * @Description: TODO(修改用户角色)
+	 * @param @param user
+	 * @return Integer    返回类型
+	 * @throws
+	 */
+	public Integer modifyUser(User user);
+	/**
+	 * 
+	 * @Title: getUserById
+	 * @Description: TODO(根据ID查询用户信息)
+	 * @param @param id
+	 * @return User    返回类型
+	 * @throws
+	 */
+	public User getUserById(Integer id);
 	
 	/**
 	 * 登录
@@ -44,15 +65,26 @@ public interface ManagerApi {
 	 */
 	List<User> setUserList();
 	
+	PageBean<User> queryUserPageByMap(Map<String,Object> param,Integer size,Integer cur);
+	
+	Integer getUserCountByMap(Map<String,Object> param);
+	
+	
+	
+	
 	//-----------------------------景点------------------------------------------------------
 	/**
 	 * 添加景点信息
 	 * @Title: addScenicspot
 	 * @param @param scenicspot
+	 * @param @param hotel
+	 * @param @param line
+	 * @param @param sPicList
+	 * @param @param hPicList
 	 * @return Integer    返回类型
 	 * @throws
 	 */
-	Integer addScenicspot(Scenicspot scenicspot);
+	Integer addScenicspot(Scenicspot scenicspot, Hotel hotel, Line line, List<Picture> sPicList, List<Picture> hPicList);
 	/**
 	 * 修改景点信息
 	 * @Title: uplScenicspot
@@ -65,7 +97,7 @@ public interface ManagerApi {
 	//-----------------------------路线------------------------------------------------------
 	
 	/**
-	 * 添加线路信息
+	 * 添加线路信息 
 	 * @Title: addLine
 	 * @param @param line
 	 * @return Integer    返回类型
