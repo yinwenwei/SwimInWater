@@ -4,29 +4,24 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-
 import java.io.File;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.yyl.api.ModelApi;
 import com.yyl.entity.Dictionary;
 import com.yyl.entity.Hotel;
@@ -36,7 +31,6 @@ import com.yyl.entity.Picture;
 import com.yyl.entity.Scenicspot;
 import com.yyl.entity.User;
 import com.yyl.util.Constants;
-import com.yyl.util.PageSupport;
 
 
 @Api(value="后台管理控制器", tags={"后台管理相关"})
@@ -223,7 +217,7 @@ public class BackendJspController {
 		param.put("uPhone", uPhone);
 		param.put("uIdentity", uIdentity);
 		//总条数
-		Integer userCount = modelApi.getManagerApi().getUserCountByMap(param);
+//		Integer userCount = modelApi.getManagerApi().getUserCountByMap(param);
 		//分页查询
 		PageBean<User> userList = modelApi.getManagerApi().queryUserPageByMap(param,pageSize,currentPageNo);
 		List<User> list = userList.getList();
