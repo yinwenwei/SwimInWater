@@ -28,13 +28,13 @@
         <div class="prosum_box">
             <dl class="prosum_left">
                 <dt>
-                    <img alt="" class="big_img" src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m49788843d72171643297ccc033d9288ee.jpg">
+                    <img alt="" class="big_img" src="${pageContext.request.contextPath}${scenPicList[0].PRelativePath }">
                 </dt>
                 <dd>
                     <a class="up_img up_img_disable"></a>
                     
                     <c:forEach items="${scenPicList }" var="scenpiclist">
-                    <a title="" class="little_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m40920d0669855e745d97f9ad1df966ebb.jpg">
+                    <a title="" class="little_img" <%-- data-bigpic="localhost:8080/SwimInWater-web${图片 } --%>">
                         <img src="${pageContext.request.contextPath}${scenpiclist.PRelativePath }">
                     </a>
                     </c:forEach>

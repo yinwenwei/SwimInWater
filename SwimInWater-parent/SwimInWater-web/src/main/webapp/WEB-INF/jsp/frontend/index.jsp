@@ -1,8 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,19 +11,6 @@
     <link href="${pageContext.request.contextPath}/statics/css/bootstrap.min.css" rel="stylesheet" >
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/common.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/index.css">
-	
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="${pageContext.request.contextPath}/statics/js/jquery-3.3.1.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="${pageContext.request.contextPath}/statics/js/bootstrap.min.js"></script>
-    <!--导入布局js，共享header和footer-->
-    <script type="text/javascript" src="${pageContext.request.contextPath}/statics/js/include.js"></script>
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.bootcss.com/respond.static/js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 	<!--引入头部-->
@@ -236,24 +222,22 @@
                 </div>
                 
                 <div class="guone_r">
-                
                     <div class="row">
-                    <c:set var="i" value="0"/>
-                    <c:forEach items="${findScenPicAll }" var="findScenPic" varStatus="sta">
-                   	<c:if test="${findScenPic.sRegion==diclist.DContentId&&i<6}">
-                  	<c:set var="i" value="${i+1 }"/>
-                        <div class="col-md-4">
-                            <a href="${pageContext.request.contextPath }/scenicarea/scenicareaInfo.action?id=${findScenPic.id}&contentName=${diclist.DContentName}">
-								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
-								<div class="has_border">
-									<h3>${findScenPic.sName }</h3>
-									<div class="price">网付价<em>￥</em><strong>${findScenPic.sPrice }</strong><em>起</em></div>									
-								</div>
-							</a>
-                        </div>
-                    </c:if>
-                    </c:forEach>
-                    
+                    	<c:set var="i" value="0"/>
+	                    <c:forEach items="${findScenPicAll }" var="findScenPic" varStatus="sta">
+		                   	<c:if test="${findScenPic.sRegion==diclist.DContentId&&i<6}">
+		                  	<c:set var="i" value="${i+1 }"/>
+		                        <div class="col-md-4">
+		                            <a href="${pageContext.request.contextPath }/scenicarea/scenicareaInfo.action?id=${findScenPic.id}&contentName=${diclist.DContentName}">
+										<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
+										<div class="has_border">
+											<h3>${findScenPic.sName }</h3>
+											<div class="price">网付价<em>￥</em><strong>${findScenPic.sPrice }</strong><em>起</em></div>									
+										</div>
+									</a>
+		                        </div>
+		                    </c:if>
+	                    </c:forEach>
                     </div>
                 </div>
               
@@ -267,6 +251,9 @@
     <!-- 旅游 end-->
    <!--导入底部-->
     <div id="footer"></div>
-<%@ include file="footer.jsp" %>
+ 	<%@ include file="footer.jsp" %>
 </body>
 </html>
+<script src="${pageContext.request.contextPath}/statics/js/jquery-2.1.0.js"></script>
+<script src="${pageContext.request.contextPath}/statics/js/bootstrap.min.js"></script>
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/statics/js/include.js"></script> --%>

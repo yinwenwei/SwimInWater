@@ -32,6 +32,7 @@ public class ScenicareaController {
 	@Resource
 	private ModelApi modelApi;
 	
+	@SuppressWarnings("unchecked")
 	@ApiOperation(value="请求景点详情页面", notes="根据景点id查询景点详情")
 	@ApiImplicitParam(name = "id", value = "景点编号", required = true, paramType = "query")
 	@RequestMapping(value = "/scenicareaInfo", method = RequestMethod.GET)
