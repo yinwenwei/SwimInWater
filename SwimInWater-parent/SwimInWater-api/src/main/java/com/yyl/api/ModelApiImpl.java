@@ -1,8 +1,11 @@
 package com.yyl.api;
 
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Component;
+
 import com.yyl.api.comment.CommentApi;
+import com.yyl.api.eunms.EnumsApi;
 import com.yyl.api.manager.ManagerApi;
 import com.yyl.api.scenicarea.ScenicareaApi;
 /**
@@ -21,6 +24,8 @@ public class ModelApiImpl implements ModelApi{
 	private ScenicareaApi scenicareaApi;
 	@Resource
 	private ManagerApi managerApi;
+	@Resource
+	private EnumsApi enumsApi;
 	
 	/**
 	 * 获取评论模块相关接口
@@ -48,6 +53,10 @@ public class ModelApiImpl implements ModelApi{
 	 */
 	public ManagerApi getManagerApi() {
 		return managerApi;
+	}
+	@Override
+	public EnumsApi getEnumsApi() {
+		return enumsApi;
 	}
 	
 

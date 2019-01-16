@@ -1,6 +1,7 @@
 package com.yyl.api;
 
 import com.yyl.api.comment.CommentApi;
+import com.yyl.api.eunms.EnumsApi;
 import com.yyl.api.manager.ManagerApi;
 import com.yyl.api.scenicarea.ScenicareaApi;
 /**
@@ -19,5 +20,6 @@ public interface ModelApi {
 	
 	ManagerApi getManagerApi();
 	
+	EnumsApi getEnumsApi();
 	 
 }

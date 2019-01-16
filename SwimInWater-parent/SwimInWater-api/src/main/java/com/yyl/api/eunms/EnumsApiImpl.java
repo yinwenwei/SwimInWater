@@ -1,5 +1,7 @@
 package com.yyl.api.eunms;
 
+import org.springframework.stereotype.Component;
+
 import com.yyl.entity.enums.HotelGrage;
 import com.yyl.entity.enums.OrderStatus;
 import com.yyl.entity.enums.PictureType;
@@ -7,7 +9,7 @@ import com.yyl.entity.enums.ScenicspotRegoin;
 import com.yyl.entity.enums.ScenicspotStatus;
 import com.yyl.entity.enums.UserRole;
 import com.yyl.entity.enums.UserSex;
-
+@Component
 public class EnumsApiImpl implements EnumsApi{
 	private final String  UNKNOW = "未知类型";
 
