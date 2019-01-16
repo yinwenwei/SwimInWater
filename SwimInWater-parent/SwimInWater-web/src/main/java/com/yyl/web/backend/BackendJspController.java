@@ -114,6 +114,7 @@ public class BackendJspController {
 		List<Picture> hPicList = new ArrayList<>();
 		String relativePath = "\\statics\\uploadfiles\\";
 		String fullPath = rootPath + relativePath;
+
 		if(sPics!=null&&sPics.length>0){  
             for(int i = 0;i<sPics.length;i++){  
             	if(sPics[i].getOriginalFilename() != null && !sPics[i].getOriginalFilename().equals("")){
