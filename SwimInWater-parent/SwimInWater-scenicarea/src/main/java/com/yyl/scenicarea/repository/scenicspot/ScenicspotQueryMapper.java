@@ -60,16 +60,15 @@ public interface ScenicspotQueryMapper {
 	Integer getScenicspotCountBySRegion(Map<String,Object> param) throws Exception;
 	
 	/**
-	 * 多条件查询景点收藏排行榜(降序排列)
+	 * 查询景点收藏排行榜(降序排列)
 	 * @Title: findScenCollectionOrderByDesc
-	 * @Description: TODO(这里用一句话描述这个方法的作用)
 	 * @param @param map
 	 * @param @return
 	 * @param @throws Exception    设定文件
 	 * @return List<Scenicspot>    返回类型
 	 * @throws
 	 */
-	List<Scenicspot> findScenCollectionOrderByDesc(Map<String,Object> map) throws Exception;
+	List<Scenicspot> findScenCollectionOrderByDesc() throws Exception;
 	
 	
 	

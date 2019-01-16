@@ -90,22 +90,16 @@ public class JspController {
 	
 	//------------------------------------------------------------------------------
 	
-	@ApiOperation(value="请求门票页面",notes="查询所有门票信息,分页显示")
-	@RequestMapping(value = "/route_list", method=RequestMethod.GET)
-	public String routeList(){
-		logger.info("接收到请求,参数:{}", "");
-		// TODO domesticTourism():获取需要数据,返回相应页面
-		logger.info("处理请求,结果:{}", "hehe");
-		return "frontend/route_list";	
-	}
 	
 	@ApiOperation(value="请求国内游页面",notes="查询所有国内游的景点,分页显示")
 	@RequestMapping(value = "/Domestic_tourism", method=RequestMethod.GET)
 	public String domesticTourism(Model model,Integer currentPage){
 		logger.info("接收到请求,参数:{}", "");
+		
 		//查询国内区域旅游信息
 		PageBean<Scenicspot> pageBean = modelApi.getScenicareaApi().findScenicspotBySRegion(1, 5, currentPage);
 		model.addAttribute("pageBean", pageBean);
+		
 		logger.info("处理请求,结果:{}", "hehe");
 		return "frontend/Domestic_tourism";	
 	}
@@ -114,8 +108,11 @@ public class JspController {
 	@RequestMapping(value = "/Hotel", method=RequestMethod.GET)
 	public String hotel(Model model,Integer currentPage){
 		logger.info("接收到请求,参数:{}", "");
+		
+		//查询酒店详情
 		PageBean<Hotel> pageBean = modelApi.getScenicareaApi().queryHotelPageByMap(5, currentPage);
 		model.addAttribute("pageBean", pageBean);
+		
 		logger.info("处理请求,结果:{}", "");
 		return "/frontend/Hotel";	
 	}
@@ -125,9 +122,11 @@ public class JspController {
 	@RequestMapping(value = "/Outbound_travel", method=RequestMethod.GET)
 	public String outboundTravel(Model model,Integer currentPage){
 		logger.info("接收到请求,参数:{}", "");
+		
 		//查询境外游
 		PageBean<Scenicspot> pageBean = modelApi.getScenicareaApi().findScenicspotBySRegion(2, 5, currentPage);
 		model.addAttribute("pageBean", pageBean);
+		
 		logger.info("处理请求,结果:{}", "");
 		return "/frontend/Outbound_travel";	
 	}
@@ -136,20 +135,14 @@ public class JspController {
 	@RequestMapping(value = "/Hong_Kong_and_Macao_travel", method=RequestMethod.GET)
 	public String hongKongAndMacaoTravel(Model model,Integer currentPage){
 		logger.info("接收到请求,参数:{}", "");
+		
 		//查询境外游
 		PageBean<Scenicspot> pageBean = modelApi.getScenicareaApi().findScenicspotBySRegion(3, 5, currentPage);
 		model.addAttribute("pageBean", pageBean);
+		
+		
 		logger.info("处理请求,结果:{}", "");
 		return "/frontend/Hong_Kong_and_Macao_travel";	
-	}
-	
-	@ApiOperation(value="请求抱团定制页面", notes="显示抱团定制页面")
-	@RequestMapping(value = "/Mass_customization", method=RequestMethod.GET)
-	public String massCustomization(){
-		logger.info("接收到请求,参数:{}", "");
-		// TODO massCustomization():获取需要数据,返回相应页面
-		logger.info("处理请求,结果:{}", "");
-		return "/frontend/Mass_customization";	
 	}
 	
 	@ApiOperation(value="请求全球自由行页面", notes="查询全球自由行景点")
@@ -163,8 +156,10 @@ public class JspController {
 	
 	@ApiOperation(value="请求收藏排行榜页面", notes="查询收藏排行榜")
 	@RequestMapping(value = "/favoriterank", method=RequestMethod.GET)
-	public String favoriterank(){
+	public String favoriterank(Model model){
 		logger.info("接收到请求,参数:{}", "");
+		List<Scenicspot> collectionList = modelApi.getScenicareaApi().findScenCollectionOrderByDesc();
+		model.addAttribute("collectionList", collectionList);
 		// TODO favoriterank():获取需要数据,返回相应页面
 		logger.info("处理请求,结果:{}", "");
 		return "/frontend/favoriterank";	

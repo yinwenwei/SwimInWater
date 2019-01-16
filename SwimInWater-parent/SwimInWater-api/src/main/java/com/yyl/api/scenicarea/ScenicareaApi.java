@@ -153,4 +153,11 @@ public interface ScenicareaApi {
 	 * @throws
 	 */
 	PageBean<Scenicspot> findScenicspotBySRegion(Integer sRegion,Integer size, Integer cur);
+	/**
+	 * 查询景点收藏排行榜(降序排列)
+	 * @Title: findScenCollectionOrderByDesc
+	 * @return List<Scenicspot>    返回类型
+	 * @throws
+	 */
+	List<Scenicspot> findScenCollectionOrderByDesc();
 }

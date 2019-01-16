@@ -243,6 +243,15 @@ public class ScenicareaImpl implements ScenicareaApi {
 		return queryMap;
 	}
 	
+	/**
+	 * 查询景点收藏排行榜(降序排列)
+	 */
+	@Override
+	public List<Scenicspot> findScenCollectionOrderByDesc() {
+		// TODO Auto-generated method stub
+		return scenicspotQueryService.findScenCollectionOrderByDesc();
+	}
+	
 	
 
 	

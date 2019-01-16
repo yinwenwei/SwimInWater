@@ -134,4 +134,10 @@
         </trim>
     </select>
     
+    <select id="findScenCollectionOrderByDesc" resultType="Scenicspot">
+    	SELECT s.sName,s.sCity,s.sContent,s.sPrice,s.sCollectionNum,p.pTypeId,p.`pRelativePath` FROM scenicspot s,picture p 
+    	WHERE s.id=p.pTypeId AND p.pType=2 
+ 		GROUP BY s.sName ORDER BY s.sCollectionNum DESC LIMIT 0,10
+    </select>
+    
 </mapper>

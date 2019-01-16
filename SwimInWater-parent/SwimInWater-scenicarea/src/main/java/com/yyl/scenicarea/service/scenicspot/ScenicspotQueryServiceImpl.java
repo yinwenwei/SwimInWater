@@ -125,5 +125,19 @@ public class ScenicspotQueryServiceImpl implements ScenicspotQueryService {
 		}
 		return null;
 	}
+	/**
+	 * 查询景点收藏排行榜(降序排列)
+	 */
+	@Override
+	public List<Scenicspot> findScenCollectionOrderByDesc() {
+		// TODO Auto-generated method stub
+		try {
+			return scenicspotQueryMapper.findScenCollectionOrderByDesc();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }
