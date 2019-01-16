@@ -18,4 +18,6 @@ public interface ModelApi {
 	ScenicareaApi getScenicareaApi();
 	
 	ManagerApi getManagerApi();
+	
+	 
 }
