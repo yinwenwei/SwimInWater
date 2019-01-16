@@ -27,8 +27,8 @@ public class GetThemCity {
 	}
 	// 开启服务调度器就运行,随机城市主题
 //		@Scheduled(cron=" 0 0 0 * * ?")//每天凌晨刷一次
-//		@Scheduled(cron=" 0 0 0/4 * * ?")//4小时刷一次 
-	@Scheduled(cron=" 0 0/5 * * * ?")//1分钟刷一次 
+//	@Scheduled(cron=" 0 0/5 * * * ?")//1分钟刷一次 
+ 	@Scheduled(cron=" 0 0 0/4 * * ?")//4小时刷一次 
 	public void flushCity(){
 		List<String> list = modelApi.getScenicareaApi().findAllCity();
         int index = (int) (Math.random()* list.size());
