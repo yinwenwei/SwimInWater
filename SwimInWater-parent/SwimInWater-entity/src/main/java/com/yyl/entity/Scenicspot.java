@@ -26,7 +26,7 @@ public class Scenicspot implements Serializable {
         private String sCity;
         /** 所属地区 (1,国内 2,境外 3,港澳) */
         @ApiModelProperty(value = "所属地区 (1,国内 2,境外 3,港澳)")
-        private String sRegion;
+        private Integer sRegion;
         /** 景点内容 */
         @ApiModelProperty(value = "景点内容")
         private String sContent;
@@ -42,23 +42,17 @@ public class Scenicspot implements Serializable {
         /** 发布状态 (1,发布 2,未发布 3,热门) */
         @ApiModelProperty(value = "发布状态 (1,发布 2,未发布 3,热门)")
         private Integer sStatus;
-        
-        public Scenicspot() {
+        /** 相对路径 */
+        @ApiModelProperty(value = "相对路径")
+        private String pRelativePath;
+		public Scenicspot() {
 			super();
+			// TODO Auto-generated constructor stub
 		}
-        
-		public Scenicspot(String sName, String sCity, String sRegion,
-				Integer sStatus) {
-			super();
-			this.sName = sName;
-			this.sCity = sCity;
-			this.sRegion = sRegion;
-			this.sStatus = sStatus;
-		}
-
 		public Scenicspot(Integer id, String sName, String sCity,
-				String sRegion, String sContent, Double sPrice,
-				Timestamp sPubTime, Integer sCollectionNum, Integer sStatus) {
+				Integer sRegion, String sContent, Double sPrice,
+				Timestamp sPubTime, Integer sCollectionNum, Integer sStatus,
+				String pRelativePath) {
 			super();
 			this.id = id;
 			this.sName = sName;
@@ -69,70 +63,79 @@ public class Scenicspot implements Serializable {
 			this.sPubTime = sPubTime;
 			this.sCollectionNum = sCollectionNum;
 			this.sStatus = sStatus;
+			this.pRelativePath = pRelativePath;
 		}
-
+		public Integer getId() {
+			return id;
+		}
+		public void setId(Integer id) {
+			this.id = id;
+		}
+		public String getsName() {
+			return sName;
+		}
+		public void setsName(String sName) {
+			this.sName = sName;
+		}
+		public String getsCity() {
+			return sCity;
+		}
+		public void setsCity(String sCity) {
+			this.sCity = sCity;
+		}
+		public Integer getsRegion() {
+			return sRegion;
+		}
+		public void setsRegion(Integer sRegion) {
+			this.sRegion = sRegion;
+		}
+		public String getsContent() {
+			return sContent;
+		}
+		public void setsContent(String sContent) {
+			this.sContent = sContent;
+		}
+		public Double getsPrice() {
+			return sPrice;
+		}
+		public void setsPrice(Double sPrice) {
+			this.sPrice = sPrice;
+		}
+		public Timestamp getsPubTime() {
+			return sPubTime;
+		}
+		public void setsPubTime(Timestamp sPubTime) {
+			this.sPubTime = sPubTime;
+		}
+		public Integer getsCollectionNum() {
+			return sCollectionNum;
+		}
+		public void setsCollectionNum(Integer sCollectionNum) {
+			this.sCollectionNum = sCollectionNum;
+		}
+		public Integer getsStatus() {
+			return sStatus;
+		}
+		public void setsStatus(Integer sStatus) {
+			this.sStatus = sStatus;
+		}
+		public String getpRelativePath() {
+			return pRelativePath;
+		}
+		public void setpRelativePath(String pRelativePath) {
+			this.pRelativePath = pRelativePath;
+		}
+		public static long getSerialversionuid() {
+			return serialVersionUID;
+		}
 		@Override
 		public String toString() {
-			return "\nScenicspot [id=" + id + ", sName=" + sName + ", sCity="
+			return "Scenicspot [id=" + id + ", sName=" + sName + ", sCity="
 					+ sCity + ", sRegion=" + sRegion + ", sContent=" + sContent
 					+ ", sPrice=" + sPrice + ", sPubTime=" + sPubTime
 					+ ", sCollectionNum=" + sCollectionNum + ", sStatus="
-					+ sStatus + "]";
+					+ sStatus + ", pRelativePath=" + pRelativePath + "]";
 		}
-
-		//get set 方法
-        public void setId (Integer  id){
-            this.id=id;
-        }
-        public  Integer getId(){
-            return this.id;
-        }
-        public void setSName (String  sName){
-            this.sName=sName;
-        }
-        public  String getSName(){
-            return this.sName;
-        }
-        public void setSCity (String  sCity){
-            this.sCity=sCity;
-        }
-        public  String getSCity(){
-            return this.sCity;
-        }
-        public void setSRegion (String  sRegion){
-            this.sRegion=sRegion;
-        }
-        public  String getSRegion(){
-            return this.sRegion;
-        }
-        public void setSContent (String  sContent){
-            this.sContent=sContent;
-        }
-        public  String getSContent(){
-            return this.sContent;
-        }
-        public void setSPrice (Double  sPrice){
-            this.sPrice=sPrice;
-        }
-        public  Double getSPrice(){
-            return this.sPrice;
-        }
-        public void setSPubTime (Timestamp  sPubTime){
-            this.sPubTime=sPubTime;
-        }
-        public  Timestamp getSPubTime(){
-            return this.sPubTime;
-        }
-        public void setSCollectionNum (Integer  sCollectionNum){
-            this.sCollectionNum=sCollectionNum;
-        }
-        public  Integer getSCollectionNum(){
-            return this.sCollectionNum;
-        }
-        public void setSStatus (Integer  sStatus){
-            this.sStatus=sStatus;
-        }
-        public  Integer getSStatus(){
-            return this.sStatus;
-        }
+        
+		
 }

@@ -102,4 +102,18 @@ public class Dictionary implements Serializable {
         public  Timestamp getDCreateTime(){
             return this.dCreateTime;
         }
+
+		public Dictionary(Integer id, String dTypeClassification,
+				String dTypeName, Integer dContentId, String dContentName,
+				Integer dCreateById, Timestamp dCreateTime) {
+			super();
+			this.id = id;
+			this.dTypeClassification = dTypeClassification;
+			this.dTypeName = dTypeName;
+			this.dContentId = dContentId;
+			this.dContentName = dContentName;
+			this.dCreateById = dCreateById;
+			this.dCreateTime = dCreateTime;
+		}
+        
 }

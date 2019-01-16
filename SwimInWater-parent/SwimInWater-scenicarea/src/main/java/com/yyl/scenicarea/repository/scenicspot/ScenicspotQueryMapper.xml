@@ -34,7 +34,7 @@
                 sPubTime as sPubTime,
                 sCollectionNum as sCollectionNum,
                 sStatus as sStatus
-        from scenicspot
+        from scenicspot 
         <trim prefix="where" prefixOverrides="and | or">
                     <if test="id != null and id!=''">
                         and id=#{id}
@@ -104,6 +104,33 @@
     
     <!-- 查询景点图片 -->
     <select id="findScenicspotPictureByPTypeId" parameterType="Integer" resultType="Picture">
-    	SELECT p.id,p.pRelativePath FROM picture p,scenicspot s WHERE p.pTypeId=s.id AND p.pType=2 AND p.pTypeId=#{pTypeId}
+    	SELECT p.id,p.pRelativePath,p.pTypeId FROM picture p,scenicspot s WHERE p.pTypeId=s.id AND p.pType=2 AND p.pTypeId=#{pTypeId}
     </select>
+    
+    
+    <!-- 查询景点详情信息And图片 -->
+    <select id="findScenPicAll" resultType="Scenicspot">
+    	SELECT p.`pRelativePath`,s.id,s.sName,s.sContent,s.sRegion,s.sPrice FROM scenicspot s,picture p WHERE s.id=p.pTypeId AND pType=2
+		GROUP BY sName 
+    </select>
+    
+    <select id="findScenicspotBySRegion" parameterType="Map" resultType="Scenicspot">
+    	SELECT s.*,p.`pTypeId`,p.`pRelativePath` FROM scenicspot s,picture p WHERE s.id=p.pTypeId AND p.pType=2 
+    	<if test="sRegion!=null and sRegion!=null">
+            AND s.sRegion=#{sRegion}
+        </if>
+        group by s.sName
+    	<if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    
+    </select>
+    
+    <select id="getScenicspotCountBySRegion" parameterType="java.util.Map" resultType="Integer">
+    	SELECT count(*) FROM scenicspot s
+        <trim prefix="where" prefixOverrides="and | or">
+           and s.sRegion=#{sRegion}
+        </trim>
+    </select>
+    
 </mapper>

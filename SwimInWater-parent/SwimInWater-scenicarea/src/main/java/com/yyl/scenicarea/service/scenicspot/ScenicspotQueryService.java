@@ -30,4 +30,28 @@ public interface ScenicspotQueryService {
 	List<Picture> findScenicspotPictureByPTypeId(Integer pTypeId);
 
 	public List<String> findAllCity();
+	
+	/**
+	 * 根据分区查询首页所有景点信息And图片
+	 * @Title: findScenPicAll
+	 * @return List<Scenicspot>    返回类型
+	 * @throws
+	 */
+	List<Scenicspot> findScenPicAll();
+	/**
+	 * 根据分区查询景点信息
+	 * @Title: findScenicspotBySRegion
+	 * @param @param sRegion
+	 * @return List<Scenicspot>    返回类型
+	 * @throws
+	 */
+	PageBean<Scenicspot> findScenicspotBySRegion(Map<String,Object> param,Integer size,Integer cur);
+	/**
+	 * 根据分区查询总记录数
+	 * @Title: getScenicspotCountBySRegion
+	 * @param @param param
+	 * @return Integer    返回类型
+	 * @throws
+	 */
+	Integer getScenicspotCountBySRegion(Map<String,Object> param);
 }

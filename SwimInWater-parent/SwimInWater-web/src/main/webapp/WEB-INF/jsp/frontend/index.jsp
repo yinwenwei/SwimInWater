@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
@@ -216,152 +217,52 @@
             </div>
         </section>
         <!-- 黑马精选end-->
+        
+        
+        
         <!-- 国内游 start-->
+        <c:forEach items="${dictionary_list }" var="diclist" varStatus="dicsta">
+        
         <section class="hemai_jx">
             <div class="jx_top">
                 <div class="jx_tit">
                     <img src="${pageContext.request.contextPath}/statics/images/icon_6.jpg" alt="">
-                    <span>国内游</span>
+                    <span>${diclist.DContentName }</span>
                 </div>
             </div>
             <div class="heima_gn">
                 <div class="guonei_l">
                     <img src="${pageContext.request.contextPath}/statics/images/guonei_1.jpg" alt="">
                 </div>
+                
                 <div class="guone_r">
+                
                     <div class="row">
+                    <c:set var="i" value="0"/>
+                    <c:forEach items="${findScenPicAll }" var="findScenPic" varStatus="sta">
+                   	<c:if test="${findScenPic.sRegion==diclist.DContentId&&i<6}">
+                  	<c:set var="i" value="${i+1 }"/>
                         <div class="col-md-4">
-                            <a href="route_detail.html">
+                            <a href="${pageContext.request.contextPath }/scenicarea/scenicareaInfo.action?id=${findScenPic.id}&contentName=${diclist.DContentName}">
 								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
 								<div class="has_border">
-									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
+									<h3>${findScenPic.sName }</h3>
+									<div class="price">网付价<em>￥</em><strong>${findScenPic.sPrice }</strong><em>起</em></div>									
 								</div>
 							</a>
                         </div>
-                        <div class="col-md-4">
-                            <a href="route_detail.html">
-								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
-								<div class="has_border">
-									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
-								</div>
-							</a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="route_detail.html">
-								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
-								<div class="has_border">
-									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
-								</div>
-							</a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="route_detail.html">
-								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
-								<div class="has_border">
-									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
-								</div>
-							</a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="route_detail.html">
-									<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
-								<div class="has_border">
-									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
-								</div>
-							</a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="route_detail.html">
-								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
-								<div class="has_border">
-									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
-								</div>
-							</a>
-                        </div>
+                    </c:if>
+                    </c:forEach>
+                    
                     </div>
                 </div>
+              
             </div>
         </section>
         <!-- 国内游 end-->
-        <!-- 境外游 start-->
-        <section class="hemai_jx">
-            <div class="jx_top">
-                <div class="jx_tit">
-                    <img src="${pageContext.request.contextPath}/statics/images/icon_7.jpg" alt="">
-                    <span>境外游</span>
-                </div>
-            </div>
-            <div class="heima_gn">
-                <div class="guonei_l">
-                    <img src="${pageContext.request.contextPath}/statics/images/jiangwai_1.jpg" alt="">
-                </div>
-                <div class="guone_r">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <a href="route_detail.html">
-								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
-								<div class="has_border">
-									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
-								</div>
-							</a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="route_detail.html">
-								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
-								<div class="has_border">
-									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
-								</div>
-							</a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="route_detail.html">
-								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
-								<div class="has_border">
-									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
-								</div>
-							</a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="route_detail.html">
-								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
-								<div class="has_border">
-									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
-								</div>
-							</a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="route_detail.html">
-									<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
-								<div class="has_border">
-									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
-								</div>
-							</a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="route_detail.html">
-								<img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
-								<div class="has_border">
-									<h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-									<div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>									
-								</div>
-							</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- 境外游 end-->
+      </c:forEach>
+      
+      
     </section>
     <!-- 旅游 end-->
    <!--导入底部-->

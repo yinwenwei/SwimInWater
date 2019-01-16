@@ -22,33 +22,35 @@
 
     <select id="getHotelListByMap" resultType="com.yyl.entity.Hotel" parameterType="java.util.Map">
         select
-                id as id,
-                hName as hName,
-                hPrice as hPrice,
-                sId as sId,
-                hGrage as hGrage,
-                hContent as hContent
-        from hotel
-        <trim prefix="where" prefixOverrides="and | or">
+                h.id as id,
+                h.hName as hName,
+                h.hPrice as hPrice,
+                h.sId as sId,
+                h.hGrage as hGrage,
+                h.hContent as hContent,
+                p.pRelativePath as pRelativePath
+        from hotel h,picture p 
+        		where h.id=p.pTypeId
+        		and p.pType=3
                     <if test="id != null and id!=''">
-                        and id=#{id}
+                        and h.id=#{id}
                     </if>
                     <if test="hName != null and hName!=''">
-                        and hName=#{hName}
+                        and h.hName=#{hName}
                     </if>
                     <if test="hPrice != null and hPrice!=''">
-                        and hPrice=#{hPrice}
+                        and h.hPrice=#{hPrice}
                     </if>
                     <if test="sId != null and sId!=''">
-                        and sId=#{sId}
+                        and h.sId=#{sId}
                     </if>
                     <if test="hGrage != null and hGrage!=''">
-                        and hGrage=#{hGrage}
+                        and h.hGrage=#{hGrage}
                     </if>
                     <if test="hContent != null and hContent!=''">
-                        and hContent=#{hContent}
+                        and h.hContent=#{hContent}
                     </if>
-        </trim>
+                   group by h.hName
         <if test="start!=null and size!=null">
             limit #{start},#{size}
         </if>
@@ -80,7 +82,7 @@
     
     <!-- 根据酒店id查询酒店图片 -->
     <select id="findHotelPictureByPTypeId" parameterType="Integer" resultType="Picture">
-    	SELECT p.id,p.pRelativePath FROM picture p,hotel h WHERE p.pTypeId=h.id AND p.pType=3 AND 
+    	SELECT p.id,p.pRelativePath,p.pTypeId FROM picture p,hotel h WHERE p.pTypeId=h.id AND p.pType=3 AND 
     		p.pTypeId in 
     		<foreach collection="list" item="pTypeId" index="index" open="(" separator="," close=")">
     			#{pTypeId}

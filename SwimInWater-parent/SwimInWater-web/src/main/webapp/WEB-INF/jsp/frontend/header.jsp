@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -14,19 +15,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <img src="${pageContext.request.contextPath }/statics/images/top_banner.jpg" alt="">
         </div>
         <div class="shortcut">
+         	<c:if test="${userSession.UName==null }">
             <!-- 未登录状态  -->
             <div class="login_out">
 
                 <a href="${pageContext.request.contextPath }/login.action">登录</a>
                 <a href="${pageContext.request.contextPath }/register_ok.action">注册</a>
             </div>
+             </c:if>
             <!-- 登录状态  -->
+            <c:if test="${userSession.UName!=null }">
             <div class="login">
             	
-                <span>欢迎回来，admin</span>
+                <span>欢迎回来，${userSession.UName }</span>
                 <a href="${pageContext.request.contextPath }/myfavorite.action" class="collection">我的收藏</a>
-                <a href="javascript:;">退出</a>
+                <a href="${pageContext.request.contextPath }/userexit.action">退出</a>
             </div>
+            </c:if>
         </div>
         <div class="header_wrap">
             <div class="topbar">
@@ -54,13 +59,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="navitem"> 
         <ul class="nav">
             <li class="nav-active"><a href="${pageContext.request.contextPath }/index.action">首页</a></li>
-            <li><a href="${pageContext.request.contextPath }/route_list.action">门票</a></li>
             <li><a href="${pageContext.request.contextPath }/Hotel.action">酒店</a></li>
-            <li><a href="${pageContext.request.contextPath }/Hongkong_ticket.action">香港车票</a></li>
-            <li><a href="${pageContext.request.contextPath }/Outbound_travel.action">出境游</a></li>
+            <li><a href="${pageContext.request.contextPath }/Outbound_travel.action">境外游</a></li>
             <li><a href="${pageContext.request.contextPath }/Domestic_tourism.action">国内游</a></li>
             <li><a href="${pageContext.request.contextPath }/Hong_Kong_and_Macao_travel.action">港澳游</a></li>
-            <li><a href="${pageContext.request.contextPath }/Mass_customization.action">抱团定制</a></li>
             <li><a href="${pageContext.request.contextPath }/Global_Free_Travel.action">全球自由行</a></li>
             <li><a href="${pageContext.request.contextPath }/favoriterank.action">收藏排行榜</a></li>
         </ul>

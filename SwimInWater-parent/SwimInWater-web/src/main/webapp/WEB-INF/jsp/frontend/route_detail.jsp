@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <html lang="en">
@@ -9,6 +10,8 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/common.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/route-detail.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/common.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/css/search.css">
 </head>
 
 <body>
@@ -19,8 +22,8 @@
         <div class="bread_box">
             <a href="/">首页</a>
             <span> &gt;</span>
-            <a href="#">国内游</a><span> &gt;</span>
-            <a href="#">全国-曼谷6-7天自由行 泰国出境旅游 特价往返机票自由行二次确认</a>
+            <a href="#">${contentName }</a><span> &gt;</span>
+            <a href="#">${scenicspot.sContent }</a>
         </div>
         <div class="prosum_box">
             <dl class="prosum_left">
@@ -29,38 +32,18 @@
                 </dt>
                 <dd>
                     <a class="up_img up_img_disable"></a>
+                    
+                    <c:forEach items="${scenPicList }" var="scenpiclist">
                     <a title="" class="little_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m40920d0669855e745d97f9ad1df966ebb.jpg">
-                        <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m20920d0669855e745d97f9ad1df966ebb.jpg">
+                        <img src="${pageContext.request.contextPath}${scenpiclist.PRelativePath }">
                     </a>
-                    <a title="" class="little_img cur_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m49788843d72171643297ccc033d9288ee.jpg">
-                        <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m29788843d72171643297ccc033d9288ee.jpg">
-                    </a>
-                    <a title="" class="little_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m4531a8dbceefa2c44e6d0e35627cd2689.jpg">
-                        <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m2531a8dbceefa2c44e6d0e35627cd2689.jpg">
-                    </a>
-                    <a title="" class="little_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m46d8cb900e9f6c0a762aca19eae40c00c.jpg">
-                        <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m26d8cb900e9f6c0a762aca19eae40c00c.jpg">
-                    </a>
-                    <a title="" class="little_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m45ea00f6eba562a767b5095bbf8cffe07.jpg" style="display:none;">
-                        <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m25ea00f6eba562a767b5095bbf8cffe07.jpg">
-                    </a>
-                    <a title="" class="little_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m4265ec488cd1bc7ce749bc8c9b34b87bc.jpg" style="display:none;">
-                        <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m2265ec488cd1bc7ce749bc8c9b34b87bc.jpg">
-                    </a>
-                    <a title="" class="little_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m4e7e964909d7dd1a9f6e5494d4dc0c847.jpg" style="display:none;">
-                        <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m2e7e964909d7dd1a9f6e5494d4dc0c847.jpg">
-                    </a>
-                    <a title="" class="little_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m467db00e1b76718fab0fe8b96e10f4d35.jpg" style="display:none;">
-                        <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m267db00e1b76718fab0fe8b96e10f4d35.jpg">
-                    </a>
-                    <a title="" class="little_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m487bbbc6e43eba6aa6a36cc1a182f7a20.jpg" style="display:none;">
-                        <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m287bbbc6e43eba6aa6a36cc1a182f7a20.jpg">
-                    </a>
+                    </c:forEach>
+                    
                     <a class="down_img down_img_disable" style="margin-bottom: 0;"></a>
                 </dd>
             </dl>
             <div class="prosum_right">
-               <p class="pros_title">【尾单特卖】全国-曼谷6-7天自由行 泰国出境旅游 特价往返机票自由行二次确认</p>
+               <p class="pros_title">【${scenicspot.sCity }】全国-曼谷6-7天自由行 泰国出境旅游 特价往返机票自由行二次确认</p>
                 <p class="hot">1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
                 <div class="pros_other">
                     <p>经营商家  ：黑马国旅</p>
@@ -68,7 +51,7 @@
                     <p>地址 ： 传智播客黑马程序员</p>  
                 </div>
                 <div class="pros_price">
-                    <p class="price"><strong>¥2699.00</strong><span>起</span></p>
+                    <p class="price"><strong>¥${scenicspot.sPrice }</strong><span>起</span></p>
                     <p class="collect">
                         <a class="btn"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
 
@@ -77,6 +60,221 @@
                     </p>
                 </div>        
             </div>
+        </div>
+         <div class="you_need_konw">
+            <span>酒店详情</span>
+            <div class="notice">
+                <div class="xinxi clearfix">
+                <div class="left">
+                    <div class="header">
+                        <span>商品信息</span>
+                        <span class="jg">价格</span>
+                    </div>
+                    <ul>
+                        <li>
+                            <div class="img"><img src="${pageContext.request.contextPath}/statics/images/04-search_03.jpg" alt=""></div>
+                            <div class="text1">
+                                <p>【减100元 含除夕/春节出发】广州增城三英温泉度假酒店/自由行套票</p>
+                                <br/>
+                                <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
+                            </div>
+                            <div class="price">
+                                <p class="price_num">
+                                    <span>&yen;</span>
+                                    <span>299</span>
+                                    <span>起</span>
+                                </p>
+                                <p><a href="route_detail.html">查看详情</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img"><img src="${pageContext.request.contextPath}/statics/images/04-search_03.jpg" alt=""></div>
+                            <div class="text1">
+                                <p>浪花朵朵旅行普吉岛丛林飞跃空中飞人探险游中文服务泰国旅游</p>
+                                <br/>
+                                <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
+                            </div>
+                            <div class="price">
+                                <p class="price_num">
+                                    <span>&yen;</span>
+                                    <span>899</span>
+                                    <span>起</span>
+                                </p>
+                                <p><a href="route_detail.html">查看详情</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img"><img src="${pageContext.request.contextPath}/statics/images/04-search_03.jpg" alt=""></div>
+                            <div class="text1">
+                                <p>黑妞皇家旅行普吉岛攀牙湾大船星光之旅皮划艇日落休闲特色体验</p>
+                                <br/>
+                                <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
+                            </div>
+                            <div class="price">
+                                <p class="price_num">
+                                    <span>&yen;</span>
+                                    <span>999</span>
+                                    <span>起</span>
+                                </p>
+                                <p><a href="route_detail.html">查看详情</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img"><img src="${pageContext.request.contextPath}/statics/images/04-search_03.jpg" alt=""></div>
+                            <div class="text1">
+                                <p>浪花朵朵旅行普吉岛皇帝岛珊瑚岛香蕉船拖拽伞水上项目</p>
+                                <br/>
+                                <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
+                            </div>
+                            <div class="price">
+                                <p class="price_num">
+                                    <span>&yen;</span>
+                                    <span>99</span>
+                                    <span>起</span>
+                                </p>
+                                <p><a href="route_detail.html">查看详情</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img"><img src="${pageContext.request.contextPath}/statics/images/04-search_03.jpg" alt=""></div>
+                            <div class="text1">
+                                <p>环游记 泰国清迈Lila massage女子监狱spa 丽菈泰式按摩马杀鸡</p>
+                                <br/>
+                                <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
+                            </div>
+                            <div class="price">
+                                <p class="price_num">
+                                    <span>&yen;</span>
+                                    <span>199</span>
+                                    <span>起</span>
+                                </p>
+                                <p><a href="route_detail.html">查看详情</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img"><img src="${pageContext.request.contextPath}/statics/images/04-search_03.jpg" alt=""></div>
+                            <div class="text1">
+                                <p>【减100元 含除夕/春节出发】广州增城三英温泉度假酒店/自由行套票</p>
+                                <br/>
+                                <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
+                            </div>
+                            <div class="price">
+                                <p class="price_num">
+                                    <span>&yen;</span>
+                                    <span>899</span>
+                                    <span>起</span>
+                                </p>
+                                <p><a href="route_detail.html">查看详情</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img"><img src="${pageContext.request.contextPath}/statics/images/04-search_03.jpg" alt=""></div>
+                            <div class="text1">
+                                <p>【减100元 含除夕/春节出发】广州增城三英温泉度假酒店/自由行套票</p>
+                                <br/>
+                                <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
+                            </div>
+                            <div class="price">
+                                <p class="price_num">
+                                    <span>&yen;</span>
+                                    <span>1199</span>
+                                    <span>起</span>
+                                </p>
+                                <p><a href="route_detail.html">查看详情</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="img"><img src="${pageContext.request.contextPath}/statics/images/04-search_03.jpg" alt=""></div>
+                            <div class="text1">
+                                <p>泰国芭提雅三合一日游芭提雅蒂芬妮人妖秀成人门票bigeye含接送</p>
+                                <br/>
+                                <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
+                            </div>
+                            <div class="price">
+                                <p class="price_num">
+                                    <span>&yen;</span>
+                                    <span>1589</span>
+                                    <span>起</span>
+                                </p>
+                                <p><a href="route_detail.html">查看详情</a></p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="page_num_inf">
+                        <i></i> 共
+                        <span>12</span>页<span>132</span>条
+                    </div>
+                    <div class="pageNum">
+                        <ul>
+                            <li><a href="">首页</a></li>
+                            <li class="threeword"><a href="#">上一页</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">6</a></li>
+                            <li><a href="#">7</a></li>
+                            <li><a href="#">8</a></li>
+                            <li><a href="#">9</a></li>
+                            <li><a href="#">10</a></li>
+                            <li class="threeword"><a href="javascript:;">下一页</a></li>
+                            <li class="threeword"><a href="javascript:;">末页</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="top">
+                        <div class="hot">HOT</div>
+                        <span>热门推荐</span>
+                    </div>
+                    <ul>
+                        <li>
+                            <div class="left"><img src="${pageContext.request.contextPath}/statics/images/04-search_09.jpg" alt=""></div>
+                            <div class="right">
+                                <p>清远新银盏温泉度假村酒店/自由行套...</p>
+                                <p>网付价<span>&yen;<span>899</span>起</span>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="left"><img src="${pageContext.request.contextPath}/statics/images/04-search_09.jpg" alt=""></div>
+                            <div class="right">
+                                <p>清远新银盏温泉度假村酒店/自由行套...</p>
+                                <p>网付价<span>&yen;<span>899</span>起</span>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="left"><img src="${pageContext.request.contextPath}/statics/images/04-search_09.jpg" alt=""></div>
+                            <div class="right">
+                                <p>清远新银盏温泉度假村酒店/自由行套...</p>
+                                <p>网付价<span>&yen;<span>899</span>起</span>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="left"><img src="${pageContext.request.contextPath}/statics/images/04-search_09.jpg" alt=""></div>
+                            <div class="right">
+                                <p>清远新银盏温泉度假村酒店/自由行套...</p>
+                                <p>网付价<span>&yen;<span>899</span>起</span>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="left"><img src="${pageContext.request.contextPath}/statics/images/04-search_09.jpg" alt=""></div>
+                            <div class="right">
+                                <p>清远新银盏温泉度假村酒店/自由行套...</p>
+                                <p>网付价<span>&yen;<span>899</span>起</span>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+            </div>           
         </div>
         <div class="you_need_konw">
             <span>旅游须知</span>

@@ -31,10 +31,10 @@ public class PageBean<T> implements Serializable {
 	@ApiModelProperty(value = "上一页")
 	private Integer prev;
 	/** 下一页 */
-	@ApiModelProperty(value = "图片id")
+	@ApiModelProperty(value = "下一页")
 	private Integer next;
 	/** 一页数据 */
-	@ApiModelProperty(value = "图片id")
+	@ApiModelProperty(value = "一页数据")
 	private List<T> list;
 
 	/** 查询条件【页面回显】 */

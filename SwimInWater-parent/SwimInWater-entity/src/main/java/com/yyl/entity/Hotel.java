@@ -32,12 +32,15 @@ public class Hotel implements Serializable {
         /** 酒店详情 */
         @ApiModelProperty(value = "酒店详情")
         private String hContent;
+        /** 酒店图片 */
+        @ApiModelProperty(value = "酒店图片路径")
+        private String pRelativePath;
 		public Hotel() {
 			super();
 			// TODO Auto-generated constructor stub
 		}
 		public Hotel(Integer id, String hName, Double hPrice, Integer sId,
-				Integer hGrage, String hContent) {
+				Integer hGrage, String hContent, String pRelativePath) {
 			super();
 			this.id = id;
 			this.hName = hName;
@@ -45,12 +48,14 @@ public class Hotel implements Serializable {
 			this.sId = sId;
 			this.hGrage = hGrage;
 			this.hContent = hContent;
+			this.pRelativePath = pRelativePath;
 		}
 		@Override
 		public String toString() {
 			return "Hotel [id=" + id + ", hName=" + hName + ", hPrice="
 					+ hPrice + ", sId=" + sId + ", hGrage=" + hGrage
-					+ ", hContent=" + hContent + "]";
+					+ ", hContent=" + hContent + ", pRelativePath="
+					+ pRelativePath + "]";
 		}
 		public Integer getId() {
 			return id;
@@ -88,10 +93,15 @@ public class Hotel implements Serializable {
 		public void sethContent(String hContent) {
 			this.hContent = hContent;
 		}
+		public String getpRelativePath() {
+			return pRelativePath;
+		}
+		public void setpRelativePath(String pRelativePath) {
+			this.pRelativePath = pRelativePath;
+		}
 		public static long getSerialversionuid() {
 			return serialVersionUID;
 		}
-	
-        
+		
         
 }
