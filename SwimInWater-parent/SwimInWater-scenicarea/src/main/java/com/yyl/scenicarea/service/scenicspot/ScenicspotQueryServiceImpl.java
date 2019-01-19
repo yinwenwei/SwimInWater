@@ -4,10 +4,13 @@ import com.yyl.entity.Scenicspot;
 import com.yyl.entity.PageBean;
 import com.yyl.scenicarea.repository.scenicspot.ScenicspotQueryMapper;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 /**
@@ -15,7 +18,7 @@ import java.util.Map;
 */
 @Service
 public class ScenicspotQueryServiceImpl implements ScenicspotQueryService {
-
+	private Logger logger = LoggerFactory.getLogger(ScenicspotQueryServiceImpl.class);
     @Resource
     private ScenicspotQueryMapper scenicspotQueryMapper;
 
@@ -108,19 +111,31 @@ public class ScenicspotQueryServiceImpl implements ScenicspotQueryService {
 	 */
 	@Override
 	public PageBean<Scenicspot> findScenicspotBySRegion(Map<String, Object> param, Integer size, Integer cur) {
-		// TODO Auto-generated method stub
 		System.out.println("进入------------根据分区查询景点信息------------------");
+		logger.debug("接收请求,参数:当前页：{}，显示数量：{}", cur, size );
+
 		try {
-			Integer total = scenicspotQueryMapper.getScenicspotCountBySRegion(param);
-			System.err.println("境外游记录数:"+total);
-			PageBean<Scenicspot> pageBean=new PageBean<Scenicspot>(total,size,cur);
-			param.put("start", (pageBean.getCurrentPage()-1)*size);
-			param.put("size", size);
 			List<Scenicspot> scenicspotList = scenicspotQueryMapper.findScenicspotBySRegion(param);
-			pageBean.setList(scenicspotList);
+			for (int i = 0; i < scenicspotList.size(); i++) {
+				if(scenicspotList.get(i).getsStatus() == 2){
+					scenicspotList.remove(i);
+				}
+			}
+			
+			PageBean<Scenicspot> pageBean=new PageBean<Scenicspot>(0,size,cur);
+			
+			Integer start = (pageBean.getCurrentPage()-1)*size;
+			List<Scenicspot> pageList = new ArrayList<Scenicspot>();
+			for (int i = start; i < start+size; i++) {
+				if(i < scenicspotList.size()){
+					pageList.add(scenicspotList.get(i));
+				}
+			}
+			pageBean.setTotalCount(scenicspotList.size());
+			pageBean.setList(pageList);
+			logger.debug("处理请求, 结果：{}", pageBean);
 			return pageBean;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

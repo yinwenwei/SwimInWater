@@ -121,9 +121,7 @@
             AND s.sRegion=#{sRegion}
         </if>
         group by s.sName
-    	<if test="start!=null and size!=null">
-            limit #{start},#{size}
-        </if>
+    	
     
     </select>
     

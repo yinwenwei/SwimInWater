@@ -50,11 +50,11 @@ public class PageBean<T> implements Serializable {
 		super();
 		this.totalCount = totalCount;
 		this.pageSize = (null == pageSize) ? 5 : pageSize;
-        System.out.println("测试null:totalCount:"+this.totalCount+"\tpageSize:"+this.pageSize+"\tcurrentPage:"+this.currentPage);
+//        System.out.println("测试null:totalCount:"+this.totalCount+"\tpageSize:"+this.pageSize+"\tcurrentPage:"+this.currentPage);
 		this.pageCount = (this.totalCount + this.pageSize - 1) / this.pageSize;
-        System.out.println("测试null:totalCount:currentPage:"+currentPage);
+//        System.out.println("测试null:totalCount:currentPage:"+currentPage);
 		setCurrentPage(currentPage);
-        System.out.println("测试null:totalCount:currentPage:"+getCurrentPage());
+//        System.out.println("测试null:totalCount:currentPage:"+getCurrentPage());
 		getPrev();
 		getNext();
 	}
