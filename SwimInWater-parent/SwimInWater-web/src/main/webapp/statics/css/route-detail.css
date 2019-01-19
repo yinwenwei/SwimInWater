@@ -28,7 +28,7 @@
 
 .prosum_box .prosum_left .big_img {
     width: 570px;
-    height: 340px;
+    height: 352px;
 }
 
 .prosum_box .prosum_left .little_img img {
@@ -113,8 +113,8 @@
 }
 .pros_price {
 	background: #eee;
-	margin-top: 40px;
-	padding: 10px 0 20px 10px;
+	margin-top: 10px;
+	padding: 10px 0 12px 10px;
 }
 .pros_price  .price strong{
 	color: #ff4848;
@@ -122,7 +122,7 @@
 	font-weight: normal;
 }
 .collect {
-	margin-top: 30px;
+	margin-top: 5px;
 }
 .collect a {
 	font-size: 14px;
@@ -142,7 +142,7 @@
 }
 .you_need_konw {
 	width: 1188px;
-    margin: 60px auto;
+    margin: 20px auto;
 }
 .you_need_konw span {
 	font-size: 16px;

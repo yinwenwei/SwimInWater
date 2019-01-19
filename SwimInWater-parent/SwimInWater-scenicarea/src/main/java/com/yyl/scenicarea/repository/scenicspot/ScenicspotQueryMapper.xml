@@ -126,7 +126,6 @@
 	    <if test="start!=null and size!=null">
             limit #{start},#{size}
         </if>
-    
     </select>
     
     <select id="getScenicspotCountBySRegion" parameterType="java.util.Map" resultType="Integer">

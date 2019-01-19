@@ -4,6 +4,8 @@ import com.yyl.entity.Scenicspot;
 import com.yyl.entity.PageBean;
 import com.yyl.scenicarea.repository.scenicspot.ScenicspotQueryMapper;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,7 +18,7 @@ import java.util.Map;
 */
 @Service
 public class ScenicspotQueryServiceImpl implements ScenicspotQueryService {
-
+	private Logger logger = LoggerFactory.getLogger(ScenicspotQueryServiceImpl.class);
     @Resource
     private ScenicspotQueryMapper scenicspotQueryMapper;
 
@@ -108,8 +110,9 @@ public class ScenicspotQueryServiceImpl implements ScenicspotQueryService {
 	 */
 	@Override
 	public PageBean<Scenicspot> findScenicspotBySRegion(Map<String, Object> param, Integer size, Integer cur) {
-		// TODO Auto-generated method stub
 		System.out.println("进入------------根据分区查询景点信息------------------");
+		logger.debug("接收请求,参数:当前页：{}，显示数量：{}", cur, size );
+
 		try {
 			Integer total = scenicspotQueryMapper.getScenicspotCountBySRegion(param);
 			System.err.println("境外游记录数:"+total);
@@ -120,7 +123,6 @@ public class ScenicspotQueryServiceImpl implements ScenicspotQueryService {
 			pageBean.setList(scenicspotList);
 			return pageBean;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

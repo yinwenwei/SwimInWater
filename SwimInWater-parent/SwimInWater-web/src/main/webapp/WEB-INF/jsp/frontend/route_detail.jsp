@@ -10,8 +10,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/common.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/route-detail.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/common.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/css/search.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/search.css">
 </head>
 
 <body>
@@ -30,13 +29,25 @@
                 <dt>
                     <img alt="" class="big_img" src="${pageContext.request.contextPath}${scenPicList[0].PRelativePath }">
                 </dt>
-                <dd>
+                <dd style="height: 352px">
                     <a class="up_img up_img_disable"></a>
                     
-                    <c:forEach items="${scenPicList }" var="scenpiclist">
-                    <a title="" class="little_img" <%-- data-bigpic="localhost:8080/SwimInWater-web${图片 } --%>">
+                    <c:forEach items="${scenPicList }" var="scenpiclist" varStatus="statu">
+                    <c:if test="${statu.index == 0}">
+                    <a title="" class="little_img cur_img" data-bigpic="${pageContext.request.contextPath}${scenpiclist.PRelativePath }">
                         <img src="${pageContext.request.contextPath}${scenpiclist.PRelativePath }">
                     </a>
+                    </c:if>
+                    <c:if test="${statu.index < 4 && statu.index >0}">
+                    <a title="" class="little_img" data-bigpic="${pageContext.request.contextPath}${scenpiclist.PRelativePath }">
+                        <img src="${pageContext.request.contextPath}${scenpiclist.PRelativePath }">
+                    </a>
+                    </c:if>
+                    <c:if test="${statu.index >= 4 }">
+                    <a title="" class="little_img" data-bigpic="${pageContext.request.contextPath}${scenpiclist.PRelativePath }" style="display:none;">
+                        <img src="${pageContext.request.contextPath}${scenpiclist.PRelativePath }">
+                    </a>
+                    </c:if>
                     </c:forEach>
                     
                     <a class="down_img down_img_disable" style="margin-bottom: 0;"></a>
@@ -46,25 +57,37 @@
                <p class="pros_title">【${scenicspot.sCity }】全国-曼谷6-7天自由行 泰国出境旅游 特价往返机票自由行二次确认</p>
                 <p class="hot">1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
                 <div class="pros_other">
-                    <p>经营商家  ：黑马国旅</p>
+                    <p>经营商家  ：叶德斌</p>
                     <p>咨询电话 : 400-618-9090</p>
-                    <p>地址 ： 传智播客黑马程序员</p>  
+                    <p>行程概要 ： 这里放线路</p>  
+                    <p>5天4晚,0购物0自费,高档型酒店含24H接送,飞机往返</p>  
                 </div>
                 <div class="pros_price">
-                    <p class="price"><strong>¥${scenicspot.sPrice }</strong><span>起</span></p>
+                    <p class="price">
+	                    <strong>¥</strong>
+	                    <strong id="price">${scenicspot.sPrice }</strong>
+	                    <span>起</span>
+                    </p>
+                    <p>
+              	 		<div class="btn-group" role="group" aria-label="...">
+						  <button type="button" class="hotel btn btn-default" data="299">常春藤度假酒店</button>
+						  <button type="button" class="hotel btn btn-default" data="899">一晚温泉酒店</button>
+						  <button type="button" class="hotel btn btn-default" data="999">陆轩酒店</button>
+						</div>
+					</p>
                     <p class="collect">
-                        <a class="btn"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
+                        <a class="btn"><!-- <i class="glyphicon glyphicon-heart-empty"> --></i>立即预订</a>
 
                         <a  class="btn already" disabled="disabled"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
-                        <span>已收藏100次</span>
+                        <span>已收藏${显示收藏次数 }次</span>
                     </p>
                 </div>        
             </div>
         </div>
-         <div class="you_need_konw">
-            <span>酒店详情</span>
-            <div class="notice">
-                <div class="xinxi clearfix">
+        <!-- ---------------------------- -->
+        <div class="page_one">
+        <div class="contant">
+            <div class="xinxi clearfix">
                 <div class="left">
                     <div class="header">
                         <span>商品信息</span>
@@ -119,109 +142,7 @@
                                 <p><a href="route_detail.html">查看详情</a></p>
                             </div>
                         </li>
-                        <li>
-                            <div class="img"><img src="${pageContext.request.contextPath}/statics/images/04-search_03.jpg" alt=""></div>
-                            <div class="text1">
-                                <p>浪花朵朵旅行普吉岛皇帝岛珊瑚岛香蕉船拖拽伞水上项目</p>
-                                <br/>
-                                <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
-                            </div>
-                            <div class="price">
-                                <p class="price_num">
-                                    <span>&yen;</span>
-                                    <span>99</span>
-                                    <span>起</span>
-                                </p>
-                                <p><a href="route_detail.html">查看详情</a></p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img"><img src="${pageContext.request.contextPath}/statics/images/04-search_03.jpg" alt=""></div>
-                            <div class="text1">
-                                <p>环游记 泰国清迈Lila massage女子监狱spa 丽菈泰式按摩马杀鸡</p>
-                                <br/>
-                                <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
-                            </div>
-                            <div class="price">
-                                <p class="price_num">
-                                    <span>&yen;</span>
-                                    <span>199</span>
-                                    <span>起</span>
-                                </p>
-                                <p><a href="route_detail.html">查看详情</a></p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img"><img src="${pageContext.request.contextPath}/statics/images/04-search_03.jpg" alt=""></div>
-                            <div class="text1">
-                                <p>【减100元 含除夕/春节出发】广州增城三英温泉度假酒店/自由行套票</p>
-                                <br/>
-                                <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
-                            </div>
-                            <div class="price">
-                                <p class="price_num">
-                                    <span>&yen;</span>
-                                    <span>899</span>
-                                    <span>起</span>
-                                </p>
-                                <p><a href="route_detail.html">查看详情</a></p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img"><img src="${pageContext.request.contextPath}/statics/images/04-search_03.jpg" alt=""></div>
-                            <div class="text1">
-                                <p>【减100元 含除夕/春节出发】广州增城三英温泉度假酒店/自由行套票</p>
-                                <br/>
-                                <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
-                            </div>
-                            <div class="price">
-                                <p class="price_num">
-                                    <span>&yen;</span>
-                                    <span>1199</span>
-                                    <span>起</span>
-                                </p>
-                                <p><a href="route_detail.html">查看详情</a></p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img"><img src="${pageContext.request.contextPath}/statics/images/04-search_03.jpg" alt=""></div>
-                            <div class="text1">
-                                <p>泰国芭提雅三合一日游芭提雅蒂芬妮人妖秀成人门票bigeye含接送</p>
-                                <br/>
-                                <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
-                            </div>
-                            <div class="price">
-                                <p class="price_num">
-                                    <span>&yen;</span>
-                                    <span>1589</span>
-                                    <span>起</span>
-                                </p>
-                                <p><a href="route_detail.html">查看详情</a></p>
-                            </div>
-                        </li>
                     </ul>
-                    <div class="page_num_inf">
-                        <i></i> 共
-                        <span>12</span>页<span>132</span>条
-                    </div>
-                    <div class="pageNum">
-                        <ul>
-                            <li><a href="">首页</a></li>
-                            <li class="threeword"><a href="#">上一页</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">6</a></li>
-                            <li><a href="#">7</a></li>
-                            <li><a href="#">8</a></li>
-                            <li><a href="#">9</a></li>
-                            <li><a href="#">10</a></li>
-                            <li class="threeword"><a href="javascript:;">下一页</a></li>
-                            <li class="threeword"><a href="javascript:;">末页</a></li>
-                        </ul>
-                    </div>
                 </div>
                 <div class="right">
                     <div class="top">
@@ -274,8 +195,7 @@
             </div>
         </div>
     </div>
-            </div>           
-        </div>
+        <!-- ---------------------------- -->
         <div class="you_need_konw">
             <span>旅游须知</span>
             <div class="notice">
@@ -299,17 +219,18 @@
                 <p>5、建议出发时行李托运，贵重物品、常用物品、常用药品、御寒衣物等请随身携带，尽量不要托运。行李延误属于不可抗力因素，我司将全力协助客人跟进后续工作，但我司对此不承担任何责任。</p>
             </div>           
         </div>
+        <!-- ----------------------------------- -->
     </div>
     <!-- 详情 end -->
 
     <!--引入头部-->
     <div id="footer"><%@ include file="footer.jsp" %></div>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="${pageContext.request.contextPath}/staticsjs/jquery-3.3.1.js"></script>
+    <script src="${pageContext.request.contextPath}/statics/js/jquery-2.1.0.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="${pageContext.request.contextPath}/staticsjs/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/statics/js/bootstrap.min.js"></script>
     <!--导入布局js，共享header和footer-->
-    <script type="text/javascript" src="${pageContext.request.contextPath}/statics/js/include.js"></script>
+    <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/statics/js/include.js"></script> --%>
     <script>
     $(document).ready(function() {
         //焦点图效果
@@ -367,6 +288,22 @@
             $('.big_img').attr('src', big_pic);
         }
     }
+    </script>
+    <script type="text/javascript">
+    	$(function(){
+    		$(".hotel").css("margin-left","2px");
+    		$(".hotel").click(function(){
+    			var hotelName = $(this).text();
+    			$(this).css("background-color","#5cb85c");
+    			$(this).css("color","#fff");
+    			$(this).siblings().css("background-color","#fff");
+    			$(this).siblings().css("color","#000");
+    			var hotelPrice = $(this).attr("data");
+    			var scePrice = "${scenicspot.sPrice }";
+    			var totalPrice = hotelPrice*1 + scePrice*1;
+    			$("#price").html(totalPrice + ".00");
+    		});
+    	});
     </script>
 </body>
 
