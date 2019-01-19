@@ -249,13 +249,55 @@ public class ScenicareaImpl implements ScenicareaApi {
 	@Override
 	public List<Scenicspot> findScenCollectionOrderByDesc() {
 		// TODO Auto-generated method stub
+		
 		return scenicspotQueryService.findScenCollectionOrderByDesc();
 	}
 	
+	/**
+	 * 人气旅游
+	 */
+	@Override
+	public List<Scenicspot> findPopularTourism() {
+		List<Scenicspot> popularList = scenicspotQueryService.findPopularTourism();
+		jedisClientSingle.hset("Redis_popularTourismList", "popularTourismList", JSON.toJSON(popularList).toString());
+		String popularStr = jedisClientSingle.hget("Redis_popularTourismList", "popularTourismList");
+		if(!StringUtils.isBlank(popularStr)){
+			List<Scenicspot> popularTourismList = JSON.parseArray(popularStr, Scenicspot.class);
+			return popularTourismList;
+		}
+		return null;
+	}
 	
-
+	/**
+	 * 最新旅游
+	 */
+	@Override
+	public List<Scenicspot> findNewestTourism() {
+		// TODO Auto-generated method stub
+		List<Scenicspot> newestList = scenicspotQueryService.findNewestTourism();
+		jedisClientSingle.hset("Redis_newstList", "newestList", JSON.toJSON(newestList).toString());
+		String newsetStr = jedisClientSingle.hget("Redis_newstList", "newestList");
+		if(!StringUtils.isBlank(newsetStr)){
+			List<Scenicspot> newestTourismList = JSON.parseArray(newsetStr, Scenicspot.class);
+			return newestTourismList;
+		}
+		return null;
+	}
 	
-	
-
+	/**
+	 * 主题旅游
+	 */
+	@Override
+	public List<Scenicspot> findThemeTourism(String sCity) {
+		// TODO Auto-generated method stub
+		List<Scenicspot> themeList = scenicspotQueryService.findThemeTourism(sCity);
+		jedisClientSingle.hset("Redis_themeList", "themeList", JSON.toJSON(themeList).toString());
+		String themeStr = jedisClientSingle.hget("Redis_themeList", "themeList");
+		if(!StringUtils.isBlank(themeStr)){
+			List<Scenicspot> themeTourismList = JSON.parseArray(themeStr, Scenicspot.class);
+			return themeTourismList;
+		}
+		return null;
+	}
 	
 }

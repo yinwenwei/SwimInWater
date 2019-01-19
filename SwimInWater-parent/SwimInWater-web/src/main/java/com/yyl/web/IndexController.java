@@ -37,15 +37,24 @@ public class IndexController {
 	public String index(Model model){		
 		// TODO景点添加显示图片字段
 		logger.info("接收到请求,主题城市:{}", GetThemCity.themeCity);
-	
+		
 		//-------------------------------------------yww-------------------------------------------------
+		//查询分区
 		List<Dictionary> dictionary_list = modelApi.getScenicareaApi().findDictionary("scenic_Region");
 		//根据分区查询景点信息
 		List<Scenicspot> findScenPicAll = modelApi.getScenicareaApi().findScenPicAll();
-		
+		//查询人气旅游
+		List<Scenicspot> findPopularTourism = modelApi.getScenicareaApi().findPopularTourism();
+		//查询最新旅游
+		List<Scenicspot> findNewestTourism = modelApi.getScenicareaApi().findNewestTourism();
+		//查询主题旅游
+		List<Scenicspot> findThemeTourism = modelApi.getScenicareaApi().findThemeTourism(GetThemCity.themeCity);
 		
 		model.addAttribute("findScenPicAll", findScenPicAll);//分区后景点信息
 		model.addAttribute("dictionary_list", dictionary_list);//分区信息
+		model.addAttribute("findPopularTourism", findPopularTourism);//人气旅游
+		model.addAttribute("findNewestTourism", findNewestTourism);//最新旅游
+		model.addAttribute("findThemeTourism", findThemeTourism);//主题旅游
 		
 		
 		logger.info("处理请求,结果:{}", findScenPicAll);

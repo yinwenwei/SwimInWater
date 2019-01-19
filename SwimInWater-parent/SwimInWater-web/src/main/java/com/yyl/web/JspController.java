@@ -1,15 +1,20 @@
 package com.yyl.web;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.yyl.api.ModelApiImpl;
 import com.yyl.entity.Hotel;
 import com.yyl.entity.PageBean;
@@ -130,7 +135,6 @@ public class JspController {
 	@RequestMapping(value = "/Hong_Kong_and_Macao_travel", method=RequestMethod.GET)
 	public String hongKongAndMacaoTravel(Model model,Integer currentPage){
 		logger.info("接收到请求,参数:{}", "");
-		
 		//查询境外游
 		PageBean<Scenicspot> pageBean = modelApi.getScenicareaApi().findScenicspotBySRegion(3, 5, currentPage);
 		model.addAttribute("pageBean", pageBean);

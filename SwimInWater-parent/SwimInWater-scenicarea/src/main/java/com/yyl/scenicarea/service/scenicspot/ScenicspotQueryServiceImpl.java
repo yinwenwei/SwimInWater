@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 /**
@@ -90,7 +91,6 @@ public class ScenicspotQueryServiceImpl implements ScenicspotQueryService {
 		return scenicspotQueryMapper.findScenPicAll();
 	}
 	
-
 	@Override
 	public Integer getScenicspotCountBySRegion(Map<String, Object> param) {
 		// TODO Auto-generated method stub
@@ -113,10 +113,10 @@ public class ScenicspotQueryServiceImpl implements ScenicspotQueryService {
 		try {
 			Integer total = scenicspotQueryMapper.getScenicspotCountBySRegion(param);
 			System.err.println("境外游记录数:"+total);
-			PageBean<Scenicspot> pageBean=new PageBean<Scenicspot>(total,size,cur);
+			PageBean<Scenicspot> pageBean = new PageBean<Scenicspot>(total,size,cur);
 			param.put("start", (pageBean.getCurrentPage()-1)*size);
 			param.put("size", size);
-			List<Scenicspot> scenicspotList = scenicspotQueryMapper.findScenicspotBySRegion(param);
+			List<Scenicspot> scenicspotList = scenicspotQueryMapper.findScenicspotBySRegion(param);					
 			pageBean.setList(scenicspotList);
 			return pageBean;
 		} catch (Exception e) {
@@ -138,6 +138,30 @@ public class ScenicspotQueryServiceImpl implements ScenicspotQueryService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	/**
+	 * 人气旅游
+	 */
+	@Override
+	public List<Scenicspot> findPopularTourism() {
+		// TODO Auto-generated method stub
+		return scenicspotQueryMapper.findPopularTourism();
+	}
+	
+	/**
+	 * 最新旅游
+	 */
+	@Override
+	public List<Scenicspot> findNewestTourism() {
+		// TODO Auto-generated method stub
+		return scenicspotQueryMapper.findNewestTourism();
+	}
+
+	@Override
+	public List<Scenicspot> findThemeTourism(String sCity) {
+		// TODO Auto-generated method stub
+		return scenicspotQueryMapper.findThemeTourism(sCity);
 	}
 
 }

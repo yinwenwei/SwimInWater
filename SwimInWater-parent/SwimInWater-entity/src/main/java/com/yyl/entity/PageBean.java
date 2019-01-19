@@ -145,6 +145,16 @@ public class PageBean<T> implements Serializable {
 	public void setParams(Map<String, Object> params) {
 		this.params = params;
 	}
+	
+	
+	@Override
+	public String toString() {
+		return "PageBean [totalCount=" + totalCount + ", pageSize=" + pageSize
+				+ ", pageCount=" + pageCount + ", currentPage=" + currentPage
+				+ ", prev=" + prev + ", next=" + next + ", list=" + list
+				+ ", params=" + params + "]";
+	}
+
 
 	/**
 	 * 版本号

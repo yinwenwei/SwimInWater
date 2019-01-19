@@ -79,124 +79,54 @@
             <div class="jx_content">
                 <!-- Tab panes -->
                 <div class="tab-content">
+                <!-- 人气旅游 -->
                     <div role="tabpanel" class="tab-pane active" id="popularity">
                         <div class="row">
+                        <c:forEach items="${findPopularTourism }" var="findPopularTourism">
                             <div class="col-md-3">
                                 <a href="javascript:;">
                                     <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
                                     <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
+                                        <h3>${findPopularTourism.sName }</h3>
+                                        <div class="price">网付价<em>￥</em><strong>${findPopularTourism.sPrice }</strong><em>起</em></div>
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_4.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
+                         </c:forEach>  
                         </div>
                     </div>
+                    <!-- 最新旅游 -->
                     <div role="tabpanel" class="tab-pane" id="newest">
+                    
                         <div class="row">
+                        <c:forEach items="${findNewestTourism }" var="findNewestTourism">
                             <div class="col-md-3">
                                 <a href="javascript:;">
                                     <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_1.jpg" alt="">
                                     <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
+                                        <h3>${findNewestTourism.sName }</h3>
+                                        <div class="price">网付价<em>￥</em><strong>${findNewestTourism.sPrice }</strong><em>起</em></div>
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_1.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_1.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_1.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
+                         </c:forEach>   
                         </div>
                     </div>
+                    <!-- 主题旅游 -->
                     <div role="tabpanel" class="tab-pane" id="theme">
+                    
                         <div class="row">
+                        <c:forEach items="${findThemeTourism }" var="findThemeTourism">
                             <div class="col-md-3">
                                 <a href="javascript:;">
                                     <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_2.jpg" alt="">
                                     <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
+                                        <h3>${findThemeTourism.sName }</h3>
+                                        <div class="price">网付价<em>￥</em><strong>${findThemeTourism.sPrice }</strong><em>起</em></div>
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_2.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_2.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="javascript:;">
-                                    <img src="${pageContext.request.contextPath}/statics/images/jiangxuan_2.jpg" alt="">
-                                    <div class="has_border">
-                                        <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                        <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                    </div>
-                                </a>
-                            </div>
+                         </c:forEach>   
                         </div>
                     </div>
                 </div>

@@ -111,17 +111,19 @@
     
     <!-- 查询景点详情信息And图片 -->
     <select id="findScenPicAll" resultType="Scenicspot">
-    	SELECT p.`pRelativePath`,s.id,s.sName,s.sContent,s.sRegion,s.sPrice FROM scenicspot s,picture p WHERE s.id=p.pTypeId AND pType=2
+    	SELECT p.`pRelativePath`,s.id,s.sName,s.sContent,s.sRegion,s.sPrice,s.sStatus FROM scenicspot s,picture p WHERE s.id=p.pTypeId AND pType=2
+    	AND (s.`sStatus`=1 OR s.`sStatus`=3)
 		GROUP BY sName 
     </select>
     
     <select id="findScenicspotBySRegion" parameterType="Map" resultType="Scenicspot">
     	SELECT s.*,p.`pTypeId`,p.`pRelativePath` FROM scenicspot s,picture p WHERE s.id=p.pTypeId AND p.pType=2 
-    	<if test="sRegion!=null and sRegion!=null">
+    	AND (s.`sStatus`=1 OR s.`sStatus`=3)
+    	<if test="sRegion!=null and sRegion!=''">
             AND s.sRegion=#{sRegion}
         </if>
         group by s.sName
-    	<if test="start!=null and size!=null">
+	    <if test="start!=null and size!=null">
             limit #{start},#{size}
         </if>
     
@@ -129,15 +131,38 @@
     
     <select id="getScenicspotCountBySRegion" parameterType="java.util.Map" resultType="Integer">
     	SELECT count(*) FROM scenicspot s
-        <trim prefix="where" prefixOverrides="and | or">
-           and s.sRegion=#{sRegion}
-        </trim>
+    	where (s.`sStatus`=1 OR s.`sStatus`=3)
+       	<if test="sRegion!=null and sRegion!=''">
+            AND s.sRegion=#{sRegion}
+        </if>
     </select>
     
     <select id="findScenCollectionOrderByDesc" resultType="Scenicspot">
     	SELECT s.sName,s.sCity,s.sContent,s.sPrice,s.sCollectionNum,p.pTypeId,p.`pRelativePath` FROM scenicspot s,picture p 
     	WHERE s.id=p.pTypeId AND p.pType=2 
+    	AND (s.`sStatus`=1 OR s.`sStatus`=3)
  		GROUP BY s.sName ORDER BY s.sCollectionNum DESC LIMIT 0,10
     </select>
     
+    <!-- 人气旅游 -->
+    <select id="findPopularTourism" resultType="Scenicspot">
+    	SELECT s.*,p.`pTypeId`,p.`pRelativePath`  FROM scenicspot s,picture p WHERE s.id=p.pTypeId AND p.pType=2
+		AND (s.`sStatus`=1 OR s.`sStatus`=3)
+		GROUP BY s.`sName` ORDER BY s.sCollectionNum DESC LIMIT 0,4	
+    </select>
+    
+    <!-- 最新旅游 -->
+    <select id="findNewestTourism" resultType="Scenicspot">
+    	SELECT s.*,p.`pTypeId`,p.`pRelativePath`  FROM scenicspot s,picture p WHERE s.id=p.pTypeId AND p.pType=2
+		AND (s.`sStatus`=1 OR s.`sStatus`=3)
+		GROUP BY s.`sName` ORDER BY s.sPubTime DESC LIMIT 0,4
+    </select>
+    
+    <!-- 主题旅游 -->
+    <select id="findThemeTourism" resultType="Scenicspot">
+    	SELECT s.*,p.`pTypeId`,p.`pRelativePath`  FROM scenicspot s,picture p WHERE s.id=p.pTypeId AND p.pType=2
+ 		AND (s.`sStatus`=1 OR s.`sStatus`=3)
+ 		AND s.sCity =#{sCity}
+ 		GROUP BY s.sName
+    </select>
 </mapper>

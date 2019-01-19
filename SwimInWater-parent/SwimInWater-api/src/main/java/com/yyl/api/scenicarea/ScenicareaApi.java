@@ -160,4 +160,28 @@ public interface ScenicareaApi {
 	 * @throws
 	 */
 	List<Scenicspot> findScenCollectionOrderByDesc();
+	/**
+	 * 人气旅游
+	 * @Title: findPopularTourism
+	 * @return List<Scenicspot>    返回类型
+	 * @throws
+	 */
+	List<Scenicspot> findPopularTourism();
+	
+	/**
+	 * 最新旅游
+	 * @Title: findNewestTourism
+	 * @return List<Scenicspot>    返回类型
+	 * @throws
+	 */
+	List<Scenicspot> findNewestTourism();
+	/**
+	 * 主题旅游
+	 * @Title: findThemeTourism
+	 * @param @param sCity
+	 * @param @return    设定文件
+	 * @return List<Scenicspot>    返回类型
+	 * @throws
+	 */
+	List<Scenicspot> findThemeTourism(String sCity); 
 }
