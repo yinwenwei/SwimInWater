@@ -1,13 +1,13 @@
 package com.yyl.web;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
-
+import com.yyl.api.ModelApiImpl;
+import com.yyl.entity.Hotel;
+import com.yyl.entity.PageBean;
+import com.yyl.entity.Scenicspot;
+import com.yyl.entity.User;
+import com.yyl.util.Constants;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -15,12 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.yyl.api.ModelApiImpl;
-import com.yyl.entity.Hotel;
-import com.yyl.entity.PageBean;
-import com.yyl.entity.Scenicspot;
-import com.yyl.entity.User;
-import com.yyl.util.Constants;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * 
@@ -45,6 +42,13 @@ public class JspController {
 		logger.info("接收到请求");
 		logger.info("处理请求");
 		return "/frontend/login";
+	}
+
+	@ApiOperation(value="请求订单页面",notes="进入订单页面")
+	@RequestMapping(value="/order",method=RequestMethod.GET)
+	public String orderPage(){
+//		logger.info("接收到请求,参数:{}", "顶顶顶顶顶顶顶");
+		return "/frontend/route_order_page";
 	}
 	
 	@ApiOperation(value="接收登录请求",notes="用户登录")

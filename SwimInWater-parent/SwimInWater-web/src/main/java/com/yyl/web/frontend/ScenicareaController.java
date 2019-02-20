@@ -1,21 +1,5 @@
 package com.yyl.web.frontend;
 
-import java.util.List;
-import java.util.Map;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
-
-import javax.annotation.Resource;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.yyl.api.ModelApi;
 import com.yyl.entity.Hotel;
 import com.yyl.entity.Line;
@@ -23,6 +7,19 @@ import com.yyl.entity.Picture;
 import com.yyl.entity.Scenicspot;
 import com.yyl.util.Constants;
 import com.yyl.util.EncodingTool;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 @Api(value="景点访问控制器", tags={"景点相关"})
 @Controller
@@ -53,9 +50,9 @@ public class ScenicareaController {
 		List<Picture> hotelPicList = (List<Picture>) map.get(Constants.PIC_HOTEL);
 		
 		//根据景点id查询景点信息
-		System.out.println("景点名称:"+scenicspot.getsName()+"景点内容:"+scenicspot.getsContent()+"景点价格:"+scenicspot.getsPrice());
+//		System.out.println("景点名称:"+scenicspot.getsName()+"景点内容:"+scenicspot.getsContent()+"景点价格:"+scenicspot.getsPrice());
 		//路线
-		for (Line line : lineList) {
+		/*for (Line line : lineList) {
 			System.out.println("路线名称:"+line.getLName()+"路线内容:"+line.getLContent());
 		}
 		//酒店
@@ -67,7 +64,7 @@ public class ScenicareaController {
 		}
 		for (Picture picture : hotelPicList) {
 			System.out.println("酒店id:"+picture.getPTypeId()+"酒店图片:"+picture.getPRelativePath());
-		}
+		}*/
 	
 		model.addAttribute("contentName", EncodingTool.encodeStr(contentName));//所在区域
 		model.addAttribute("scenicspot", scenicspot);//景点详情
@@ -75,9 +72,13 @@ public class ScenicareaController {
 		model.addAttribute("hotelList", hotelList);//酒店详情
 		model.addAttribute("scenPicList", scenPicList);//景点图片
 		model.addAttribute("hotelPicList", hotelPicList);//酒店图片
-		logger.info("处理请求,结果:{}", "");
+		logger.info("处理请求,结果:{}", map);
 		return "frontend/route_detail";
 	}
-	
+	// 订单页面--显示旅游详情
+	// 选择日期
+	// 选人数--无保险
+	// 取票人信息 : 填写身份证,姓名,手机
+	// 计算总金额
 	
 }
