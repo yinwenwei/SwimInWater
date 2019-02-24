@@ -11,6 +11,7 @@
 	<!-- 导入redis.properties -->
 	<bean id="propertyConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="classpath:redis.properties"/>
+		<property name="ignoreUnresolvablePlaceholders" value="true"/>
 	</bean>
 	
 	<!-- <context:property-placeholder location="classpath:redis.properties" /> -->

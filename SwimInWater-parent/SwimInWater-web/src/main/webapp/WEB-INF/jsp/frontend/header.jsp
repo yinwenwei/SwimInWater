@@ -13,6 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!-- 头部 start -->
     <header id="header">
+
         <div class="top_banner">
             <img src="${pageContext.request.contextPath }/statics/images/top_banner.jpg" alt="" style="width:100%">
         </div>
@@ -28,7 +29,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <!-- 登录状态  -->
             <c:if test="${userSession.UName!=null }">
             <div class="login">
-            	
                 <span>欢迎回来，${userSession.UName }</span>
                 <a href="${pageContext.request.contextPath }/myfavorite.action" class="collection">我的收藏</a>
                 <a href="${pageContext.request.contextPath }/userexit.action">退出</a>
@@ -41,7 +41,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <a href="/"><img src="${pageContext.request.contextPath }/statics/images/logo.jpg" alt=""></a>
                 </div>
                 <div class="search">
-                    <input name="" type="text" placeholder="请输入路线名称" class="search_input" autocomplete="off">
+                	<input type="hidden" value="1" class="scenPageNo"/>
+                    <input name="" type="text" placeholder="请输入路线名称" class="search_input" autocomplete="off" >
                     <a href="javascript:;" class="search-button">搜索</a>
                 </div>
                 <div class="hottel">
@@ -69,4 +70,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <li><a href="${pageContext.request.contextPath }/favoriterank.action">收藏排行榜</a></li>
         </ul>
     </div>
+        <script src="${pageContext.request.contextPath}/statics/js/jquery-2.1.0.js"></script>
+    <script type="text/javascript">
+    	function query() {
+    			var info=$(".search_input").val();
+    			var page=$(".scenPageNo").val();
+    			window.location.href="${pageContext.request.contextPath}/solr/search?sname="+info+"&page="+page;
+		};
+		
+    	$(function(){
+    		$(".search-button").click(function(){
+    			query();
+    		});
+    	});
     
+    </script>

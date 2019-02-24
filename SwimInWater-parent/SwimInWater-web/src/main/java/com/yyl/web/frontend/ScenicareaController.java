@@ -1,6 +1,7 @@
 package com.yyl.web.frontend;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import io.swagger.annotations.Api;
@@ -15,11 +16,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yyl.api.ModelApi;
 import com.yyl.entity.Hotel;
 import com.yyl.entity.Line;
 import com.yyl.entity.Picture;
+import com.yyl.entity.ScenResult;
 import com.yyl.entity.Scenicspot;
 import com.yyl.util.Constants;
 import com.yyl.util.EncodingTool;
@@ -79,5 +82,6 @@ public class ScenicareaController {
 		return "frontend/route_detail";
 	}
 	
+
 	
 }

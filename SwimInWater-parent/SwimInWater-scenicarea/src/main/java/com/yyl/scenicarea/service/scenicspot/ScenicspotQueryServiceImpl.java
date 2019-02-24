@@ -1,15 +1,20 @@
 package com.yyl.scenicarea.service.scenicspot;
 import com.yyl.entity.Picture;
+import com.yyl.entity.ScenInfo;
 import com.yyl.entity.Scenicspot;
 import com.yyl.entity.PageBean;
 import com.yyl.scenicarea.repository.scenicspot.ScenicspotQueryMapper;
 
+import org.apache.solr.client.solrj.SolrServer;
+import org.apache.solr.client.solrj.SolrServerException;
+import org.apache.solr.common.SolrInputDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +26,9 @@ public class ScenicspotQueryServiceImpl implements ScenicspotQueryService {
 	private Logger logger = LoggerFactory.getLogger(ScenicspotQueryServiceImpl.class);
     @Resource
     private ScenicspotQueryMapper scenicspotQueryMapper;
+    //solr服务
+    @Resource
+    private SolrServer solrServer;
 
     public Scenicspot getScenicspotById(Integer id){
         try {
@@ -164,6 +172,34 @@ public class ScenicspotQueryServiceImpl implements ScenicspotQueryService {
 	public List<Scenicspot> findThemeTourism(String sCity) {
 		// TODO Auto-generated method stub
 		return scenicspotQueryMapper.findThemeTourism(sCity);
+	}
+	
+	/**
+	 * 将数据库查询信息存入solr索引库
+	 */
+	@Override
+	public void importAllScenInfo() {
+		//查询景点信息列表
+		List<ScenInfo> scenList = scenicspotQueryMapper.findScenInfo();
+		try {
+			//把商品信息写入索引库
+			for (ScenInfo scenInfo : scenList) {
+				//创建一个SolrInputDocument对象
+				SolrInputDocument document=new SolrInputDocument();
+				document.setField("id", scenInfo.getId());
+				document.setField("scen_sname", scenInfo.getsName());
+				document.setField("scen_scity", scenInfo.getsCity());
+				document.setField("scen_scontent", scenInfo.getsContent());
+				document.setField("scen_sprice", scenInfo.getsPrice());
+				document.setField("pic_pid", scenInfo.getPid());
+				document.setField("pic_prelativepath", scenInfo.getpRelativePath());
+				solrServer.add(document);
+			}
+			//提交solr服务
+			solrServer.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

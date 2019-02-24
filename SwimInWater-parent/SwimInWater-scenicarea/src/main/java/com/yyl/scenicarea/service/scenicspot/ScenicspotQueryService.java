@@ -89,4 +89,6 @@ public interface ScenicspotQueryService {
 	 * @throws
 	 */
 	List<Scenicspot> findThemeTourism(String sCity); 
+	
+	void importAllScenInfo();
 }

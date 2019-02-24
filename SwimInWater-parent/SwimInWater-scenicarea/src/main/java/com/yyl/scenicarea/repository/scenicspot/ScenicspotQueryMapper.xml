@@ -164,4 +164,10 @@
  		AND s.sCity =#{sCity}
  		GROUP BY s.sName
     </select>
+    
+    <!-- 查询索引库 -->
+    <select id="findScenInfo" resultType="sceninfo">
+    	SELECT s.id,s.sName,s.sCity,s.sContent,s.sPrice,p.id AS pid,p.pRelativePath 
+			FROM scenicspot s,picture p WHERE s.id=p.`pTypeId` AND p.`pType`=2 GROUP BY s.sName
+    </select>
 </mapper>

@@ -8,6 +8,7 @@ import com.yyl.entity.Hotel;
 import com.yyl.entity.Line;
 import com.yyl.entity.PageBean;
 import com.yyl.entity.Picture;
+import com.yyl.entity.ScenResult;
 import com.yyl.entity.Scenicspot;
 
 
@@ -183,5 +184,21 @@ public interface ScenicareaApi {
 	 * @return List<Scenicspot>    返回类型
 	 * @throws
 	 */
-	List<Scenicspot> findThemeTourism(String sCity); 
+	List<Scenicspot> findThemeTourism(String sCity);
+	/**
+	 * 将景点信息导入solr索引库
+	 * @Title: importAllScenInfo
+	 * @param     设定文件
+	 * @return void    返回类型
+	 * @throws
+	 */
+	void importAllScenInfo();
+	/**
+	 * 查询solr索引库数据
+	 * @Title: searScenInfo
+	 * @param @return    设定文件
+	 * @return ScenResult    返回类型
+	 * @throws
+	 */
+	ScenResult searScenInfo(String queryString,int page,int rows) throws Exception;
 }

@@ -263,7 +263,12 @@
                 <version>3.3.2</version>
        </dependency>
 
- 
+ 		<!-- solrj -->
+        <dependency>
+		    <groupId>org.apache.solr</groupId>
+		    <artifactId>solr-solrj</artifactId>
+		    <version>4.10.2</version>
+		</dependency>
         
         <!-- https://mvnrepository.com/artifact/io.swagger/swagger-annotations -->
         <dependency>			
