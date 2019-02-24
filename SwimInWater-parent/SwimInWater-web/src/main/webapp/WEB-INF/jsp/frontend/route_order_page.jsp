@@ -8,9 +8,18 @@
     <meta charset="utf-8">
     <title>路线详情</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/common.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/route-detail.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/statics/css/search.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/css/bootstrap-spinner.css">
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/statics/js/jquery.spinner.js"></script>
+
     <style type="text/css">
         .process_bar{width:100%;height:40px;font-size:16px;text-align: center;}
         .process_bar ul li{float:left;height:40px;line-height:40px;text-align:center;color:#969a9d;background-color:#e7e8e9}
@@ -22,6 +31,23 @@
             width: 1188px;
             margin: 20px auto;
         }
+        #contain_body{
+            width:100%;
+            height:140px;
+            ont-size:13px;
+            text-align: center;
+        }
+        .footer {
+            position: fixed;
+            left: 0px;
+            bottom: 0px;
+            margin: 0px;
+            width: 100%;
+            height: 70px;
+            background-color: #eee;
+            z-index: 9999;
+        }
+
     </style>
 </head>
 
@@ -31,11 +57,46 @@
     <!-- 详情 start -->
         <div class="process_bar">
             <ul class="online">
-                <li class="step_1"><span>1.</span>填写与核对订单<i></i></li>
-                <li><span>2.</span>支付<i></i></li>
+                <li class="step_1"><span>1.</span>填写与核对订单</li>
+                <li><span>2.</span>支付</li>
                 <li><span>3.</span>成功提交订单</li>
             </ul>
         </div>
+        <div id="contain_body">
+            <div style="font-size: 20px;width:1188px;margin: 0 auto;text-align: left">
+                <span style="color: #fe9c00;">预订信息</span>
+            </div>
+            <div style="width:1188px;margin: 0 auto;height: 3px;background-color: #fe9c00;"></div>
+            <div style="width:1188px;margin: 0 auto;height: 100px;text-align: left;font-size: 15px;" >
+                <p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;width: 300px"><span >${scenicspot.sName } </span></p>
+                <p>${hotel.hName}</p>
+                <a style="color: #00bdff;font-weight: bolder">查看景点详情</a>
+            </div>
+
+        </div>
+
+        <form action="" class="form-horizontal"  role="form">
+            <div class="form-group">
+                <label for="dtp_input2" class="col-md-2 control-label">选择日期:</label>
+                <div class="input-group date form_date col-md-2" data-date="" data-date-format="yyyy MM dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" size="16" type="text" value="" readonly  >
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+                <label for="dtp_input2" class="col-md-2 control-label" style="margin-top: 15px">选择数量:</label>
+
+                <div class="input-group spinner col-md-2" data-trigger="spinner" style="margin-top: 17px;">
+                    <input type="text" class="form-control text-center" value="1" data-rule="quantity" readonly>
+                    <div class="input-group-addon">
+                        <a href="javascript:;" class="spin-up" data-spin="up"><i class="fa fa-caret-up"></i></a>
+                        <a href="javascript:;" class="spin-down" data-spin="down"><i class="fa fa-caret-down"></i></a>
+                    </div>
+                </div>
+
+                <input type="hidden" id="dtp_input2" value="" /><br/>
+            </div>
+
+        </form>
         <!-- ---- process_bar   ------------------------ -->
         <div class="you_need_konw">
             <span>旅游须知</span>
@@ -61,6 +122,23 @@
             </div>           
         </div>
         <!-- ----------------------------------- -->
+        <div class="footer row" style="text-align: left;">
+            <div class="col-md-3" ></div>
+            <div class="col-md-3" ></div>
+            <div class="col-md-2" ></div>
+
+            <div class="col-md-1" >
+                <p style="margin-top: 22px;">订单总金额:</p>
+            </div>
+
+            <div class="col-md-1" ></div>
+
+            <div class="col-md-1" >
+                <button type="button" class="btn btn-danger" style="font-size: 16px;font-weight: bold;margin-top: 16px;width: 130px;">去支付</button>
+            </div>
+
+
+        </div>
 
     <!--引入头部-->
     <div id="footer"><%@ include file="footer.jsp" %></div>
@@ -69,81 +147,46 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="${pageContext.request.contextPath}/statics/js/bootstrap.min.js"></script>
     <!--导入布局js，共享header和footer-->
+    <script type="text/javascript" src="${pageContext.request.contextPath}/statics/js/jquery-1.8.3.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/statics/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/statics/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/statics/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
     <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/statics/js/include.js"></script> --%>
-    <script>
-    $(document).ready(function() {
-        //焦点图效果
-        //点击图片切换图片
-        $('.little_img').on('mousemove', function() {
-            $('.little_img').removeClass('cur_img');
-            var big_pic = $(this).data('bigpic');
-            $('.big_img').attr('src', big_pic);
-            $(this).addClass('cur_img');
-        });
-           //上下切换
-        var picindex = 0;
-        var nextindex = 4;
-        $('.down_img').on('click',function(){
-            var num = $('.little_img').length;
-            if((nextindex + 1) <= num){
-                $('.little_img:eq('+picindex+')').hide();
-                $('.little_img:eq('+nextindex+')').show();
-                picindex = picindex + 1;
-                nextindex = nextindex + 1;
-            }
-        });
-        $('.up_img').on('click',function(){
-            var num = $('.little_img').length;
-            if(picindex > 0){
-                $('.little_img:eq('+(nextindex-1)+')').hide();
-                $('.little_img:eq('+(picindex-1)+')').show();
-                picindex = picindex - 1;
-                nextindex = nextindex - 1;
-            }
-        });
-        //自动播放
-        // var timer = setInterval("auto_play()", 5000);
-    });
 
-    //自动轮播方法
-    function auto_play() {
-        var cur_index = $('.prosum_left dd').find('a.cur_img').index();
-        cur_index = cur_index - 1;
-        var num = $('.little_img').length;
-        var max_index = 3;
-        if ((num - 1) < 3) {
-            max_index = num - 1;
-        }
-        if (cur_index < max_index) {
-            var next_index = cur_index + 1;
-            var big_pic = $('.little_img:eq(' + next_index + ')').data('bigpic');
-            $('.little_img').removeClass('cur_img');
-            $('.little_img:eq(' + next_index + ')').addClass('cur_img');
-            $('.big_img').attr('src', big_pic);
-        } else {
-            var big_pic = $('.little_img:eq(0)').data('bigpic');
-            $('.little_img').removeClass('cur_img');
-            $('.little_img:eq(0)').addClass('cur_img');
-            $('.big_img').attr('src', big_pic);
-        }
-    }
-    </script>
-    <script type="text/javascript">
-    	$(function(){
-    		$(".hotel").css("margin-left","2px");
-    		$(".hotel").click(function(){
-    			var hotelName = $(this).text();
-    			$(this).css("background-color","#5cb85c");
-    			$(this).css("color","#fff");
-    			$(this).siblings().css("background-color","#fff");
-    			$(this).siblings().css("color","#000");
-    			var hotelPrice = $(this).attr("data");
-    			var scePrice = "${scenicspot.sPrice }";
-    			var totalPrice = hotelPrice*1 + scePrice*1;
-    			$("#price").html(totalPrice + ".00");
-    		});
-    	});
-    </script>
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
+    });
+    $('.form_date').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+    $('.form_time').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 1,
+        minView: 0,
+        maxView: 1,
+        forceParse: 0
+    });
+</script>
+
 </body>
 
 </html>

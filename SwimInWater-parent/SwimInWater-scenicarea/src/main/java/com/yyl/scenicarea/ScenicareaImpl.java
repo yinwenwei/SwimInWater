@@ -1,23 +1,8 @@
 package com.yyl.scenicarea;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.apache.commons.lang.StringUtils;
-import org.springframework.stereotype.Component;
-
 import com.alibaba.fastjson.JSON;
 import com.yyl.api.scenicarea.ScenicareaApi;
-import com.yyl.entity.Dictionary;
-import com.yyl.entity.Hotel;
-import com.yyl.entity.Line;
-import com.yyl.entity.PageBean;
-import com.yyl.entity.Picture;
-import com.yyl.entity.Scenicspot;
+import com.yyl.entity.*;
 import com.yyl.scenicarea.service.dictionary.DictionaryQueryService;
 import com.yyl.scenicarea.service.hotel.HotelQueryService;
 import com.yyl.scenicarea.service.line.LineQueryService;
@@ -25,6 +10,14 @@ import com.yyl.scenicarea.service.picture.PictureQueryService;
 import com.yyl.scenicarea.service.scenicspot.ScenicspotQueryService;
 import com.yyl.util.Constants;
 import com.yyl.util.JedisClientSingle;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 @Component("scenicareaApi")
 public class ScenicareaImpl implements ScenicareaApi {
 	//景点业务接口
@@ -119,9 +112,9 @@ public class ScenicareaImpl implements ScenicareaApi {
 		Scenicspot scen = scenicspotQueryService.getScenicspotById(id);
 		//根据景点id查询景点图片
 		List<Picture> scenicPictrue = scenicspotQueryService.findScenicspotPictureByPTypeId(scen.getId());
-		for (Picture picture : scenicPictrue) {
+		/*for (Picture picture : scenicPictrue) {
 			System.out.println("业务层----------景点图片信息："+picture.getPTypeId()+"景点图片信息:"+picture.getPRelativePath());
-		}
+		}*/
 		
 		//根据景点id查询酒店详情
 		hotelmap.put("sId", scen.getId());

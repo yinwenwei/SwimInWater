@@ -1,12 +1,13 @@
 package com.yyl.web.quartz;
 
+import com.yyl.api.ModelApiImpl;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import javax.annotation.Resource;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
-import com.yyl.api.ModelApiImpl;
 /**
  * 获取主题城市
  * @ClassName: GetThemCity
@@ -28,7 +29,7 @@ public class GetThemCity {
 	// 开启服务调度器就运行,随机城市主题
 //		@Scheduled(cron=" 0 0 0 * * ?")//每天凌晨刷一次
 // 	@Scheduled(cron=" 0 0 0/4 * * ?")//4小时刷一次 
-	@Scheduled(cron=" 0 0/1 * * * ?")//1分钟刷一次 
+	@Scheduled(cron=" 0 0/10 * * * ?")//10分钟刷一次
 	public void flushCity(){
 		List<String> list = modelApi.getScenicareaApi().findAllCity();
         int index = (int) (Math.random()* list.size());

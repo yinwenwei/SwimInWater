@@ -70,16 +70,24 @@
                     </p>
                     <p>
               	 		<div class="btn-group" role="group" aria-label="...">
-						  <button type="button" class="hotel btn btn-default" data="299">常春藤度假酒店</button>
-						  <button type="button" class="hotel btn btn-default" data="899">一晚温泉酒店</button>
-						  <button type="button" class="hotel btn btn-default" data="999">陆轩酒店</button>
+                            <c:forEach items="${hotelList }" var="hotel" varStatus="sta">
+                                <c:if test="${sta.index == 0}">
+                                    <button type="button" class="hotel btn btn-default hotel_btn" style="background-color: #5cb85c;color: #fff" data="${hotel.hPrice}" hid="${hotel.id}">${hotel.hName}</button>
+                                </c:if>
+                                <c:if test="${sta.index != 0}">
+                                    <button type="button" class="hotel btn btn-default hotel_btn" data="${hotel.hPrice}" hid="${hotel.id}">${hotel.hName}</button>
+                                </c:if>
+                            </c:forEach>
 						</div>
 					</p>
                     <p class="collect">
-                        <a class="btn"><!-- <i class="glyphicon glyphicon-heart-empty"> --></i>立即预订</a>
-
-                        <a  class="btn already" disabled="disabled"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
-                        <span>已收藏${显示收藏次数 }次</span>
+                        <a class="btn" id="booknow"><!-- <i class="glyphicon glyphicon-heart-empty"> --></i>立即预订</a>
+                        <form action="${pageContext.request.contextPath}/order/book" method="post" id="commit">
+                            <input type="hidden" id="scenId" name="scenId" value="${scenicspot.id}">
+                            <input type="hidden" id="hotelId" name="hotelId" value="">
+                        </form>
+                        <%--<a  class="btn already" disabled="disabled"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
+                        <span>已收藏${显示收藏次数 }次</span>--%>
                     </p>
                 </div>        
             </div>
@@ -90,58 +98,28 @@
             <div class="xinxi clearfix">
                 <div class="left">
                     <div class="header">
-                        <span>商品信息</span>
+                        <span>附近酒店信息</span>
                         <span class="jg">价格</span>
                     </div>
                     <ul>
-                        <li>
-                            <div class="img"><img src="${pageContext.request.contextPath}/statics/images/04-search_03.jpg" alt=""></div>
-                            <div class="text1">
-                                <p>【减100元 含除夕/春节出发】广州增城三英温泉度假酒店/自由行套票</p>
-                                <br/>
-                                <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
-                            </div>
-                            <div class="price">
-                                <p class="price_num">
-                                    <span>&yen;</span>
-                                    <span>299</span>
-                                    <span>起</span>
-                                </p>
-                                <p><a href="route_detail.html">查看详情</a></p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img"><img src="${pageContext.request.contextPath}/statics/images/04-search_03.jpg" alt=""></div>
-                            <div class="text1">
-                                <p>浪花朵朵旅行普吉岛丛林飞跃空中飞人探险游中文服务泰国旅游</p>
-                                <br/>
-                                <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
-                            </div>
-                            <div class="price">
-                                <p class="price_num">
-                                    <span>&yen;</span>
-                                    <span>899</span>
-                                    <span>起</span>
-                                </p>
-                                <p><a href="route_detail.html">查看详情</a></p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="img"><img src="${pageContext.request.contextPath}/statics/images/04-search_03.jpg" alt=""></div>
-                            <div class="text1">
-                                <p>黑妞皇家旅行普吉岛攀牙湾大船星光之旅皮划艇日落休闲特色体验</p>
-                                <br/>
-                                <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
-                            </div>
-                            <div class="price">
-                                <p class="price_num">
-                                    <span>&yen;</span>
-                                    <span>999</span>
-                                    <span>起</span>
-                                </p>
-                                <p><a href="route_detail.html">查看详情</a></p>
-                            </div>
-                        </li>
+                        <c:forEach items="${hotelList }" var="hotel">
+                            <li>
+                                <div class="img"><img src="${pageContext.request.contextPath}/${hotel.pRelativePath}" style="width: 300px;height: 170px;" alt=""></div>
+                                <div class="text1">
+                                    <p>${hotel.hName}</p>
+                                    <br/>
+                                    <p>${hotel.hContent}</p>
+                                </div>
+                                <div class="price">
+                                    <p class="price_num">
+                                        <span>&yen;</span>
+                                        <span>${hotel.hPrice}</span>
+                                        <span>起</span>
+                                    </p>
+                                    <p><a href="hotel_detail/${hotel.id}">查看详情</a></p>
+                                </div>
+                            </li>
+                        </c:forEach>
                     </ul>
                 </div>
                 <div class="right">
@@ -229,6 +207,37 @@
     <script src="${pageContext.request.contextPath}/statics/js/jquery-2.1.0.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="${pageContext.request.contextPath}/statics/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+        $(".hotel").css("margin-left","2px");
+        $(".hotel").click(function(){
+            var hotelName = $(this).text();
+            $(this).css("background-color","#5cb85c");
+            $(this).css("color","#fff");
+            $(this).siblings().css("background-color","#fff");
+            $(this).siblings().css("color","#000");
+            var hotelPrice = $(this).attr("data");
+            var scePrice = "${scenicspot.sPrice }";
+            var totalPrice = hotelPrice*1 + scePrice*1;
+            $("#price").html(totalPrice + ".00");
+        });
+        // 表单赋值
+        var hId = $(".hotel_btn").eq(0).attr('hid');
+        $("#hotelId").val(hId);
+
+        $(".hotel_btn").click(function () {
+            var hId = $(this).attr('hid');
+            $("#hotelId").val(hId);
+        });
+
+        $("#booknow").click(function () {
+            $("#commit").submit();
+        });
+
+    });
+</script>
+
     <!--导入布局js，共享header和footer-->
     <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/statics/js/include.js"></script> --%>
     <script>
@@ -288,22 +297,6 @@
             $('.big_img').attr('src', big_pic);
         }
     }
-    </script>
-    <script type="text/javascript">
-    	$(function(){
-    		$(".hotel").css("margin-left","2px");
-    		$(".hotel").click(function(){
-    			var hotelName = $(this).text();
-    			$(this).css("background-color","#5cb85c");
-    			$(this).css("color","#fff");
-    			$(this).siblings().css("background-color","#fff");
-    			$(this).siblings().css("color","#000");
-    			var hotelPrice = $(this).attr("data");
-    			var scePrice = "${scenicspot.sPrice }";
-    			var totalPrice = hotelPrice*1 + scePrice*1;
-    			$("#price").html(totalPrice + ".00");
-    		});
-    	});
     </script>
 </body>
 
