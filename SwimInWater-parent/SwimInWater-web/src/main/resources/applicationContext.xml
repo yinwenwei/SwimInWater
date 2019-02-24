@@ -37,4 +37,7 @@
     
     <!-- 引入redis数据源 -->
     <import resource="classpath:/applicationContext-redis.xml"/>
+        
+    <!-- 引入solr服务 -->
+    <import resource="classpath:/applicationContext-solr.xml"/>
 </beans>

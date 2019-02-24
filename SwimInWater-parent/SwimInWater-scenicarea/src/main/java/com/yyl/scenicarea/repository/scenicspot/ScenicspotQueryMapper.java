@@ -1,8 +1,11 @@
 package com.yyl.scenicarea.repository.scenicspot;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.solr.client.solrj.SolrQuery;
 
 import com.yyl.entity.Picture;
+import com.yyl.entity.ScenInfo;
+import com.yyl.entity.ScenResult;
 import com.yyl.entity.Scenicspot;
 
 import java.util.List;
@@ -94,4 +97,20 @@ public interface ScenicspotQueryMapper {
 	 * @throws
 	 */
 	List<Scenicspot> findThemeTourism(String sCity); 
+	/**
+	 * 查询景点信息导入solr索引库
+	 * @Title: findScenInfo
+	 * @param @return    设定文件
+	 * @return List<ScenInfo>    返回类型
+	 * @throws
+	 */
+	List<ScenInfo> findScenInfo();
+	/**
+	 * 查询solr索引库数据
+	 * @Title: searScenInfo
+	 * @param @return    设定文件
+	 * @return ScenResult    返回类型
+	 * @throws
+	 */
+	ScenResult searScenInfo(SolrQuery query) throws Exception;
 }

@@ -3,11 +3,19 @@ package com.yyl.scenicarea;
 import com.alibaba.fastjson.JSON;
 import com.yyl.api.scenicarea.ScenicareaApi;
 import com.yyl.entity.*;
+import com.yyl.entity.Dictionary;
+import com.yyl.entity.Hotel;
+import com.yyl.entity.Line;
+import com.yyl.entity.PageBean;
+import com.yyl.entity.Picture;
+import com.yyl.entity.ScenResult;
+import com.yyl.entity.Scenicspot;
 import com.yyl.scenicarea.service.dictionary.DictionaryQueryService;
 import com.yyl.scenicarea.service.hotel.HotelQueryService;
 import com.yyl.scenicarea.service.line.LineQueryService;
 import com.yyl.scenicarea.service.picture.PictureQueryService;
 import com.yyl.scenicarea.service.scenicspot.ScenicspotQueryService;
+import com.yyl.scenicarea.service.sceninfo.ScenInfoService;
 import com.yyl.util.Constants;
 import com.yyl.util.JedisClientSingle;
 import org.apache.commons.lang.StringUtils;
@@ -35,6 +43,11 @@ public class ScenicareaImpl implements ScenicareaApi {
 	//图片业务接口
 	@Resource
 	private PictureQueryService pictureQueryService;
+	//solr索引接口
+	@Resource
+	private ScenInfoService scenInfoService;
+
+
 	//jedis工具类
 	@Resource
 	JedisClientSingle jedisClientSingle;
@@ -197,23 +210,21 @@ public class ScenicareaImpl implements ScenicareaApi {
 	}
 	
 	/**
-	 * 根据分区查询首页所有景点信息And图片
+	 * 根据分区查询首页所有景点信息And图片(redis---------)
 	 */
 	@Override
 	public List<Scenicspot> findScenPicAll() {
-		// TODO Auto-generated method stub
+		String pichget = jedisClientSingle.hget("Redis_ScenPicAll", "scenPicList");
+		if(!StringUtils.isBlank(pichget)){
+			System.out.println("进入reids查询数据------------->");
+			List<Scenicspot> scenicspotList = JSON.parseArray(pichget, Scenicspot.class);
+			return scenicspotList;
+		}
+		System.out.println("进入数据库查询信息--------------->");
 		List<Scenicspot> findScenPicAll = scenicspotQueryService.findScenPicAll();
 		//将景点详情信息转成JSON格式存储到redis
 		jedisClientSingle.hset("Redis_ScenPicAll", "scenPicList", JSON.toJSON(findScenPicAll).toString());
-		//从redis中取出景点信息
-		String scenStr = jedisClientSingle.hget("Redis_ScenPicAll", "scenPicList");
-		//判断拿出来的数据不为null或大于0
-		if(!StringUtils.isBlank(scenStr)){
-			//将redis中拿出来的数据转换为List对象
-			List<Scenicspot> scenicspotList = JSON.parseArray(scenStr, Scenicspot.class);
-			return scenicspotList;
-		}
-		return null;
+		return findScenPicAll;
 	}
 	/**
 	 * 查询所有信息,分页
@@ -251,46 +262,59 @@ public class ScenicareaImpl implements ScenicareaApi {
 	 */
 	@Override
 	public List<Scenicspot> findPopularTourism() {
-		List<Scenicspot> popularList = scenicspotQueryService.findPopularTourism();
-		jedisClientSingle.hset("Redis_popularTourismList", "popularTourismList", JSON.toJSON(popularList).toString());
-		String popularStr = jedisClientSingle.hget("Redis_popularTourismList", "popularTourismList");
-		if(!StringUtils.isBlank(popularStr)){
-			List<Scenicspot> popularTourismList = JSON.parseArray(popularStr, Scenicspot.class);
-			return popularTourismList;
-		}
-		return null;
+		return scenicspotQueryService.findPopularTourism();
 	}
 	
 	/**
-	 * 最新旅游
+	 * 最新旅游(redis)
 	 */
 	@Override
 	public List<Scenicspot> findNewestTourism() {
-		// TODO Auto-generated method stub
+		//从redis中查询最新旅游信息
+		String hget = jedisClientSingle.hget("Redis_newstList", "newestList");
+		if(!StringUtils.isBlank(hget)){
+			List<Scenicspot> newTourismList = JSON.parseArray(hget, Scenicspot.class);
+			return newTourismList;
+		}
+		//查询最新旅游信息
 		List<Scenicspot> newestList = scenicspotQueryService.findNewestTourism();
 		jedisClientSingle.hset("Redis_newstList", "newestList", JSON.toJSON(newestList).toString());
-		String newsetStr = jedisClientSingle.hget("Redis_newstList", "newestList");
-		if(!StringUtils.isBlank(newsetStr)){
-			List<Scenicspot> newestTourismList = JSON.parseArray(newsetStr, Scenicspot.class);
-			return newestTourismList;
-		}
-		return null;
+		return newestList;
 	}
 	
 	/**
-	 * 主题旅游
+	 * 主题旅游(redis)
 	 */
 	@Override
 	public List<Scenicspot> findThemeTourism(String sCity) {
-		// TODO Auto-generated method stub
-		List<Scenicspot> themeList = scenicspotQueryService.findThemeTourism(sCity);
-		jedisClientSingle.hset("Redis_themeList", "themeList", JSON.toJSON(themeList).toString());
-		String themeStr = jedisClientSingle.hget("Redis_themeList", "themeList");
-		if(!StringUtils.isBlank(themeStr)){
-			List<Scenicspot> themeTourismList = JSON.parseArray(themeStr, Scenicspot.class);
+		//查询redis中是否存在主题旅游信息
+		String hget = jedisClientSingle.hget("Redis_themeList", "themeList");
+		if(!StringUtils.isBlank(hget)){
+			List<Scenicspot> themeTourismList = JSON.parseArray(hget, Scenicspot.class);
 			return themeTourismList;
 		}
-		return null;
+		//查询主题旅游信息(数据库)
+		List<Scenicspot> themeList = scenicspotQueryService.findThemeTourism(sCity);
+		jedisClientSingle.hset("Redis_themeList", "themeList", JSON.toJSON(themeList).toString());
+		return themeList;
 	}
-	
+
+	/**
+	 * 将景点信息存入solr索引库
+	 */
+	@Override
+	public void importAllScenInfo() {
+		scenicspotQueryService.importAllScenInfo();
+	}
+
+	/**
+	 * 查询solr索引库
+	 */
+	@Override
+	public ScenResult searScenInfo(String queryString, int page, int rows)
+			throws Exception {
+
+		return scenInfoService.searScenInfo(queryString, page, rows);
+	}
+
 }
