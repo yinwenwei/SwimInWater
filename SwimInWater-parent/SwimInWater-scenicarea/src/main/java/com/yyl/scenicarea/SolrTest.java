@@ -6,10 +6,10 @@ import org.apache.solr.client.solrj.impl.HttpSolrServer;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
-import org.junit.Test;
+//import org.junit.Test;
 
 public class SolrTest {
-	@Test
+//	@Test
 	public void queryDocument() throws Exception{
 		SolrServer solrServer=new HttpSolrServer("http://192.168.138.132:8080/solr");
 		SolrQuery query=new SolrQuery();

@@ -1,12 +1,11 @@
 package com.yyl.web.frontend;
 
 import com.yyl.api.ModelApi;
-import com.yyl.entity.*;
+import com.yyl.entity.Hotel;
+import com.yyl.entity.Line;
+import com.yyl.entity.Picture;
+import com.yyl.entity.Scenicspot;
 import com.yyl.util.Constants;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -20,14 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
-import com.yyl.api.ModelApi;
-import com.yyl.entity.Hotel;
-import com.yyl.entity.Line;
-import com.yyl.entity.Picture;
-import com.yyl.entity.ScenResult;
-import com.yyl.entity.Scenicspot;
-import com.yyl.util.Constants;
-import com.yyl.util.EncodingTool;
 
 @Api(value="景点访问控制器", tags={"景点相关"})
 @Controller
